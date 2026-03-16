@@ -149,7 +149,7 @@ export function CareerSection() {
                 {'photos' in c && c.photos && c.photos.length > 0 && (
                   <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
                     <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">📸 Events & Highlights</p>
-                    <div className={`grid gap-3 ${c.photos.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                    <div className={`grid gap-3 ${c.photos.length >= 4 ? 'grid-cols-2 sm:grid-cols-4' : c.photos.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
                       {c.photos.map((photo, idx) => (
                         <img
                           key={idx}
