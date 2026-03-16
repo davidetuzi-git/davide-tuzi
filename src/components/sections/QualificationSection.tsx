@@ -29,7 +29,7 @@ export function QualificationSection() {
         transition={{ staggerChildren: 0.15 }}
         className="max-w-6xl mx-auto w-full"
       >
-        <motion.p variants={fadeUp} className="label-mono mb-4">Education</motion.p>
+        <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">Education</motion.p>
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-12">
           Qualifications
         </motion.h2>

@@ -24,7 +24,7 @@ export function SkillsSection() {
         transition={{ staggerChildren: 0.08 }}
         className="max-w-6xl mx-auto w-full"
       >
-        <motion.p variants={fadeUp} className="label-mono mb-4">Competencies</motion.p>
+        <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">Competencies</motion.p>
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-6">
           Skills Set
         </motion.h2>
