@@ -98,6 +98,18 @@ export function CareerSection() {
                   </div>
                 ))}
               </div>
+              {c.keyLearnings && (
+                <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
+                  <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🎯 Key Learnings</p>
+                  <div className="flex flex-wrap gap-2">
+                    {c.keyLearnings.map((l) => (
+                      <span key={l} className="text-xs bg-primary/8 text-primary border border-primary/15 rounded-full px-3 py-1 font-medium">
+                        {l}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
