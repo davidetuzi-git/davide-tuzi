@@ -46,7 +46,7 @@ export function ResultsSection() {
                   ))}
                 </div>
               ) : 'logo' in d && d.logo ? (
-                <img src={d.logo} alt={d.customer} className="h-14 object-contain mb-4 opacity-70" />
+                <img src={d.logo} alt={d.customer} className="h-18 object-contain mb-4 opacity-70" />
               ) : null}
               <p className="label-mono text-primary mb-2">{d.year}</p>
               <h3 className="text-lg font-semibold text-foreground">{d.customer}</h3>
