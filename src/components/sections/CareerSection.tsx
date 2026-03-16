@@ -9,6 +9,7 @@ import nextonBanner from "@/assets/nexton-banner.png";
 import haiEvent1 from "@/assets/hai-event-1.jpg";
 import haiEvent2 from "@/assets/hai-event-2.jpg";
 import haiEvent3 from "@/assets/hai-event-3.jpg";
+import haiEvent4 from "@/assets/hai-event-4.jpg";
 import nextonEvent1 from "@/assets/nexton-event-1.jpg";
 import nextonEvent2 from "@/assets/nexton-event-2.jpg";
 import articleRepubblica from "@/assets/article-repubblica.png";
