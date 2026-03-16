@@ -49,7 +49,7 @@ export function ResultsSection() {
                   ))}
                 </div>
               ) : 'logo' in d && d.logo ? (
-                <img src={d.logo} alt={d.customer} className={`object-contain mb-4 opacity-70 ${d.customer === 'Arcese for Ferrari' ? 'h-10' : d.customer === 'TransmecLog' ? 'h-14' : 'h-16'}`} />
+                <img src={d.logo} alt={d.customer} className={`object-contain mb-4 opacity-70 ${d.customer === 'Arcese for Ferrari' ? 'h-10' : d.customer === 'TransmecLog' ? 'h-14' : d.customer === 'Luxottica' ? 'h-[4.5rem]' : 'h-16'}`} />
               ) : null}
               <p className="label-mono text-primary mb-2">{d.year}</p>
               <h3 className="text-lg font-semibold text-foreground">{d.customer}</h3>
