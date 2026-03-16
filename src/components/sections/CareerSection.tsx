@@ -45,7 +45,7 @@ const careers = [
   },
   {
     period: "2019 – 2023",
-    company: "XTON",
+    company: "Nexton",
     role: "Co-Founder",
     logo: logoXton,
     achievements: [

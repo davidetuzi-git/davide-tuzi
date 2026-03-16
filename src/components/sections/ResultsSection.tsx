@@ -24,9 +24,12 @@ export function ResultsSection() {
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           From 0 to +€25M in less than 2.5 years
         </motion.h2>
-        <motion.p variants={fadeUp} className="text-muted-foreground mb-12">
+        <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
           Selected highlights from key deals developed at HAI Robotics.
         </motion.p>
+        <motion.div variants={fadeUp} className="monolith-card p-5 mb-12 inline-flex items-center gap-3 border-primary/20 bg-primary/5">
+          <span className="text-primary font-semibold text-sm">🏢 Negotiating with C-Level executives of Fortune 500 companies</span>
+        </motion.div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {deals.map((d) => (
             <motion.div key={d.customer} variants={fadeUp} className="monolith-card p-6 transition-all duration-300">
