@@ -38,21 +38,28 @@ const Index = () => {
             {/* Top line */}
             <div
               className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ top: '20%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
+              style={{ top: '15%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
             >
               CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
             </div>
-            {/* Center line */}
+            {/* Upper-center line */}
             <div
               className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ top: '50%', left: '-10%', transform: 'rotate(-35deg) translateY(-50%)', width: '250%' }}
+              style={{ top: '40%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
+            >
+              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
+            </div>
+            {/* Lower-center line */}
+            <div
+              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+              style={{ top: '65%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
             >
               CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
             </div>
             {/* Bottom line */}
             <div
               className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ top: '80%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
+              style={{ top: '90%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
             >
               CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
             </div>
