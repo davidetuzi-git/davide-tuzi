@@ -31,6 +31,12 @@ export function ContactSection() {
             <span className="text-sm">linkedin.com/in/davidetuzi</span>
           </a>
         </motion.div>
+        <motion.div variants={fadeUp} className="mt-6">
+          <a href="/CV_DavideTuzi.pdf" download className="inline-flex items-center gap-3 bg-primary text-primary-foreground rounded-lg px-8 py-3 font-medium hover:bg-primary/90 transition-colors">
+            <Download className="w-5 h-5" strokeWidth={1.5} />
+            <span className="text-sm">Download CV</span>
+          </a>
+        </motion.div>
         <motion.p variants={fadeUp} className="text-primary-foreground/40 text-sm mt-12">
           © {new Date().getFullYear()} Davide Tuzi. All rights reserved.
         </motion.p>
