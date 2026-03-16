@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { ExternalLink, Play, FileText } from "lucide-react";
+import { ExternalLink, Play, FileText, Newspaper } from "lucide-react";
 import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
@@ -11,6 +11,8 @@ import haiEvent2 from "@/assets/hai-event-2.jpg";
 import haiEvent3 from "@/assets/hai-event-3.jpg";
 import nextonEvent1 from "@/assets/nexton-event-1.jpg";
 import nextonEvent2 from "@/assets/nexton-event-2.jpg";
+import articleRepubblica from "@/assets/article-repubblica.png";
+import article100torri from "@/assets/article-100torri.jpg";
 
 const careers = [
   {
@@ -77,9 +79,9 @@ const careers = [
     banner: nextonBanner,
     photos: [nextonEvent1, nextonEvent2],
     links: [
-      { label: "La Repubblica – La tecnologia al servizio della luce, del cibo, dell'aria", url: "https://www.repubblica.it/tecnologia/2022/10/06/news/la_tecnologia_al_servizio_della_luce_del_cibo_dellaria-368792383/", type: "article" },
-      { label: "MarsicaLive – La startup di 2 giovani marsicani protagonista a Roma", url: "https://marsicalive.it/abbassare-consumi-energetici-e-ridurre-costi-in-bolletta-la-startup-di-2-giovani-marsicani-protagonista-a-roma/", type: "article" },
-      { label: "100Torri – Chivasso, nuova tecnologia per illuminare in modo sostenibile", url: "https://www.100torri.it/2021/07/14/chivasso-nuova-tecnologia-per-illuminare-in-modo-sostenibile/", type: "article" },
+      { label: "La Repubblica – Tre green tech che innovano su luce, cibo, aria", url: "https://www.repubblica.it/tecnologia/2022/10/06/news/la_tecnologia_al_servizio_della_luce_del_cibo_dellaria-368792383/", type: "article", image: articleRepubblica, source: "La Repubblica" },
+      { label: "La startup di 2 giovani marsicani protagonista a Roma", url: "https://marsicalive.it/abbassare-consumi-energetici-e-ridurre-costi-in-bolletta-la-startup-di-2-giovani-marsicani-protagonista-a-roma/", type: "article", source: "MarsicaLive" },
+      { label: "Chivasso, nuova tecnologia per illuminare in modo sostenibile", url: "https://www.100torri.it/2021/07/14/chivasso-nuova-tecnologia-per-illuminare-in-modo-sostenibile/", type: "article", image: article100torri, source: "100Torri" },
     ],
   },
 ];
@@ -164,9 +166,39 @@ export function CareerSection() {
                 )}
                 {c.links && c.links.length > 0 && (
                   <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
-                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🔗 Media & Events</p>
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🔗 Media & Events</p>
+                    {/* Article cards with images */}
+                    {c.links.some((l: any) => l.image || l.source) && (
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
+                        {c.links.filter((l: any) => l.image || l.source).map((link: any) => (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group block rounded-lg border border-border overflow-hidden bg-secondary/30 hover:border-primary/30 hover:shadow-md transition-all"
+                          >
+                            {link.image && (
+                              <div className="h-32 overflow-hidden">
+                                <img src={link.image} alt={link.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                              </div>
+                            )}
+                            <div className="p-3">
+                              {link.source && (
+                                <span className="text-[10px] font-semibold text-primary uppercase tracking-wider flex items-center gap-1 mb-1">
+                                  <Newspaper className="w-3 h-3" />
+                                  {link.source}
+                                </span>
+                              )}
+                              <p className="text-xs text-foreground font-medium leading-snug line-clamp-2">{link.label}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                    {/* Regular link pills (videos, etc.) */}
                     <div className="flex flex-wrap gap-2">
-                      {c.links.map((link) => (
+                      {c.links.filter((l: any) => !l.image && !l.source).map((link: any) => (
                         <a
                           key={link.url}
                           href={link.url}
