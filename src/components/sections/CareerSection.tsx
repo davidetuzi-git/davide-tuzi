@@ -204,17 +204,27 @@ export function CareerSection() {
                     {/* Regular link pills (videos, etc.) */}
                     <div className="flex flex-wrap gap-2">
                       {c.links.filter((l: any) => !l.image && !l.source).map((link: any) => (
-                        <a
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs bg-secondary text-secondary-foreground border border-border rounded-full px-3 py-1 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors"
-                        >
-                          {link.type === "video" ? <Play className="w-3 h-3" /> : <FileText className="w-3 h-3" />}
-                          {link.label}
-                          <ExternalLink className="w-2.5 h-2.5 opacity-50" />
-                        </a>
+                        link.protected ? (
+                          <ProtectedDocumentLink
+                            key={link.url}
+                            documentKey={`gtm-hai-robotics`}
+                            documentUrl={link.url}
+                            label={link.label}
+                            className="inline-flex items-center gap-1.5 text-xs bg-secondary text-secondary-foreground border border-border rounded-full px-3 py-1 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors cursor-pointer"
+                          />
+                        ) : (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs bg-secondary text-secondary-foreground border border-border rounded-full px-3 py-1 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors"
+                          >
+                            {link.type === "video" ? <Play className="w-3 h-3" /> : <FileText className="w-3 h-3" />}
+                            {link.label}
+                            <ExternalLink className="w-2.5 h-2.5 opacity-50" />
+                          </a>
+                        )
                       ))}
                     </div>
                   </div>
