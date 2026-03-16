@@ -62,6 +62,7 @@ const careers = [
       { label: "La Repubblica – Tre green tech che innovano su luce, cibo, aria", url: "https://www.repubblica.it/tecnologia/2022/10/06/news/la_tecnologia_al_servizio_della_luce_del_cibo_dellaria-368792383/", type: "article", image: articleRepubblica, source: "La Repubblica" },
       { label: "La startup di 2 giovani marsicani protagonista a Roma", url: "https://marsicalive.it/abbassare-consumi-energetici-e-ridurre-costi-in-bolletta-la-startup-di-2-giovani-marsicani-protagonista-a-roma/", type: "article", image: articleMarsicalive, source: "MarsicaLive" },
       { label: "Chivasso, nuova tecnologia per illuminare in modo sostenibile", url: "https://www.100torri.it/2021/07/14/chivasso-nuova-tecnologia-per-illuminare-in-modo-sostenibile/", type: "article", image: article100torri, source: "100Torri" },
+      { label: "Nexton – Pitch Video", url: "https://www.youtube.com/watch?v=S5YtBAdQhFU", type: "video" },
     ],
   },
   {
