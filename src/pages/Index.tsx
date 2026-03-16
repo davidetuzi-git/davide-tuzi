@@ -35,21 +35,26 @@ const Index = () => {
         >
           {/* Watermark */}
           <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden select-none" aria-hidden="true">
-            <div className="absolute inset-0">
-              {Array.from({ length: 20 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute text-foreground/[0.04] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-                  style={{
-                    top: `${i * 220}px`,
-                    left: i % 2 === 0 ? '-5%' : '10%',
-                    transform: 'rotate(-35deg)',
-                    width: '250%',
-                  }}
-                >
-                  CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
-                </div>
-              ))}
+            {/* Top line */}
+            <div
+              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+              style={{ top: '20%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
+            >
+              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
+            </div>
+            {/* Center line */}
+            <div
+              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+              style={{ top: '50%', left: '-10%', transform: 'rotate(-35deg) translateY(-50%)', width: '250%' }}
+            >
+              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
+            </div>
+            {/* Bottom line */}
+            <div
+              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+              style={{ top: '80%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
+            >
+              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
             </div>
           </div>
 
