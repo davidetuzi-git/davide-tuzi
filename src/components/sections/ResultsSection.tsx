@@ -42,7 +42,7 @@ export function ResultsSection() {
               {'logos' in d && d.logos ? (
                 <div className="flex items-center gap-3 mb-4">
                   {d.logos.map((logo, i) => (
-                    <img key={i} src={logo} alt={d.customer} className="h-18 object-contain opacity-70" />
+                    <img key={i} src={logo} alt={d.customer} className="h-16 object-contain opacity-70" />
                   ))}
                 </div>
               ) : 'logo' in d && d.logo ? (
