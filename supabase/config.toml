@@ -2,3 +2,6 @@ project_id = "ilysueznnjjvvzoqqjbv"
 
 [functions.approve-access]
 verify_jwt = false
+
+[functions.approve-document]
+verify_jwt = false
