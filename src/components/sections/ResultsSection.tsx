@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 
 const deals = [
-  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€625k", year: "2024" },
-  { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€680k", year: "2024" },
+  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€700k", year: "2024" },
+  { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€700k", year: "2024" },
   { customer: "Douglas", industry: "Fashion – Beauty", value: "€7M", year: "2024" },
-  { customer: "ICentro Style", industry: "Fashion – Accessories", value: "€485k", year: "2024" },
+  { customer: "ICentro Style", industry: "Fashion – Accessories", value: "€500k", year: "2024" },
   { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€7.2M", year: "2025" },
   { customer: "Arcese for Ferrari", industry: "Automotive", value: "€9M", year: "2025" },
 ];
