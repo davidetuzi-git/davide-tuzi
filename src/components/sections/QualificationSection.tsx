@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
+import logoPolito from "@/assets/logo-polito.png";
+import logoMaastricht from "@/assets/logo-maastricht.png";
 
 const qualifications = [
   {
     institution: "Politecnico di Torino",
     degree: "B.Sc. & M.Sc. Civil Engineering",
     description: "Acquired all the knowledge and tools related to engineering with focus on infrastructures and structures.",
+    logo: logoPolito,
   },
   {
     institution: "Erasmus for Young Entrepreneurs",
@@ -16,6 +19,7 @@ const qualifications = [
     institution: "Maastricht School of Management",
     degree: "Executive MBA",
     description: "MBA with digital specialization: digital transformation, data analytics, e-commerce, technology management, and cybersecurity.",
+    logo: logoMaastricht,
   },
 ];
 
