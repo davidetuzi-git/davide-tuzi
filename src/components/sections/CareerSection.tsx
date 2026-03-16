@@ -93,7 +93,7 @@ export function CareerSection() {
                     <img
                       src={c.logo}
                       alt={`${c.company} logo`}
-                      className="w-14 h-14 object-contain rounded-md bg-background border border-border p-1.5 shrink-0"
+                      className="w-20 h-20 object-contain rounded-md bg-background border border-border p-2 shrink-0"
                     />
                     <div>
                       <span className="label-mono text-primary">{c.period}</span>
