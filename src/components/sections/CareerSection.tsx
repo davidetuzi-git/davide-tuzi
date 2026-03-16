@@ -166,9 +166,39 @@ export function CareerSection() {
                 )}
                 {c.links && c.links.length > 0 && (
                   <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
-                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🔗 Media & Events</p>
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">🔗 Media & Events</p>
+                    {/* Article cards with images */}
+                    {c.links.some((l: any) => l.image || l.source) && (
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
+                        {c.links.filter((l: any) => l.image || l.source).map((link: any) => (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group block rounded-lg border border-border overflow-hidden bg-secondary/30 hover:border-primary/30 hover:shadow-md transition-all"
+                          >
+                            {link.image && (
+                              <div className="h-32 overflow-hidden">
+                                <img src={link.image} alt={link.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                              </div>
+                            )}
+                            <div className="p-3">
+                              {link.source && (
+                                <span className="text-[10px] font-semibold text-primary uppercase tracking-wider flex items-center gap-1 mb-1">
+                                  <Newspaper className="w-3 h-3" />
+                                  {link.source}
+                                </span>
+                              )}
+                              <p className="text-xs text-foreground font-medium leading-snug line-clamp-2">{link.label}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                    {/* Regular link pills (videos, etc.) */}
                     <div className="flex flex-wrap gap-2">
-                      {c.links.map((link) => (
+                      {c.links.filter((l: any) => !l.image && !l.source).map((link: any) => (
                         <a
                           key={link.url}
                           href={link.url}
