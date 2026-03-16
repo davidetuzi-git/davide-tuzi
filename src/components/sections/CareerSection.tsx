@@ -14,6 +14,7 @@ import nextonEvent1 from "@/assets/nexton-event-1.jpg";
 import nextonEvent2 from "@/assets/nexton-event-2.jpg";
 import articleRepubblica from "@/assets/article-repubblica.png";
 import article100torri from "@/assets/article-100torri.jpg";
+import articleMarsicalive from "@/assets/article-marsicalive.png";
 
 const careers = [
   {
