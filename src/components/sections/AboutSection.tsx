@@ -4,7 +4,7 @@ import aboutImg1 from "@/assets/about-1-cutout.png";
 import aboutImg2 from "@/assets/about-2.jpg";
 import aboutWedding from "@/assets/about-wedding.jpg";
 import aboutCats from "@/assets/about-cats.jpg";
-import millerHeimanCert from "@/assets/miller-heiman-cert.jpg";
+
 
 export function AboutSection() {
   return (
@@ -37,9 +37,6 @@ export function AboutSection() {
           </motion.div>
         </div>
         <motion.div variants={fadeUp} className="space-y-6">
-          {/* Miller Heiman Certificate - large */}
-          <img src={millerHeimanCert} alt="Miller Heiman Certificate" className="rounded-lg object-cover w-full h-56 monolith-card" />
-          
           {/* Photo grid */}
           <div className="grid grid-cols-2 gap-4">
             <img src={aboutImg1} alt="Davide portrait" className="rounded-lg object-cover w-full h-64 monolith-card" />

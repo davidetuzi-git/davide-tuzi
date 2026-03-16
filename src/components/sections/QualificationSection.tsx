@@ -72,7 +72,7 @@ export function QualificationSection() {
         </div>
 
         {/* Certifications */}
-        <motion.div variants={fadeUp} className="mt-16">
+        <motion.div variants={fadeUp} className="mt-24">
           <p className="label-mono mb-4 text-primary">📜 Professional Certifications</p>
           <div className="grid sm:grid-cols-2 gap-6">
             {certifications.map((cert) => (
