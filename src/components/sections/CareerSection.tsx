@@ -9,6 +9,7 @@ import nextonBanner from "@/assets/nexton-banner.png";
 import haiEvent1 from "@/assets/hai-event-1.jpg";
 import haiEvent2 from "@/assets/hai-event-2.jpg";
 import haiEvent3 from "@/assets/hai-event-3.jpg";
+import haiEvent4 from "@/assets/hai-event-4.jpg";
 import nextonEvent1 from "@/assets/nexton-event-1.jpg";
 import nextonEvent2 from "@/assets/nexton-event-2.jpg";
 import articleRepubblica from "@/assets/article-repubblica.png";
@@ -57,7 +58,7 @@ const careers = [
       "Thrived in Chinese corporate culture under high-pressure management",
     ],
     keyLearnings: ["Leadership & team building from zero", "Cross-cultural management (Chinese culture)", "Resilience under extreme pressure"],
-    photos: [haiEvent1, haiEvent2, haiEvent3],
+    photos: [haiEvent1, haiEvent2, haiEvent3, haiEvent4],
     links: [
       { label: "Intralogistica Italia 2022", url: "https://www.hairobotics.com/news/intralogistica-italia-2022", type: "article" },
       { label: "HaiPulse Webinar – New Wave Textiles Case Study", url: "https://zoom.us/rec/play/2lFWeQr90xpzdMfdi-8oNq2aMHt8LdHSW5NOuUeN_NENTeMwmdZlszASIHijIecM97LwasLneghiMsdl.jBoEMlY7zO_Ey9Gu", type: "video" },
@@ -148,7 +149,7 @@ export function CareerSection() {
                 {'photos' in c && c.photos && c.photos.length > 0 && (
                   <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
                     <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">📸 Events & Highlights</p>
-                    <div className={`grid gap-3 ${c.photos.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                    <div className={`grid gap-3 ${c.photos.length >= 4 ? 'grid-cols-2 sm:grid-cols-4' : c.photos.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
                       {c.photos.map((photo, idx) => (
                         <img
                           key={idx}
