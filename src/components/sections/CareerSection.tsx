@@ -130,6 +130,11 @@ export function CareerSection() {
                     </div>
                   </div>
                 )}
+                {'banner' in c && c.banner && (
+                  <div className="ml-0 md:ml-[4.75rem] mt-4">
+                    <img src={c.banner} alt={`${c.company} banner`} className="w-full rounded-lg object-contain" />
+                  </div>
+                )}
                 {c.links && c.links.length > 0 && (
                   <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
                     <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🔗 Media & Events</p>
