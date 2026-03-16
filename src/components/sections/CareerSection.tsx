@@ -83,6 +83,7 @@ const careers = [
       { label: "Next-Gen Warehouse Automation Webinar", url: "https://www.youtube.com/watch?v=syYFwDBJiR4", type: "video" },
       { label: "Davide Tuzi on HAI Robotics Strategy in Italy", url: "https://www.facebook.com/HaiRobotics/videos/781783112975852/", type: "video" },
       { label: "Lancio nuove soluzioni ACR", url: "https://www.businesswire.com/news/home/20231001699566/it", type: "article" },
+      { label: "Go-to-Market Strategy – HAI Robotics Italy", url: "https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvcyFBaXhwLVh0N2cyQXZuQUVRN1UycEJxTzM1TU1GP2U9clJmZ2Z5&cid=2F60837B7BF9692C&id=2F60837B7BF9692C%213585&parId=2F60837B7BF9692C%212822&o=OneUp", type: "article" },
     ],
   },
 ];
