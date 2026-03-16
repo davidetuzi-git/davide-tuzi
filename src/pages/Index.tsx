@@ -65,7 +65,7 @@ const Index = () => {
             <AboutSection />
           </div>
           <QualificationSection />
-          <div className="section-alt">
+          <div className="section-accent">
             <CareerSection />
           </div>
           <ResultsSection />
@@ -73,7 +73,7 @@ const Index = () => {
             <SwotSection />
           </div>
           <SkillsSection />
-          <div className="section-alt">
+          <div className="section-accent">
             <WhyMeSection />
           </div>
           <PodcastSection />
