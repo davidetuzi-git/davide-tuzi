@@ -49,7 +49,7 @@ export function ResultsSection() {
                     ))}
                   </div>
                 ) : 'logo' in d && d.logo ? (
-                  <img src={d.logo} alt={d.customer} className="h-12 object-contain opacity-70" />
+                  <img src={d.logo} alt={d.customer} className={`object-contain opacity-70 ${d.customer === 'Luxottica' || d.customer === 'FORTNA / MrPrice' ? 'h-16' : 'h-12'}`} />
                 ) : null}
               </div>
               {/* Info area */}
