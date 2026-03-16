@@ -45,6 +45,24 @@ const careers = [
     transition: "Ready for a leadership challenge — wanted to build something from scratch and take full ownership of a market.",
   },
   {
+    period: "2019 – 2023",
+    company: "Nexton",
+    role: "Co-Founder",
+    logo: logoNexton,
+    url: "https://www.linkedin.com/company/nextonideas/",
+    achievements: [
+      "Side entrepreneurial adventure in IoT industry",
+    ],
+    keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
+    banner: nextonBanner,
+    photos: [nextonEvent1, nextonEvent2],
+    links: [
+      { label: "La Repubblica – Tre green tech che innovano su luce, cibo, aria", url: "https://www.repubblica.it/tecnologia/2022/10/06/news/la_tecnologia_al_servizio_della_luce_del_cibo_dellaria-368792383/", type: "article", image: articleRepubblica, source: "La Repubblica" },
+      { label: "La startup di 2 giovani marsicani protagonista a Roma", url: "https://marsicalive.it/abbassare-consumi-energetici-e-ridurre-costi-in-bolletta-la-startup-di-2-giovani-marsicani-protagonista-a-roma/", type: "article", source: "MarsicaLive" },
+      { label: "Chivasso, nuova tecnologia per illuminare in modo sostenibile", url: "https://www.100torri.it/2021/07/14/chivasso-nuova-tecnologia-per-illuminare-in-modo-sostenibile/", type: "article", image: article100torri, source: "100Torri" },
+    ],
+  },
+  {
     period: "2021 – Present",
     company: "HAI Robotics",
     role: "Country Manager Italy & Middle East",
@@ -65,24 +83,6 @@ const careers = [
       { label: "Next-Gen Warehouse Automation Webinar", url: "https://www.youtube.com/watch?v=syYFwDBJiR4", type: "video" },
       { label: "Davide Tuzi on HAI Robotics Strategy in Italy", url: "https://www.facebook.com/HaiRobotics/videos/781783112975852/", type: "video" },
       { label: "Lancio nuove soluzioni ACR", url: "https://www.businesswire.com/news/home/20231001699566/it", type: "article" },
-    ],
-  },
-  {
-    period: "2019 – 2023",
-    company: "Nexton",
-    role: "Co-Founder",
-    logo: logoNexton,
-    url: "https://www.linkedin.com/company/nextonideas/",
-    achievements: [
-      "Side entrepreneurial adventure in IoT industry",
-    ],
-    keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
-    banner: nextonBanner,
-    photos: [nextonEvent1, nextonEvent2],
-    links: [
-      { label: "La Repubblica – Tre green tech che innovano su luce, cibo, aria", url: "https://www.repubblica.it/tecnologia/2022/10/06/news/la_tecnologia_al_servizio_della_luce_del_cibo_dellaria-368792383/", type: "article", image: articleRepubblica, source: "La Repubblica" },
-      { label: "La startup di 2 giovani marsicani protagonista a Roma", url: "https://marsicalive.it/abbassare-consumi-energetici-e-ridurre-costi-in-bolletta-la-startup-di-2-giovani-marsicani-protagonista-a-roma/", type: "article", source: "MarsicaLive" },
-      { label: "Chivasso, nuova tecnologia per illuminare in modo sostenibile", url: "https://www.100torri.it/2021/07/14/chivasso-nuova-tecnologia-per-illuminare-in-modo-sostenibile/", type: "article", image: article100torri, source: "100Torri" },
     ],
   },
 ];
