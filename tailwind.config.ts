@@ -53,6 +53,7 @@ export default {
         },
         "surface-elevated": "hsl(var(--surface-elevated))",
         "surface-alt": "hsl(var(--surface-alt))",
+        "surface-accent": "hsl(var(--surface-accent))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
