@@ -137,6 +137,21 @@ export function CareerSection() {
                     </div>
                   </div>
                 )}
+                {'photos' in c && c.photos && c.photos.length > 0 && (
+                  <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">📸 Events & Highlights</p>
+                    <div className={`grid gap-3 ${c.photos.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                      {c.photos.map((photo, idx) => (
+                        <img
+                          key={idx}
+                          src={photo}
+                          alt={`${c.company} event ${idx + 1}`}
+                          className="w-full h-40 sm:h-48 object-cover rounded-lg border border-border"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {'banner' in c && c.banner && (
                   <div className="ml-0 md:ml-[4.75rem] mt-4">
                     <img src={c.banner} alt={`${c.company} banner`} className="w-full rounded-lg object-contain" />
