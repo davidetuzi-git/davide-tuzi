@@ -58,13 +58,15 @@ export function QualificationSection() {
         </motion.h2>
         <div className="grid md:grid-cols-3 gap-6">
           {qualifications.map((q) => (
-            <motion.div key={q.institution} variants={fadeUp} className="monolith-card p-6">
+            <motion.div key={q.institution} variants={fadeUp} className="monolith-card p-6 flex flex-col">
               {q.logo && (
-                <img src={q.logo} alt={q.institution} className={`object-contain mb-4 opacity-80 ${q.institution === "Maastricht School of Management" ? "h-24" : "h-20"}`} />
+                <div className="h-20 flex items-center mb-4">
+                  <img src={q.logo} alt={q.institution} className="object-contain opacity-80 max-h-20" />
+                </div>
               )}
               <p className="label-mono mb-3 text-primary">{q.institution}</p>
               <h3 className="text-lg font-semibold text-foreground mb-3">{q.degree}</h3>
-              <p className="text-muted-foreground text-sm">{q.description}</p>
+              <p className="text-muted-foreground text-sm mt-auto">{q.description}</p>
             </motion.div>
           ))}
         </div>
