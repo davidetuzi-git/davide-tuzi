@@ -4,18 +4,22 @@ import { fadeUp } from "@/lib/animations";
 const swot = [
   {
     title: "Strengths",
+    color: "border-l-emerald-500",
     items: ["Resolute", "Excellent Planner", "Open-minded Enthusiast", "Possibility-finder", "Out-of-the-box Thinker"],
   },
   {
     title: "Weaknesses",
+    color: "border-l-amber-500",
     items: ["Need to Know Details", "Impatient for Results", "Workaholic", "Balance the Passion"],
   },
   {
     title: "Opportunities",
+    color: "border-l-primary",
     items: ["Personal Growth", "Lead by Example", "Skill Diversification", "Mentorship", "Entrepreneurship"],
   },
   {
     title: "Threats",
+    color: "border-l-red-400",
     items: ["Personal Affection"],
   },
 ];
