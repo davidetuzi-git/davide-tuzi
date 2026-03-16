@@ -4,7 +4,7 @@ import aboutImg1 from "@/assets/about-1-cutout.png";
 import aboutImg2 from "@/assets/about-2.jpg";
 import aboutWedding from "@/assets/about-wedding.jpg";
 import aboutCats from "@/assets/about-cats.jpg";
-import millerHeimanCert from "@/assets/miller-heiman-cert.jpg";
+
 
 export function AboutSection() {
   return (
