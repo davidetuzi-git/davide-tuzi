@@ -54,6 +54,7 @@ const careers = [
     company: "Nexton",
     role: "Co-Founder",
     logo: logoNexton,
+    url: "https://www.linkedin.com/company/nextonideas/",
     achievements: [
       "Side entrepreneurial adventure in IoT industry",
     ],
