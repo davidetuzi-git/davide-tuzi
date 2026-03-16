@@ -3,7 +3,7 @@ import { fadeUp } from "@/lib/animations";
 import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
-import logoXton from "@/assets/logo-xton.png";
+import logoNexton from "@/assets/logo-nexton.png";
 
 const careers = [
   {
@@ -41,13 +41,14 @@ const careers = [
       "Exceeded sales quota in 2 out of 3 years",
       "Pioneered the Middle East market from zero",
       "4 official partnerships signed",
+      "Thrived in Chinese corporate culture under high-pressure management",
     ],
   },
   {
     period: "2019 – 2023",
     company: "Nexton",
     role: "Co-Founder",
-    logo: logoXton,
+    logo: logoNexton,
     achievements: [
       "Side entrepreneurial adventure in IoT industry",
     ],
