@@ -34,12 +34,15 @@ serve(async (req) => {
   }
 
   try {
-    const { first_name, last_name, email } = await req.json();
+    const { first_name, last_name, email, request_id } = await req.json();
+
+    const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
+    const approveUrl = `${SUPABASE_URL}/functions/v1/approve-access?id=${request_id}`;
 
     const message = `🔐 <b>Nuova richiesta di accesso</b>\n\n` +
       `👤 <b>Nome:</b> ${first_name} ${last_name}\n` +
       `📧 <b>Email:</b> ${email}\n\n` +
-      `Vai su /admin per approvare.`;
+      `<a href="${approveUrl}">✅ Approva accesso</a>`;
 
     const response = await fetch(`${GATEWAY_URL}/sendMessage`, {
       method: 'POST',

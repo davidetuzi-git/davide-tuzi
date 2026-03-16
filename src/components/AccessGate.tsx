@@ -1,73 +1,81 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { Lock, CheckCircle } from "lucide-react";
+import { Lock, CheckCircle, Loader2 } from "lucide-react";
 
 export function AccessGate({ onGranted }: { onGranted: () => void }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "sent" | "checking">("idle");
-  const [tokenInput, setTokenInput] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
   const [error, setError] = useState("");
 
-  // Check localStorage for existing approved token
-  useState(() => {
-    const saved = localStorage.getItem("dt_access_token");
-    if (saved) {
-      checkToken(saved);
+  // Check localStorage for previously approved email
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("dt_access_email");
+    if (savedEmail) {
+      checkApproval(savedEmail);
     }
-  });
+  }, []);
 
-  async function checkToken(token: string) {
-    setStatus("checking");
+  const checkApproval = useCallback(async (checkEmail: string) => {
     const { data } = await supabase
       .from("access_requests")
       .select("status")
-      .eq("access_token", token)
-      .single();
+      .eq("email", checkEmail)
+      .eq("status", "approved")
+      .maybeSingle();
 
-    if (data?.status === "approved") {
-      localStorage.setItem("dt_access_token", token);
+    if (data) {
+      localStorage.setItem("dt_access_email", checkEmail);
       onGranted();
-    } else {
-      setError("Access not yet approved. Please wait for confirmation.");
-      setStatus("idle");
+      return true;
     }
-  }
+    return false;
+  }, [onGranted]);
+
+  // Poll for approval after request is sent
+  useEffect(() => {
+    if (status !== "sent") return;
+    const interval = setInterval(async () => {
+      const approved = await checkApproval(email);
+      if (approved) clearInterval(interval);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [status, email, checkApproval]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
     setError("");
 
-    const { error: insertError } = await supabase
+    // Check if already approved
+    const alreadyApproved = await checkApproval(email);
+    if (alreadyApproved) return;
+
+    const { data: inserted, error: insertError } = await supabase
       .from("access_requests")
-      .insert({ first_name: firstName, last_name: lastName, email });
+      .insert({ first_name: firstName, last_name: lastName, email })
+      .select("id")
+      .single();
 
     if (insertError) {
-      setError("Something went wrong. Please try again.");
+      setError("Qualcosa è andato storto. Riprova.");
       setStatus("idle");
       return;
     }
 
-    // Send Telegram notification (fire and forget)
+    // Send Telegram notification with request ID for approve link
     supabase.functions.invoke("notify-telegram", {
-      body: { first_name: firstName, last_name: lastName, email },
+      body: { first_name: firstName, last_name: lastName, email, request_id: inserted.id },
     }).catch(console.error);
 
     setStatus("sent");
   }
 
-  async function handleTokenCheck(e: React.FormEvent) {
-    e.preventDefault();
-    await checkToken(tokenInput);
-  }
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden">
-      {/* Background blur effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/20" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/3 rounded-full blur-3xl" />
@@ -100,26 +108,13 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
               className="text-center py-4"
             >
               <CheckCircle className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
-              <h2 className="text-lg font-semibold text-foreground mb-2">Request Logged</h2>
-              <p className="text-muted-foreground text-sm mb-6">
-                Your request has been submitted. You will receive access once approved.
+              <h2 className="text-lg font-semibold text-foreground mb-2">Richiesta Inviata</h2>
+              <p className="text-muted-foreground text-sm mb-4">
+                La tua richiesta è stata inoltrata. Quando verrà approvata, questa pagina si aggiornerà automaticamente.
               </p>
-
-              <div className="border-t border-border pt-6 mt-6">
-                <p className="label-mono mb-4">Already have an access token?</p>
-                <form onSubmit={handleTokenCheck} className="space-y-4">
-                  <input
-                    type="text"
-                    value={tokenInput}
-                    onChange={(e) => setTokenInput(e.target.value)}
-                    placeholder="Paste your access token"
-                    className="w-full bg-transparent border-b border-border pb-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                    required
-                  />
-                  <Button variant="outline" type="submit" className="w-full">
-                    Verify Token
-                  </Button>
-                </form>
+              <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs">
+                <Loader2 className="w-3 h-3 animate-spin" />
+                <span>In attesa di approvazione...</span>
               </div>
             </motion.div>
           ) : (
@@ -167,38 +162,11 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
                 </div>
               </div>
 
-              {error && (
-                <p className="text-destructive text-sm">{error}</p>
-              )}
+              {error && <p className="text-destructive text-sm">{error}</p>}
 
-              <Button
-                type="submit"
-                variant="gate"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "Submitting..." : "Request Access"}
+              <Button type="submit" variant="gate" disabled={status === "loading"}>
+                {status === "loading" ? "Invio..." : "Request Access"}
               </Button>
-
-              <div className="border-t border-border pt-4">
-                <p className="label-mono mb-3">Already have an access token?</p>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={tokenInput}
-                    onChange={(e) => setTokenInput(e.target.value)}
-                    placeholder="Paste token"
-                    className="flex-1 bg-transparent border-b border-border pb-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                  />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => tokenInput && checkToken(tokenInput)}
-                  >
-                    Verify
-                  </Button>
-                </div>
-              </div>
             </motion.form>
           )}
         </AnimatePresence>
