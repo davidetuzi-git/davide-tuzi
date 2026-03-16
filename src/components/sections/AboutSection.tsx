@@ -3,6 +3,7 @@ import { fadeUp } from "@/lib/animations";
 import aboutImg1 from "@/assets/about-1-cutout.png";
 import aboutImg2 from "@/assets/about-2.jpg";
 import aboutWedding from "@/assets/about-wedding.jpg";
+import aboutCats from "@/assets/about-cats.jpg";
 
 export function AboutSection() {
   return (
@@ -20,7 +21,7 @@ export function AboutSection() {
             The Intimate Version
           </motion.h2>
           <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
-            Happily married with Katia. Entrepreneurial mindset with an engineering background.
+            Happily married with Katia. Proud cat dad of three: Polpetta, Tiramisù & Sofficino. Entrepreneurial mindset with an engineering background.
           </motion.p>
           <motion.p variants={fadeUp} className="text-muted-foreground mb-6">
             Experienced in multicultural environments — including working closely with Chinese management culture, thriving under high-pressure, fast-paced development while maintaining quality standards.
@@ -38,6 +39,12 @@ export function AboutSection() {
           <img src={aboutImg1} alt="Davide portrait" className="rounded-lg object-cover w-full h-64 monolith-card" />
           <img src={aboutWedding} alt="Davide and Katia wedding" className="rounded-lg object-cover w-full h-48 monolith-card mt-8" />
           <img src={aboutImg2} alt="Davide travelling" className="rounded-lg object-cover w-full h-48 monolith-card -mt-8" />
+          <div className="relative rounded-lg overflow-hidden monolith-card">
+            <img src={aboutCats} alt="Polpetta, Tiramisù & Sofficino" className="w-full h-48 object-cover" />
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/70 to-transparent p-3">
+              <p className="text-primary-foreground text-xs font-medium">🐱 Polpetta, Tiramisù & Sofficino</p>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
     </section>
