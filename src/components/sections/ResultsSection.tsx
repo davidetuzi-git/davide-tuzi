@@ -15,8 +15,6 @@ const deals = [
   { customer: "Centro Style", industry: "Fashion – Accessories", value: "€500k", year: "2024", logo: logoCentrostyle },
   { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€7.2M", year: "2025", logo: logoMrPrice },
   { customer: "Arcese for Ferrari", industry: "Automotive", value: "€9M", year: "2025", logo: logoArcese },
-  { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€7.2M", year: "2025", logo: logoMrPrice },
-  { customer: "Arcese for Ferrari", industry: "Automotive", value: "€9M", year: "2025", logo: logoArcese },
 ];
 
 export function ResultsSection() {
