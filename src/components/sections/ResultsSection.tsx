@@ -39,20 +39,25 @@ export function ResultsSection() {
         </motion.div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {deals.map((d) => (
-            <motion.div key={d.customer} variants={fadeUp} className="monolith-card p-6 transition-all duration-300">
-              {'logos' in d && d.logos ? (
-                <div className="flex items-center gap-3 mb-4">
-                  {d.logos.map((logo, i) => (
-                    <img key={i} src={logo} alt={d.customer} className="h-16 object-contain opacity-70" />
-                  ))}
-                </div>
-              ) : 'logo' in d && d.logo ? (
-                <img src={d.logo} alt={d.customer} className={`object-contain mb-4 opacity-70 ${d.customer === 'Arcese for Ferrari' ? 'h-10' : d.customer === 'TransmecLog' ? 'h-12' : d.customer === 'Luxottica' || d.customer === 'FORTNA / MrPrice' ? 'h-20' : 'h-16'}`} />
-              ) : null}
+            <motion.div key={d.customer} variants={fadeUp} className="monolith-card p-6 transition-all duration-300 flex flex-col">
+              {/* Logo area - fixed height for alignment */}
+              <div className="h-16 flex items-center mb-4">
+                {'logos' in d && d.logos ? (
+                  <div className="flex items-center gap-3">
+                    {d.logos.map((logo, i) => (
+                      <img key={i} src={logo} alt={d.customer} className="h-10 object-contain opacity-70" />
+                    ))}
+                  </div>
+                ) : 'logo' in d && d.logo ? (
+                  <img src={d.logo} alt={d.customer} className="h-12 object-contain opacity-70" />
+                ) : null}
+              </div>
+              {/* Info area */}
               <p className="label-mono text-primary mb-2">{d.year}</p>
               <h3 className="text-lg font-semibold text-foreground">{d.customer}</h3>
               <p className="text-muted-foreground text-sm mb-4">{d.industry}</p>
-              <p className="text-3xl font-bold bg-gradient-to-r from-primary to-[hsl(200_90%_55%)] bg-clip-text text-transparent">{d.value}</p>
+              {/* Value - pushed to bottom */}
+              <p className="text-3xl font-bold bg-gradient-to-r from-primary to-[hsl(200_90%_55%)] bg-clip-text text-transparent mt-auto">{d.value}</p>
             </motion.div>
           ))}
         </div>
