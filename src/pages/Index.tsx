@@ -67,21 +67,21 @@ const Index = () => {
           </div>
 
           <HeroSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
-          <AboutSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
+          <div className="section-alt">
+            <AboutSection />
+          </div>
           <QualificationSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
-          <CareerSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
+          <div className="section-alt">
+            <CareerSection />
+          </div>
           <ResultsSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
-          <SwotSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
+          <div className="section-alt">
+            <SwotSection />
+          </div>
           <SkillsSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
-          <WhyMeSection />
-          <div className="w-full max-w-6xl mx-auto border-t border-border" />
+          <div className="section-alt">
+            <WhyMeSection />
+          </div>
           <ContactSection />
         </motion.div>
       )}
