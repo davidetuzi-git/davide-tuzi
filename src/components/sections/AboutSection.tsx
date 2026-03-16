@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 import aboutImg1 from "@/assets/about-1-cutout.png";
 import aboutImg2 from "@/assets/about-2.jpg";
+import aboutWedding from "@/assets/about-wedding.jpg";
 
 export function AboutSection() {
   return (
@@ -34,8 +35,9 @@ export function AboutSection() {
           </motion.div>
         </div>
         <motion.div variants={fadeUp} className="grid grid-cols-2 gap-4">
-          <img src={aboutImg1} alt="Davide personal" className="rounded-lg object-cover w-full h-64 monolith-card" />
-          <img src={aboutImg2} alt="Davide personal" className="rounded-lg object-cover w-full h-48 monolith-card mt-8" />
+          <img src={aboutImg1} alt="Davide portrait" className="rounded-lg object-cover w-full h-64 monolith-card" />
+          <img src={aboutWedding} alt="Davide and Katia wedding" className="rounded-lg object-cover w-full h-48 monolith-card mt-8" />
+          <img src={aboutImg2} alt="Davide travelling" className="rounded-lg object-cover w-full h-48 monolith-card -mt-8" />
         </motion.div>
       </motion.div>
     </section>
