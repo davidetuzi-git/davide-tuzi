@@ -68,6 +68,7 @@ const careers = [
       "Side entrepreneurial adventure in IoT industry",
     ],
     keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
+    banner: nextonBanner,
   },
 ];
 
