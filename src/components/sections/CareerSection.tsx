@@ -6,6 +6,11 @@ import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
 import logoNexton from "@/assets/logo-nexton.png";
 import nextonBanner from "@/assets/nexton-banner.png";
+import haiEvent1 from "@/assets/hai-event-1.jpg";
+import haiEvent2 from "@/assets/hai-event-2.jpg";
+import haiEvent3 from "@/assets/hai-event-3.jpg";
+import nextonEvent1 from "@/assets/nexton-event-1.jpg";
+import nextonEvent2 from "@/assets/nexton-event-2.jpg";
 
 const careers = [
   {
@@ -50,6 +55,7 @@ const careers = [
       "Thrived in Chinese corporate culture under high-pressure management",
     ],
     keyLearnings: ["Leadership & team building from zero", "Cross-cultural management (Chinese culture)", "Resilience under extreme pressure"],
+    photos: [haiEvent1, haiEvent2, haiEvent3],
     links: [
       { label: "Intralogistica Italia 2022", url: "https://www.hairobotics.com/news/intralogistica-italia-2022", type: "article" },
       { label: "HaiPulse Webinar – New Wave Textiles Case Study", url: "https://zoom.us/rec/play/2lFWeQr90xpzdMfdi-8oNq2aMHt8LdHSW5NOuUeN_NENTeMwmdZlszASIHijIecM97LwasLneghiMsdl.jBoEMlY7zO_Ey9Gu", type: "video" },
@@ -69,6 +75,7 @@ const careers = [
     ],
     keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
     banner: nextonBanner,
+    photos: [nextonEvent1, nextonEvent2],
   },
 ];
 
@@ -126,6 +133,21 @@ export function CareerSection() {
                         <span key={l} className="text-xs bg-primary/8 text-primary border border-primary/15 rounded-full px-3 py-1 font-medium">
                           {l}
                         </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {'photos' in c && c.photos && c.photos.length > 0 && (
+                  <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">📸 Events & Highlights</p>
+                    <div className={`grid gap-3 ${c.photos.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                      {c.photos.map((photo, idx) => (
+                        <img
+                          key={idx}
+                          src={photo}
+                          alt={`${c.company} event ${idx + 1}`}
+                          className="w-full h-40 sm:h-48 object-cover rounded-lg border border-border"
+                        />
                       ))}
                     </div>
                   </div>
