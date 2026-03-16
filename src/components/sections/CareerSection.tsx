@@ -75,44 +75,55 @@ export function CareerSection() {
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-12">
           Career Path
         </motion.h2>
-        <div className="space-y-6">
-          {careers.map((c) => (
-            <motion.div key={c.company} variants={fadeUp} className="monolith-card p-6 md:p-8">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                <div className="flex items-start gap-5">
-                  <img
-                    src={c.logo}
-                    alt={`${c.company} logo`}
-                    className="w-14 h-14 object-contain rounded-md bg-background border border-border p-1.5 shrink-0"
-                  />
-                  <div>
-                    <span className="label-mono text-primary">{c.period}</span>
-                    <h3 className="text-xl font-semibold text-foreground mt-1">{c.company}</h3>
-                    <p className="text-muted-foreground text-sm">{c.role}</p>
+        <div className="space-y-2">
+          {careers.map((c, i) => (
+            <div key={c.company}>
+              <motion.div variants={fadeUp} className="monolith-card p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                  <div className="flex items-start gap-5">
+                    <img
+                      src={c.logo}
+                      alt={`${c.company} logo`}
+                      className="w-14 h-14 object-contain rounded-md bg-background border border-border p-1.5 shrink-0"
+                    />
+                    <div>
+                      <span className="label-mono text-primary">{c.period}</span>
+                      <h3 className="text-xl font-semibold text-foreground mt-1">{c.company}</h3>
+                      <p className="text-muted-foreground text-sm">{c.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-2 ml-0 md:ml-[4.75rem]">
-                {c.achievements.map((a) => (
-                  <div key={a} className="flex items-start gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                    <span className="text-secondary-foreground text-sm">{a}</span>
-                  </div>
-                ))}
-              </div>
-              {c.keyLearnings && (
-                <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
-                  <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🎯 Key Learnings</p>
-                  <div className="flex flex-wrap gap-2">
-                    {c.keyLearnings.map((l) => (
-                      <span key={l} className="text-xs bg-primary/8 text-primary border border-primary/15 rounded-full px-3 py-1 font-medium">
-                        {l}
-                      </span>
-                    ))}
-                  </div>
+                <div className="grid sm:grid-cols-2 gap-2 ml-0 md:ml-[4.75rem]">
+                  {c.achievements.map((a) => (
+                    <div key={a} className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                      <span className="text-secondary-foreground text-sm">{a}</span>
+                    </div>
+                  ))}
                 </div>
+                {c.keyLearnings && (
+                  <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🎯 Key Learnings</p>
+                    <div className="flex flex-wrap gap-2">
+                      {c.keyLearnings.map((l) => (
+                        <span key={l} className="text-xs bg-primary/8 text-primary border border-primary/15 rounded-full px-3 py-1 font-medium">
+                          {l}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+              {c.transition && i < careers.length - 1 && (
+                <motion.div variants={fadeUp} className="flex items-center gap-3 py-4 pl-6 md:pl-[4.75rem]">
+                  <div className="w-px h-8 bg-primary/30" />
+                  <div className="flex items-start gap-2">
+                    <span className="text-primary text-sm">→</span>
+                    <p className="text-muted-foreground text-sm italic">{c.transition}</p>
+                  </div>
+                </motion.div>
               )}
-            </motion.div>
+            </div>
           ))}
         </div>
       </motion.div>
