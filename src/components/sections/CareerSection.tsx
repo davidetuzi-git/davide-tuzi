@@ -3,7 +3,7 @@ import { fadeUp } from "@/lib/animations";
 import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
-import logoXton from "@/assets/logo-xton.png";
+import logoNexton from "@/assets/logo-nexton.png";
 
 const careers = [
   {
