@@ -17,6 +17,7 @@ const careers = [
       "Improved sales ops by developing an internal tool",
       "Successfully managed corporate accounts",
     ],
+    keyLearnings: ["Consultative selling", "Technical-commercial mindset", "Client relationship building"],
   },
   {
     period: "2018 – 2021",
@@ -29,6 +30,7 @@ const careers = [
       "Price negotiation with major customers",
       "Successful cross-functional department collaboration",
     ],
+    keyLearnings: ["Complex project management", "Corporate processes & governance", "Global stakeholder alignment"],
   },
   {
     period: "2021 – Present",
@@ -43,6 +45,7 @@ const careers = [
       "4 official partnerships signed",
       "Thrived in Chinese corporate culture under high-pressure management",
     ],
+    keyLearnings: ["Leadership & team building from zero", "Cross-cultural management (Chinese culture)", "Resilience under extreme pressure"],
   },
   {
     period: "2019 – 2023",
@@ -52,6 +55,7 @@ const careers = [
     achievements: [
       "Side entrepreneurial adventure in IoT industry",
     ],
+    keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
   },
 ];
 
