@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { ExternalLink, Play, FileText } from "lucide-react";
+import { ExternalLink, Play, FileText, Newspaper } from "lucide-react";
 import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
@@ -11,6 +11,8 @@ import haiEvent2 from "@/assets/hai-event-2.jpg";
 import haiEvent3 from "@/assets/hai-event-3.jpg";
 import nextonEvent1 from "@/assets/nexton-event-1.jpg";
 import nextonEvent2 from "@/assets/nexton-event-2.jpg";
+import articleRepubblica from "@/assets/article-repubblica.png";
+import article100torri from "@/assets/article-100torri.jpg";
 
 const careers = [
   {
