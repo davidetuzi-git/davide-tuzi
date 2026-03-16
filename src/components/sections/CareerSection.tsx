@@ -5,6 +5,7 @@ import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
 import logoNexton from "@/assets/logo-nexton.png";
+import nextonBanner from "@/assets/nexton-banner.png";
 
 const careers = [
   {
