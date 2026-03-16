@@ -1,11 +1,7 @@
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import aboutImg1 from "@/assets/about-1.jpg";
 import aboutImg2 from "@/assets/about-2.jpg";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
 
 export function AboutSection() {
   return (

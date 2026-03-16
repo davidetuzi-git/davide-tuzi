@@ -1,10 +1,6 @@
 import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
 import { Zap, Globe, Users, TrendingUp, Heart, Briefcase, Award } from "lucide-react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
 
 const reasons = [
   { icon: Zap, text: "Experience with technology, hardware & software solutions" },
