@@ -75,7 +75,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
     const { data: inserted, error: insertError } = await supabase
       .from("access_requests")
-      .insert({ first_name: firstName, last_name: lastName, email })
+      .insert({ first_name: firstName, last_name: lastName, email, ip_address: currentIp })
       .select("id")
       .single();
 
