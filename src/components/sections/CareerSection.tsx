@@ -5,6 +5,7 @@ import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
 import logoNexton from "@/assets/logo-nexton.png";
+import nextonBanner from "@/assets/nexton-banner.png";
 
 const careers = [
   {
@@ -67,6 +68,7 @@ const careers = [
       "Side entrepreneurial adventure in IoT industry",
     ],
     keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
+    banner: nextonBanner,
   },
 ];
 
@@ -126,6 +128,11 @@ export function CareerSection() {
                         </span>
                       ))}
                     </div>
+                  </div>
+                )}
+                {'banner' in c && c.banner && (
+                  <div className="ml-0 md:ml-[4.75rem] mt-4">
+                    <img src={c.banner} alt={`${c.company} banner`} className="w-full rounded-lg object-contain" />
                   </div>
                 )}
                 {c.links && c.links.length > 0 && (
