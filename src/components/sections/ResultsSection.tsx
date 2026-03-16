@@ -20,7 +20,7 @@ export function ResultsSection() {
         transition={{ staggerChildren: 0.1 }}
         className="max-w-6xl mx-auto w-full"
       >
-        <motion.p variants={fadeUp} className="label-mono mb-4">Track Record</motion.p>
+        <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">Track Record</motion.p>
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           From 0 to +€25M in less than 2.5 years
         </motion.h2>
@@ -29,11 +29,11 @@ export function ResultsSection() {
         </motion.p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {deals.map((d) => (
-            <motion.div key={d.customer} variants={fadeUp} className="monolith-card p-5">
+            <motion.div key={d.customer} variants={fadeUp} className="monolith-card p-6 transition-all duration-300">
               <p className="label-mono text-primary mb-2">{d.year}</p>
               <h3 className="text-lg font-semibold text-foreground">{d.customer}</h3>
-              <p className="text-muted-foreground text-sm mb-3">{d.industry}</p>
-              <p className="text-2xl font-bold text-foreground">{d.value}</p>
+              <p className="text-muted-foreground text-sm mb-4">{d.industry}</p>
+              <p className="text-3xl font-bold text-primary">{d.value}</p>
             </motion.div>
           ))}
         </div>

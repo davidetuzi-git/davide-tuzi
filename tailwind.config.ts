@@ -52,6 +52,7 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         "surface-elevated": "hsl(var(--surface-elevated))",
+        "surface-alt": "hsl(var(--surface-alt))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
