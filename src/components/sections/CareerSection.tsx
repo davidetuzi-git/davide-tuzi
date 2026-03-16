@@ -6,6 +6,11 @@ import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
 import logoNexton from "@/assets/logo-nexton.png";
 import nextonBanner from "@/assets/nexton-banner.png";
+import haiEvent1 from "@/assets/hai-event-1.jpg";
+import haiEvent2 from "@/assets/hai-event-2.jpg";
+import haiEvent3 from "@/assets/hai-event-3.jpg";
+import nextonEvent1 from "@/assets/nexton-event-1.jpg";
+import nextonEvent2 from "@/assets/nexton-event-2.jpg";
 
 const careers = [
   {
@@ -50,6 +55,7 @@ const careers = [
       "Thrived in Chinese corporate culture under high-pressure management",
     ],
     keyLearnings: ["Leadership & team building from zero", "Cross-cultural management (Chinese culture)", "Resilience under extreme pressure"],
+    photos: [haiEvent1, haiEvent2, haiEvent3],
     links: [
       { label: "Intralogistica Italia 2022", url: "https://www.hairobotics.com/news/intralogistica-italia-2022", type: "article" },
       { label: "HaiPulse Webinar – New Wave Textiles Case Study", url: "https://zoom.us/rec/play/2lFWeQr90xpzdMfdi-8oNq2aMHt8LdHSW5NOuUeN_NENTeMwmdZlszASIHijIecM97LwasLneghiMsdl.jBoEMlY7zO_Ey9Gu", type: "video" },
@@ -69,6 +75,7 @@ const careers = [
     ],
     keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
     banner: nextonBanner,
+    photos: [nextonEvent1, nextonEvent2],
   },
 ];
 
