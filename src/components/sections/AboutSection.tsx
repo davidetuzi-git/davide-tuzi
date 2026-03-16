@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import aboutImg1 from "@/assets/about-1.jpg";
+import aboutImg1 from "@/assets/about-1-cutout.png";
 import aboutImg2 from "@/assets/about-2.jpg";
 
 export function AboutSection() {
