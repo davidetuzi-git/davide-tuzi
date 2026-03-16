@@ -72,6 +72,8 @@ const careers = [
     logo: logoHai,
     achievements: [
       "Built Italian team from scratch (7 professionals)",
+      "Led a team of 6–10 people across Italy & Middle East",
+      "Managed regional P&L and budget for Italy & Middle East",
       "€120M+ sales pipeline in 12 months, 300+ prospects",
       "Exceeded sales quota in 2 out of 3 years",
       "Pioneered the Middle East market from zero",
