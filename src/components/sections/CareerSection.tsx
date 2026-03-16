@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { ExternalLink, Play, FileText, Newspaper } from "lucide-react";
+import { ExternalLink, Play, FileText, Newspaper, Linkedin } from "lucide-react";
 import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
@@ -113,12 +113,13 @@ export function CareerSection() {
                     />
                     <div>
                       <span className="label-mono text-primary">{c.period}</span>
-                      <h3 className="text-xl font-semibold text-foreground mt-1">
-                        {c.url ? (
-                          <a href={c.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
-                            {c.company} ↗
+                      <h3 className="text-xl font-semibold text-foreground mt-1 flex items-center gap-2">
+                        {c.company}
+                        {c.url && (
+                          <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:opacity-80 transition-opacity" title="View on LinkedIn">
+                            <Linkedin className="w-5 h-5" />
                           </a>
-                        ) : c.company}
+                        )}
                       </h3>
                       <p className="text-muted-foreground text-sm">{c.role}</p>
                     </div>
