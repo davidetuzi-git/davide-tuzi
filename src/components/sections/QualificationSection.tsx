@@ -20,7 +20,7 @@ const qualifications = [
   {
     institution: "Maastricht School of Management",
     degree: "Executive MBA",
-    description: "MBA with digital specialization: digital transformation, data analytics, e-commerce, technology management, and cybersecurity.",
+    description: "MBA with digital specialization: digital transformation, data analytics, e-commerce, technology management, and cybersecurity. Master thesis on Finance.",
     logo: logoMaastricht,
   },
 ];
