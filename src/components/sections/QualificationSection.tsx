@@ -41,7 +41,7 @@ export function QualificationSection() {
           {qualifications.map((q) => (
             <motion.div key={q.institution} variants={fadeUp} className="monolith-card p-6">
               {q.logo && (
-                <img src={q.logo} alt={q.institution} className="h-12 object-contain mb-4 opacity-80" />
+                <img src={q.logo} alt={q.institution} className="h-20 object-contain mb-4 opacity-80" />
               )}
               <p className="label-mono mb-3 text-primary">{q.institution}</p>
               <h3 className="text-lg font-semibold text-foreground mb-3">{q.degree}</h3>
