@@ -59,9 +59,9 @@ const Index = () => {
           </div>
 
           {/* Disclaimer banner */}
-          <div className="bg-destructive/10 border-b border-destructive/20 py-3 px-4 text-center">
-            <p className="text-xs text-destructive font-medium tracking-wide uppercase">
-              ⚠️ Confidential — This document contains proprietary information. Unauthorized sharing, copying, or distribution without the owner's explicit consent is strictly prohibited.
+          <div className="bg-foreground py-2.5 px-4 text-center">
+            <p className="text-[11px] text-primary-foreground/50 font-medium tracking-[0.15em] uppercase">
+              Confidential — Proprietary information. Unauthorized sharing or distribution is strictly prohibited.
             </p>
           </div>
 
