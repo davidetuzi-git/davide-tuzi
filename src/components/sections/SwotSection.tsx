@@ -40,7 +40,7 @@ export function SwotSection() {
         </motion.h2>
         <div className="grid sm:grid-cols-2 gap-6">
           {swot.map((s) => (
-            <motion.div key={s.title} variants={fadeUp} className="monolith-card p-6">
+            <motion.div key={s.title} variants={fadeUp} className={`monolith-card p-6 !border-l-[3px] ${s.color}`}>
               <h3 className="label-mono text-primary mb-4">{s.title}</h3>
               <ul className="space-y-2">
                 {s.items.map((item) => (

@@ -36,7 +36,7 @@ export function SkillsSection() {
             <motion.div
               key={skill}
               variants={fadeUp}
-              className="monolith-card px-5 py-3 text-sm text-foreground font-medium"
+              className="monolith-card px-5 py-3 text-sm text-foreground font-medium hover:bg-primary/5 hover:text-primary transition-colors"
             >
               {skill}
             </motion.div>

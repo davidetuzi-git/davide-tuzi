@@ -51,7 +51,7 @@ export function ResultsSection() {
               <p className="label-mono text-primary mb-2">{d.year}</p>
               <h3 className="text-lg font-semibold text-foreground">{d.customer}</h3>
               <p className="text-muted-foreground text-sm mb-4">{d.industry}</p>
-              <p className="text-3xl font-bold text-primary">{d.value}</p>
+              <p className="text-3xl font-bold bg-gradient-to-r from-primary to-[hsl(200_90%_55%)] bg-clip-text text-transparent">{d.value}</p>
             </motion.div>
           ))}
         </div>
