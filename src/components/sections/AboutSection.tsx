@@ -21,7 +21,7 @@ export function AboutSection() {
             The Intimate Version
           </motion.h2>
           <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
-            Happily married with Katia. Entrepreneurial mindset with an engineering background.
+            Happily married with Katia. Proud cat dad of three: Polpetta, Tiramisù & Sofficino. Entrepreneurial mindset with an engineering background.
           </motion.p>
           <motion.p variants={fadeUp} className="text-muted-foreground mb-6">
             Experienced in multicultural environments — including working closely with Chinese management culture, thriving under high-pressure, fast-paced development while maintaining quality standards.
