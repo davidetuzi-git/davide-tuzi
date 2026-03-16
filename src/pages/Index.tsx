@@ -45,7 +45,7 @@ const Index = () => {
               {Array.from({ length: 12 }).map((_, i) => (
                 <div
                   key={i}
-                  className="absolute text-foreground/[0.04] text-2xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+                  className="absolute text-foreground/[0.06] text-2xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
                   style={{
                     top: `${(i * 180) - 100}px`,
                     left: i % 2 === 0 ? '-5%' : '15%',
