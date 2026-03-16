@@ -1,1 +1,4 @@
 project_id = "ilysueznnjjvvzoqqjbv"
+
+[functions.approve-access]
+verify_jwt = false
