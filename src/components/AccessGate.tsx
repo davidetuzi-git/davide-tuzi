@@ -52,6 +52,11 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
       return;
     }
 
+    // Send Telegram notification (fire and forget)
+    supabase.functions.invoke("notify-telegram", {
+      body: { first_name: firstName, last_name: lastName, email },
+    }).catch(console.error);
+
     setStatus("sent");
   }
 
