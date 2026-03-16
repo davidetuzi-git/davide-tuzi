@@ -68,11 +68,10 @@ export function AboutSection() {
         </div>
         <motion.div variants={fadeUp} className="space-y-6">
           {/* Photo grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <img src={aboutImg1} alt="Davide portrait" className="rounded-lg object-cover w-full h-64 monolith-card" />
-            <img src={aboutWedding} alt="Davide and Katia wedding" className="rounded-lg object-cover w-full h-48 monolith-card mt-8" />
-            <img src={aboutImg2} alt="Davide travelling" className="rounded-lg object-cover w-full h-48 monolith-card -mt-8" />
-            <div className="relative rounded-lg overflow-hidden monolith-card">
+          <div className="grid grid-cols-2 gap-6">
+            <img src={aboutWedding} alt="Davide and Katia wedding" className="rounded-lg object-cover w-full h-56 monolith-card" />
+            <img src={aboutImg2} alt="Davide travelling" className="rounded-lg object-cover w-full h-56 monolith-card" />
+            <div className="relative rounded-lg overflow-hidden monolith-card col-span-2">
               <img src={aboutCats} alt="Polpetta, Tiramisù & Sofficino" className="w-full h-48 object-cover" />
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/70 to-transparent p-3">
                 <p className="text-primary-foreground text-xs font-medium">🐱 Polpetta, Tiramisù & Sofficino</p>
