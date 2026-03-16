@@ -83,6 +83,7 @@ const Index = () => {
           <div className="section-alt">
             <WhyMeSection />
           </div>
+          <PodcastSection />
           <ContactSection />
         </motion.div>
       )}
