@@ -27,13 +27,44 @@ export function AboutSection() {
           <motion.p variants={fadeUp} className="text-muted-foreground mb-6">
             Experienced in multicultural environments — including working closely with Chinese management culture, thriving under high-pressure, fast-paced development while maintaining quality standards.
           </motion.p>
-          <motion.div variants={fadeUp} className="space-y-3">
+          <motion.div variants={fadeUp} className="space-y-3 mb-8">
             {["Sales & Business Professional", "Tech & Sustainability Passionate", "Entrepreneurial Mindset", "Engineering + Strategy", "Multicultural Experience (incl. Chinese culture)", "Traveller"].map((item) => (
               <div key={item} className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 <span className="text-secondary-foreground">{item}</span>
               </div>
             ))}
+          </motion.div>
+
+          {/* Languages */}
+          <motion.div variants={fadeUp} className="mb-6">
+            <p className="label-mono mb-3 text-primary">🌍 Languages</p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { lang: "Italian", level: "Native" },
+                { lang: "English", level: "Fluent" },
+                { lang: "Spanish", level: "Fluent" },
+                { lang: "Dutch", level: "Limited" },
+                { lang: "French", level: "Limited" },
+              ].map((l) => (
+                <span key={l.lang} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-muted/50 text-foreground">
+                  {l.lang}
+                  <span className="text-muted-foreground">· {l.level}</span>
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Passions */}
+          <motion.div variants={fadeUp}>
+            <p className="label-mono mb-3 text-primary">🔥 Passions</p>
+            <div className="flex flex-wrap gap-2">
+              {["Technology", "Sustainability", "Travel", "Cooking", "Cats", "Entrepreneurship"].map((p) => (
+                <span key={p} className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                  {p}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </div>
         <motion.div variants={fadeUp} className="space-y-6">

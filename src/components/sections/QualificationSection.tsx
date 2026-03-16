@@ -3,7 +3,6 @@ import { fadeUp } from "@/lib/animations";
 import logoPolito from "@/assets/logo-polito.png";
 import logoMaastricht from "@/assets/logo-maastricht.png";
 import logoErasmus from "@/assets/logo-erasmus.png";
-import millerHeimanCert from "@/assets/miller-heiman-cert.jpg";
 import kornFerryCert from "@/assets/korn-ferry-cert.png";
 
 const qualifications = [
@@ -33,12 +32,6 @@ const certifications = [
     issuer: "Korn Ferry (Miller Heiman Group)",
     year: "2025",
     image: kornFerryCert,
-  },
-  {
-    name: "Miller Heiman Certification",
-    issuer: "Miller Heiman Group",
-    year: "Previous",
-    image: millerHeimanCert,
   },
 ];
 
