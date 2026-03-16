@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { ExternalLink, Play, FileText, Newspaper } from "lucide-react";
+import { ExternalLink, Play, FileText, Newspaper, Linkedin } from "lucide-react";
 import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
