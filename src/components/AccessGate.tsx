@@ -28,21 +28,31 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
       .catch(() => setCurrentIp("unknown"));
   }, []);
 
-  const checkApproval = useCallback(async (checkEmail: string) => {
+  const checkApproval = useCallback(async (checkEmail: string, ip?: string) => {
+    const checkIp = ip || currentIp;
     const { data } = await supabase
       .from("access_requests")
-      .select("status")
+      .select("status, ip_address, expires_at")
       .eq("email", checkEmail)
       .eq("status", "approved")
       .maybeSingle();
 
     if (data) {
+      // Check IP match
+      if (data.ip_address && data.ip_address !== checkIp) {
+        return false;
+      }
+      // Check expiry
+      if (data.expires_at && new Date(data.expires_at) < new Date()) {
+        localStorage.removeItem("dt_access_email");
+        return false;
+      }
       localStorage.setItem("dt_access_email", checkEmail);
       onGranted();
       return true;
     }
     return false;
-  }, [onGranted]);
+  }, [onGranted, currentIp]);
 
   // Poll for approval after request is sent
   useEffect(() => {
