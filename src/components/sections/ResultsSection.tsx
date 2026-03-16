@@ -42,11 +42,11 @@ export function ResultsSection() {
               {'logos' in d && d.logos ? (
                 <div className="flex items-center gap-3 mb-4">
                   {d.logos.map((logo, i) => (
-                    <img key={i} src={logo} alt={d.customer} className="h-8 object-contain opacity-70" />
+                    <img key={i} src={logo} alt={d.customer} className="h-14 object-contain opacity-70" />
                   ))}
                 </div>
               ) : 'logo' in d && d.logo ? (
-                <img src={d.logo} alt={d.customer} className="h-8 object-contain mb-4 opacity-70" />
+                <img src={d.logo} alt={d.customer} className="h-14 object-contain mb-4 opacity-70" />
               ) : null}
               <p className="label-mono text-primary mb-2">{d.year}</p>
               <h3 className="text-lg font-semibold text-foreground">{d.customer}</h3>
