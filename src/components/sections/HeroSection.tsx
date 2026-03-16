@@ -27,7 +27,7 @@ export function HeroSection() {
           </div>
         </motion.div>
         <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">
-          Self Introduction — 2025
+          Self Introduction
         </motion.p>
         <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-bold text-foreground mb-6">
           Davide Tuzi
