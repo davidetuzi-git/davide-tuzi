@@ -128,6 +128,26 @@ export function CareerSection() {
                     </div>
                   </div>
                 )}
+                {c.links && c.links.length > 0 && (
+                  <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🔗 Media & Events</p>
+                    <div className="flex flex-wrap gap-2">
+                      {c.links.map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs bg-secondary text-secondary-foreground border border-border rounded-full px-3 py-1 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors"
+                        >
+                          {link.type === "video" ? <Play className="w-3 h-3" /> : <FileText className="w-3 h-3" />}
+                          {link.label}
+                          <ExternalLink className="w-2.5 h-2.5 opacity-50" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </motion.div>
               {c.transition && i < careers.length - 1 && (
                 <motion.div variants={fadeUp} className="flex items-center gap-3 py-4 pl-6 md:pl-[4.75rem]">
