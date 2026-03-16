@@ -19,8 +19,10 @@ export type Database = {
           access_token: string | null
           created_at: string
           email: string
+          expires_at: string | null
           first_name: string
           id: string
+          ip_address: string | null
           last_name: string
           status: string
           updated_at: string
@@ -29,8 +31,10 @@ export type Database = {
           access_token?: string | null
           created_at?: string
           email: string
+          expires_at?: string | null
           first_name: string
           id?: string
+          ip_address?: string | null
           last_name: string
           status?: string
           updated_at?: string
@@ -39,8 +43,10 @@ export type Database = {
           access_token?: string | null
           created_at?: string
           email?: string
+          expires_at?: string | null
           first_name?: string
           id?: string
+          ip_address?: string | null
           last_name?: string
           status?: string
           updated_at?: string
