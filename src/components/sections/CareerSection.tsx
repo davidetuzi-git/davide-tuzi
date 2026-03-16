@@ -72,7 +72,7 @@ const careers = [
       "€120M+ sales pipeline in 12 months, 300+ prospects",
       "Exceeded sales quota in 2 out of 3 years",
       "Pioneered the Middle East market from zero",
-      "4 official partnerships signed",
+      "6 official partnerships signed, including 4 Tier-1 system integrators",
       "Thrived in Chinese corporate culture under high-pressure management",
     ],
     keyLearnings: ["Leadership & team building from zero", "Cross-cultural management (Chinese culture)", "Resilience under extreme pressure"],
