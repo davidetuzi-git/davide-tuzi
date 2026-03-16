@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 import logoPolito from "@/assets/logo-polito.png";
 import logoMaastricht from "@/assets/logo-maastricht.png";
+import logoErasmus from "@/assets/logo-erasmus.png";
 
 const qualifications = [
   {
@@ -14,6 +15,7 @@ const qualifications = [
     institution: "Erasmus for Young Entrepreneurs",
     degree: "Entrepreneurship Program",
     description: "Selected candidate for Erasmus experience in Finland. Reinforced entrepreneurship skills.",
+    logo: logoErasmus,
   },
   {
     institution: "Maastricht School of Management",
