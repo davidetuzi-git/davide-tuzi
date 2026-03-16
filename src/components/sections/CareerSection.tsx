@@ -47,7 +47,7 @@ const careers = [
     period: "2019 – 2023",
     company: "Nexton",
     role: "Co-Founder",
-    logo: logoXton,
+    logo: logoNexton,
     achievements: [
       "Side entrepreneurial adventure in IoT industry",
     ],

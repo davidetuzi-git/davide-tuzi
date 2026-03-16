@@ -21,8 +21,11 @@ export function AboutSection() {
           <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
             Happily married with Katia. Entrepreneurial mindset with an engineering background.
           </motion.p>
+          <motion.p variants={fadeUp} className="text-muted-foreground mb-6">
+            Experienced in multicultural environments — including working closely with Chinese management culture, thriving under high-pressure, fast-paced development while maintaining quality standards.
+          </motion.p>
           <motion.div variants={fadeUp} className="space-y-3">
-            {["Sales & Business Professional", "Tech & Sustainability Passionate", "Entrepreneurial Mindset", "Engineering + Strategy", "Traveller"].map((item) => (
+            {["Sales & Business Professional", "Tech & Sustainability Passionate", "Entrepreneurial Mindset", "Engineering + Strategy", "Multicultural Experience (incl. Chinese culture)", "Traveller"].map((item) => (
               <div key={item} className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 <span className="text-secondary-foreground">{item}</span>
