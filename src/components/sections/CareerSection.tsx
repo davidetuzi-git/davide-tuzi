@@ -89,7 +89,13 @@ export function CareerSection() {
                     />
                     <div>
                       <span className="label-mono text-primary">{c.period}</span>
-                      <h3 className="text-xl font-semibold text-foreground mt-1">{c.company}</h3>
+                      <h3 className="text-xl font-semibold text-foreground mt-1">
+                        {c.url ? (
+                          <a href={c.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline-offset-4 hover:underline">
+                            {c.company} ↗
+                          </a>
+                        ) : c.company}
+                      </h3>
                       <p className="text-muted-foreground text-sm">{c.role}</p>
                     </div>
                   </div>
