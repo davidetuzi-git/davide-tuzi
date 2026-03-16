@@ -41,6 +41,7 @@ const careers = [
       "Exceeded sales quota in 2 out of 3 years",
       "Pioneered the Middle East market from zero",
       "4 official partnerships signed",
+      "Thrived in Chinese corporate culture under high-pressure management",
     ],
   },
   {
