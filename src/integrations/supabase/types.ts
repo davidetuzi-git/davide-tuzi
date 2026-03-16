@@ -53,6 +53,36 @@ export type Database = {
         }
         Relationships: []
       }
+      document_access_requests: {
+        Row: {
+          created_at: string
+          document_key: string
+          email: string
+          expires_at: string | null
+          id: string
+          ip_address: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          document_key: string
+          email: string
+          expires_at?: string | null
+          id?: string
+          ip_address?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          document_key?: string
+          email?: string
+          expires_at?: string | null
+          id?: string
+          ip_address?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

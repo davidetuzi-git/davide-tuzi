@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
 import { ExternalLink, Play, FileText, Newspaper, Linkedin } from "lucide-react";
+import { ProtectedDocumentLink } from "@/components/ProtectedDocumentLink";
 import logoLenntech from "@/assets/logo-lenntech.png";
 import logoVanderlande from "@/assets/logo-vanderlande.png";
 import logoHai from "@/assets/logo-hai-robotics.png";
@@ -84,7 +85,7 @@ const careers = [
       { label: "Next-Gen Warehouse Automation Webinar", url: "https://www.youtube.com/watch?v=syYFwDBJiR4", type: "video" },
       { label: "Davide Tuzi on HAI Robotics Strategy in Italy", url: "https://www.facebook.com/HaiRobotics/videos/781783112975852/", type: "video" },
       { label: "Lancio nuove soluzioni ACR", url: "https://www.businesswire.com/news/home/20231001699566/it", type: "article" },
-      { label: "Go-to-Market Strategy – HAI Robotics Italy", url: "https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvcyFBaXhwLVh0N2cyQXZuQUVRN1UycEJxTzM1TU1GP2U9clJmZ2Z5&cid=2F60837B7BF9692C&id=2F60837B7BF9692C%213585&parId=2F60837B7BF9692C%212822&o=OneUp", type: "article" },
+      { label: "Go-to-Market Strategy – HAI Robotics Italy", url: "https://onedrive.live.com/?redeem=aHR0cHM6Ly8xZHJ2Lm1zL2IvcyFBaXhwLVh0N2cyQXZuQUVRN1UycEJxTzM1TU1GP2U9clJmZ2Z5&cid=2F60837B7BF9692C&id=2F60837B7BF9692C%213585&parId=2F60837B7BF9692C%212822&o=OneUp", type: "article", protected: true },
     ],
   },
 ];
@@ -203,17 +204,27 @@ export function CareerSection() {
                     {/* Regular link pills (videos, etc.) */}
                     <div className="flex flex-wrap gap-2">
                       {c.links.filter((l: any) => !l.image && !l.source).map((link: any) => (
-                        <a
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs bg-secondary text-secondary-foreground border border-border rounded-full px-3 py-1 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors"
-                        >
-                          {link.type === "video" ? <Play className="w-3 h-3" /> : <FileText className="w-3 h-3" />}
-                          {link.label}
-                          <ExternalLink className="w-2.5 h-2.5 opacity-50" />
-                        </a>
+                        link.protected ? (
+                          <ProtectedDocumentLink
+                            key={link.url}
+                            documentKey={`gtm-hai-robotics`}
+                            documentUrl={link.url}
+                            label={link.label}
+                            className="inline-flex items-center gap-1.5 text-xs bg-secondary text-secondary-foreground border border-border rounded-full px-3 py-1 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors cursor-pointer"
+                          />
+                        ) : (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs bg-secondary text-secondary-foreground border border-border rounded-full px-3 py-1 font-medium hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors"
+                          >
+                            {link.type === "video" ? <Play className="w-3 h-3" /> : <FileText className="w-3 h-3" />}
+                            {link.label}
+                            <ExternalLink className="w-2.5 h-2.5 opacity-50" />
+                          </a>
+                        )
                       ))}
                     </div>
                   </div>

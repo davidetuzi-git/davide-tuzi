@@ -34,15 +34,25 @@ serve(async (req) => {
   }
 
   try {
-    const { first_name, last_name, email, request_id } = await req.json();
+    const body = await req.json();
+    const { first_name, last_name, email, request_id, type, document_label } = body;
 
     const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
-    const approveUrl = `${SUPABASE_URL}/functions/v1/approve-access?id=${request_id}`;
+    let message: string;
 
-    const message = `🔐 <b>Nuova richiesta di accesso</b>\n\n` +
-      `👤 <b>Nome:</b> ${first_name} ${last_name}\n` +
-      `📧 <b>Email:</b> ${email}\n\n` +
-      `<a href="${approveUrl}">✅ Approva accesso</a>`;
+    if (type === 'document') {
+      const approveUrl = `${SUPABASE_URL}/functions/v1/approve-document?id=${request_id}`;
+      message = `📄 <b>Richiesta accesso documento</b>\n\n` +
+        `📧 <b>Email:</b> ${email}\n` +
+        `📑 <b>Documento:</b> ${document_label}\n\n` +
+        `<a href="${approveUrl}">✅ Approva accesso documento</a>`;
+    } else {
+      const approveUrl = `${SUPABASE_URL}/functions/v1/approve-access?id=${request_id}`;
+      message = `🔐 <b>Nuova richiesta di accesso</b>\n\n` +
+        `👤 <b>Nome:</b> ${first_name} ${last_name}\n` +
+        `📧 <b>Email:</b> ${email}\n\n` +
+        `<a href="${approveUrl}">✅ Approva accesso</a>`;
+    }
 
     const response = await fetch(`${GATEWAY_URL}/sendMessage`, {
       method: 'POST',
