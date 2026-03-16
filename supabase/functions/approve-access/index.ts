@@ -16,9 +16,11 @@ serve(async (req) => {
   const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+
   const { data, error } = await supabase
     .from("access_requests")
-    .update({ status: "approved" })
+    .update({ status: "approved", expires_at: expiresAt })
     .eq("id", id)
     .select("first_name, last_name, email")
     .single();

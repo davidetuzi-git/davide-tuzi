@@ -11,12 +11,21 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
   const [status, setStatus] = useState<"idle" | "loading" | "sent">("idle");
   const [error, setError] = useState("");
 
-  // Check localStorage for previously approved email
+  const [currentIp, setCurrentIp] = useState("");
+
+  // Fetch current IP
   useEffect(() => {
-    const savedEmail = localStorage.getItem("dt_access_email");
-    if (savedEmail) {
-      checkApproval(savedEmail);
-    }
+    fetch("https://api.ipify.org?format=json")
+      .then(r => r.json())
+      .then(d => {
+        setCurrentIp(d.ip);
+        // Check localStorage for previously approved email
+        const savedEmail = localStorage.getItem("dt_access_email");
+        if (savedEmail) {
+          checkApproval(savedEmail, d.ip);
+        }
+      })
+      .catch(() => setCurrentIp("unknown"));
   }, []);
 
   const checkApproval = useCallback(async (checkEmail: string) => {
