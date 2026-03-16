@@ -16,9 +16,11 @@ serve(async (req) => {
   const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
+  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+
   const { data, error } = await supabase
     .from("access_requests")
-    .update({ status: "approved" })
+    .update({ status: "approved", expires_at: expiresAt })
     .eq("id", id)
     .select("first_name, last_name, email")
     .single();
@@ -44,7 +46,7 @@ serve(async (req) => {
 <h1>Accesso Approvato</h1>
 <p class="name">${data.first_name} ${data.last_name}</p>
 <p class="email">${data.email}</p>
-<p style="color:#888;margin-top:1rem;font-size:.85rem">La persona può ora accedere al sito.</p>
+<p style="color:#888;margin-top:1rem;font-size:.85rem">Accesso valido per 7 giorni, solo dall'IP originale.</p>
 </div></body></html>`,
     {
       status: 200,
