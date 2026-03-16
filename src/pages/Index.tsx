@@ -34,27 +34,20 @@ const Index = () => {
           className="bg-background relative"
         >
           {/* Watermark */}
-          <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center overflow-hidden select-none" aria-hidden="true">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 200px,
-                transparent 200px
-              )`,
-            }}>
-              {Array.from({ length: 12 }).map((_, i) => (
+          <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden select-none" aria-hidden="true">
+            <div className="absolute inset-0">
+              {Array.from({ length: 20 }).map((_, i) => (
                 <div
                   key={i}
-                  className="absolute text-foreground/[0.06] text-2xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+                  className="absolute text-foreground/[0.04] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
                   style={{
-                    top: `${(i * 180) - 100}px`,
-                    left: i % 2 === 0 ? '-5%' : '15%',
+                    top: `${i * 220}px`,
+                    left: i % 2 === 0 ? '-5%' : '10%',
                     transform: 'rotate(-35deg)',
-                    width: '200%',
+                    width: '250%',
                   }}
                 >
-                  CONFIDENTIAL &nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp; CONFIDENTIAL
+                  CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
                 </div>
               ))}
             </div>
@@ -72,7 +65,7 @@ const Index = () => {
             <AboutSection />
           </div>
           <QualificationSection />
-          <div className="section-alt">
+          <div className="section-accent">
             <CareerSection />
           </div>
           <ResultsSection />
@@ -80,7 +73,7 @@ const Index = () => {
             <SwotSection />
           </div>
           <SkillsSection />
-          <div className="section-alt">
+          <div className="section-accent">
             <WhyMeSection />
           </div>
           <PodcastSection />

@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 220 20% 98%;
     --foreground: 220 25% 10%;
 
     --card: 0 0% 100%;
@@ -15,41 +15,44 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 25% 10%;
 
-    --primary: 210 90% 42%;
+    --primary: 215 85% 45%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 200 90% 55%;
 
-    --secondary: 215 20% 92%;
+    --secondary: 215 25% 90%;
     --secondary-foreground: 220 25% 18%;
 
-    --muted: 215 20% 92%;
+    --muted: 215 18% 90%;
     --muted-foreground: 220 12% 40%;
 
-    --accent: 210 90% 42%;
+    --accent: 170 60% 42%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 16% 85%;
+    --border: 220 16% 88%;
     --input: 220 16% 85%;
-    --ring: 210 90% 42%;
+    --ring: 215 85% 45%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 220 20% 97%;
     --sidebar-foreground: 220 25% 10%;
-    --sidebar-primary: 210 90% 42%;
+    --sidebar-primary: 215 85% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 215 20% 92%;
     --sidebar-accent-foreground: 220 25% 10%;
     --sidebar-border: 220 16% 85%;
-    --sidebar-ring: 210 90% 42%;
+    --sidebar-ring: 215 85% 45%;
 
     /* Custom tokens */
     --surface-elevated: 220 20% 97%;
-    --surface-alt: 215 30% 95%;
+    --surface-alt: 218 30% 96%;
+    --surface-accent: 215 60% 96%;
     --rim-light: 220 25% 10%;
     --brand-curve: cubic-bezier(0.22, 1, 0.36, 1);
+    --gradient-hero: linear-gradient(135deg, hsl(215 85% 45%), hsl(200 90% 55%));
   }
 }
 
@@ -85,13 +88,14 @@
 
   .monolith-card:hover {
     box-shadow: 
-      0 6px 16px -4px hsl(220 25% 10% / 0.1),
+      0 6px 16px -4px hsl(215 85% 45% / 0.12),
       0 2px 6px -2px hsl(220 25% 10% / 0.06);
+    border-color: hsl(215 85% 45% / 0.2);
   }
 
   .label-mono {
     font-family: 'Geist Mono', monospace;
-    @apply uppercase tracking-widest text-xs text-muted-foreground;
+    @apply uppercase tracking-widest text-xs text-primary;
   }
 
   .section-fade {
@@ -101,5 +105,9 @@
 
   .section-alt {
     background-color: hsl(var(--surface-alt));
+  }
+
+  .section-accent {
+    background: linear-gradient(135deg, hsl(var(--surface-accent)), hsl(var(--surface-alt)));
   }
 }
