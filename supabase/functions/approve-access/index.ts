@@ -46,7 +46,7 @@ serve(async (req) => {
 <h1>Accesso Approvato</h1>
 <p class="name">${data.first_name} ${data.last_name}</p>
 <p class="email">${data.email}</p>
-<p style="color:#888;margin-top:1rem;font-size:.85rem">La persona può ora accedere al sito.</p>
+<p style="color:#888;margin-top:1rem;font-size:.85rem">Accesso valido per 7 giorni, solo dall'IP originale.</p>
 </div></body></html>`,
     {
       status: 200,
