@@ -18,6 +18,7 @@ const careers = [
       "Successfully managed corporate accounts",
     ],
     keyLearnings: ["Consultative selling", "Technical-commercial mindset", "Client relationship building"],
+    transition: "Seeking a larger, more structured international environment to grow my career in industrial automation.",
   },
   {
     period: "2018 – 2021",
@@ -31,6 +32,7 @@ const careers = [
       "Successful cross-functional department collaboration",
     ],
     keyLearnings: ["Complex project management", "Corporate processes & governance", "Global stakeholder alignment"],
+    transition: "Ready for a leadership challenge — wanted to build something from scratch and take full ownership of a market.",
   },
   {
     period: "2021 – Present",
