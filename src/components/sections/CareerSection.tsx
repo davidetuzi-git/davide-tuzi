@@ -79,6 +79,7 @@ const careers = [
     links: [
       { label: "La Repubblica – La tecnologia al servizio della luce, del cibo, dell'aria", url: "https://www.repubblica.it/tecnologia/2022/10/06/news/la_tecnologia_al_servizio_della_luce_del_cibo_dellaria-368792383/", type: "article" },
       { label: "MarsicaLive – La startup di 2 giovani marsicani protagonista a Roma", url: "https://marsicalive.it/abbassare-consumi-energetici-e-ridurre-costi-in-bolletta-la-startup-di-2-giovani-marsicani-protagonista-a-roma/", type: "article" },
+      { label: "100Torri – Chivasso, nuova tecnologia per illuminare in modo sostenibile", url: "https://www.100torri.it/2021/07/14/chivasso-nuova-tecnologia-per-illuminare-in-modo-sostenibile/", type: "article" },
     ],
   },
 ];
