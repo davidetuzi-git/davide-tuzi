@@ -5,6 +5,27 @@ import logoMaastricht from "@/assets/logo-maastricht.png";
 import logoErasmus from "@/assets/logo-erasmus.png";
 import kornFerryCert from "@/assets/korn-ferry-cert.png";
 
+const qualifications = [
+  {
+    institution: "Politecnico di Torino",
+    degree: "B.Sc. & M.Sc. Civil Engineering",
+    description: "Acquired all the knowledge and tools related to engineering with focus on infrastructures and structures.",
+    logo: logoPolito,
+  },
+  {
+    institution: "Erasmus for Young Entrepreneurs",
+    degree: "Entrepreneurship Program",
+    description: "Selected candidate for Erasmus experience in Finland. Reinforced entrepreneurship skills.",
+    logo: logoErasmus,
+  },
+  {
+    institution: "Maastricht School of Management",
+    degree: "Executive MBA",
+    description: "MBA with digital specialization: digital transformation, data analytics, e-commerce, technology management, and cybersecurity. Master thesis on Finance.",
+    logo: logoMaastricht,
+  },
+];
+
 const certifications = [
   {
     name: "Strategic Selling® with Perspective",
