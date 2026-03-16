@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 220 20% 98%;
+    --background: 216 25% 97%;
     --foreground: 220 25% 10%;
 
     --card: 0 0% 100%;
@@ -22,16 +22,16 @@
     --secondary: 215 25% 90%;
     --secondary-foreground: 220 25% 18%;
 
-    --muted: 215 18% 90%;
+    --muted: 215 18% 88%;
     --muted-foreground: 220 12% 40%;
 
-    --accent: 170 60% 42%;
+    --accent: 170 55% 40%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 16% 88%;
+    --border: 215 20% 86%;
     --input: 220 16% 85%;
     --ring: 215 85% 45%;
 
@@ -47,9 +47,9 @@
     --sidebar-ring: 215 85% 45%;
 
     /* Custom tokens */
-    --surface-elevated: 220 20% 97%;
-    --surface-alt: 218 30% 96%;
-    --surface-accent: 215 60% 96%;
+    --surface-elevated: 216 25% 97%;
+    --surface-alt: 218 30% 95%;
+    --surface-accent: 215 40% 95%;
     --rim-light: 220 25% 10%;
     --brand-curve: cubic-bezier(0.22, 1, 0.36, 1);
     --gradient-hero: linear-gradient(135deg, hsl(215 85% 45%), hsl(200 90% 55%));
@@ -81,21 +81,22 @@
 @layer components {
   .monolith-card {
     @apply bg-card border border-border rounded-lg relative;
+    border-left: 3px solid hsl(var(--primary) / 0.25);
     box-shadow: 
-      0 1px 3px 0 hsl(220 25% 10% / 0.08),
-      0 1px 2px -1px hsl(220 25% 10% / 0.06);
+      0 1px 3px 0 hsl(220 25% 10% / 0.06),
+      0 1px 2px -1px hsl(220 25% 10% / 0.04);
   }
 
   .monolith-card:hover {
+    border-left-color: hsl(var(--primary) / 0.6);
     box-shadow: 
       0 6px 16px -4px hsl(215 85% 45% / 0.12),
       0 2px 6px -2px hsl(220 25% 10% / 0.06);
-    border-color: hsl(215 85% 45% / 0.2);
   }
 
   .label-mono {
     font-family: 'Geist Mono', monospace;
-    @apply uppercase tracking-widest text-xs text-primary;
+    @apply uppercase tracking-widest text-xs text-primary font-semibold;
   }
 
   .section-fade {
@@ -108,6 +109,6 @@
   }
 
   .section-accent {
-    background: linear-gradient(135deg, hsl(var(--surface-accent)), hsl(var(--surface-alt)));
+    background: linear-gradient(180deg, hsl(var(--surface-accent)), hsl(var(--surface-alt)));
   }
 }
