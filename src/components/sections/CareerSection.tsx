@@ -68,6 +68,7 @@ const careers = [
       "Side entrepreneurial adventure in IoT industry",
     ],
     keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
+    transition: "Project ended due to cash runway depletion and diverging visions among co-founders.",
     banner: nextonBanner,
     photos: [nextonEvent1, nextonEvent2],
     links: [
