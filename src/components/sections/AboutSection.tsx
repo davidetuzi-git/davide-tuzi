@@ -102,7 +102,7 @@ export function AboutSection() {
           {/* Photo grid */}
           <div className="grid grid-cols-2 gap-6">
             <img src={aboutWedding} alt="Davide and Katia wedding" className="rounded-lg object-cover w-full h-56 monolith-card" />
-            <img src={aboutImg2} alt="Davide travelling" className="rounded-lg object-cover w-full h-56 monolith-card" />
+            <img src={aboutImg2} alt="Davide travelling" className="rounded-lg object-cover w-full h-72 monolith-card object-top" />
             <div className="relative rounded-lg overflow-hidden monolith-card col-span-2">
               <img src={aboutCats} alt="Polpetta, Tiramisù & Sofficino" className="w-full h-48 object-cover" />
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-foreground/70 to-transparent p-3">
