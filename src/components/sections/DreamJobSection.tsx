@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { Plane, Home, Shield, Target, Scale, Users } from "lucide-react";
+import { Plane, Home, Shield, Target, Scale, Users, Flame } from "lucide-react";
 
 const traits = [
   { icon: Plane, label: "Good balance travel / home" },
@@ -9,6 +9,7 @@ const traits = [
   { icon: Target, label: "Sales & Strategy focused" },
   { icon: Scale, label: "Good work-life balance" },
   { icon: Users, label: "Managing a team" },
+  { icon: Flame, label: "I love challenges" },
 ];
 
 export function DreamJobSection() {
