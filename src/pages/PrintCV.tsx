@@ -53,11 +53,16 @@ const PrintCV = () => {
 
         {/* Profile Summary */}
         <div style={{ marginBottom: '24px' }}>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Profile Summary</h2>
-          <p style={{ fontSize: '13px', color: '#374151', lineHeight: 1.6 }}>
-            Sales & business professional with 9+ years of experience in B2B sales, business development, and team leadership across international markets. 
-            Engineering background combined with strategic acumen and an MBA. Proven track record in building teams from scratch, managing P&L, 
-            and developing multi-million euro pipelines. Passionate about technology, sustainability, and innovation.
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Who is Davide</h2>
+          <p style={{ fontSize: '13px', color: '#374151', lineHeight: 1.7 }}>
+            Born and raised in Rome 🇮🇹, I've lived 6 years in Turin and 6 years in the Netherlands before returning to my home base in Rome. 
+            Happily married with Katia, proud cat dad of three (Polpetta, Tiramisù & Sofficino), and a guitar player in my free time.
+          </p>
+          <p style={{ fontSize: '13px', color: '#374151', lineHeight: 1.7, marginTop: '8px' }}>
+            Professionally, I'm a sales & business leader with 9+ years of B2B experience across international markets. 
+            I combine an engineering foundation (Politecnico di Torino) with strategic thinking (MBA from Maastricht) and entrepreneurial grit (CEO & Co-Founder of NEXTON). 
+            I thrive in multicultural environments — including Chinese corporate culture — and I'm passionate about technology, sustainability, and building things from scratch. 
+            I've built teams, managed P&L across regions, and developed a €30M+ pipeline from zero.
           </p>
         </div>
 
@@ -184,10 +189,31 @@ const PrintCV = () => {
             <li>Pioneered the Middle East market from zero</li>
             <li>6 official partnerships signed, including 4 Tier-1 system integrators</li>
           </ul>
+          <div style={{ marginTop: '8px', marginLeft: '16px', padding: '8px 12px', background: '#eff6ff', borderRadius: '6px', display: 'inline-block' }}>
+            <span style={{ fontSize: '12px', color: '#2563eb', fontWeight: 600 }}>📊 Total pipeline developed: €30M+ in less than 3 years</span>
+          </div>
         </div>
 
         {/* === PAGE 3: Dream Job + Why Me === */}
         <div className="page-break" />
+        {/* SWOT */}
+        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Self-Assessment (SWOT)</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
+          {[
+            { title: "Strengths", color: '#10b981', items: ["Resolute", "Excellent Planner", "Open-minded Enthusiast", "Possibility-finder", "Out-of-the-box Thinker"] },
+            { title: "Weaknesses", color: '#f59e0b', items: ["Need to Know Details", "Impatient for Results", "Workaholic", "Balance the Passion"] },
+            { title: "Opportunities", color: '#3b82f6', items: ["Personal Growth", "Lead by Example", "Skill Diversification", "Mentorship", "Entrepreneurship"] },
+            { title: "Threats", color: '#ef4444', items: ["Personal Affection"] },
+          ].map(s => (
+            <div key={s.title} style={{ borderLeft: `3px solid ${s.color}`, paddingLeft: '10px' }}>
+              <p style={{ fontSize: '11px', fontWeight: 700, color: s.color, textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>{s.title}</p>
+              <ul style={{ fontSize: '11px', color: '#374151', listStyle: 'disc', marginLeft: '14px', lineHeight: 1.7 }}>
+                {s.items.map(item => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+
         <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>What I'm Looking For</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '6px', marginBottom: '24px' }}>
           {[
