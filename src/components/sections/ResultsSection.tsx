@@ -29,7 +29,7 @@ export function ResultsSection() {
       >
         <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">Track Record</motion.p>
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          From 0 to +€25M in less than 2.5 years
+          From 0 to 1, and from 1 to +€30M
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
           Some of the most memorable and biggest projects I have sold at HAI Robotics.
