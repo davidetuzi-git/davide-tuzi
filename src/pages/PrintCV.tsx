@@ -158,7 +158,7 @@ const PrintCV = () => {
             <img src={logoNexton} alt="NEXTON" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
             <div>
               <p style={{ fontSize: '14px', fontWeight: 600, color: '#111827', margin: 0 }}>NEXTON <span style={{ color: '#9ca3af', fontWeight: 400 }}>· 2019 – 2023</span></p>
-              <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>CEO & Co-Founder · IoT Startup</p>
+              <p style={{ fontSize: '12px', color: '#2563eb', margin: 0 }}>CEO & Co-Founder · IoT Startup</p>
             </div>
           </div>
           <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
