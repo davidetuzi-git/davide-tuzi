@@ -95,7 +95,7 @@ const careers = [
       "Thrived in Chinese corporate culture under high-pressure management",
     ],
     keyLearnings: ["Leadership & team building from zero", "Cross-cultural management (Chinese culture)", "Resilience under extreme pressure"],
-    photos: [haiEvent1, haiEvent2, haiEvent3, haiEvent4],
+    photos: [haiEvent1, haiEvent2, haiEvent4],
     links: [
       { label: "Intralogistica Italia 2022", url: "https://www.hairobotics.com/news/intralogistica-italia-2022", type: "article" },
       { label: "HaiPulse Webinar – New Wave Textiles Case Study", url: "https://zoom.us/rec/play/2lFWeQr90xpzdMfdi-8oNq2aMHt8LdHSW5NOuUeN_NENTeMwmdZlszASIHijIecM97LwasLneghiMsdl.jBoEMlY7zO_Ey9Gu", type: "video" },
