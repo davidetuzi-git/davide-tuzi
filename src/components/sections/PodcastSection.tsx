@@ -49,7 +49,7 @@ export function PodcastSection() {
                   <span className="font-medium text-foreground">UNICORNI Podcast</span> · Ep. #15
                 </p>
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                  Come gestire un fallimento startup, l'importanza della composizione del team e della comunicazione interna. Davide celebra il suo fallimento con Nexton e condivide cosa ha imparato.
+                  Come gestire un fallimento startup, l'importanza della composizione del team e della comunicazione interna. Davide celebra il suo fallimento con NEXTON e condivide cosa ha imparato.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <a
