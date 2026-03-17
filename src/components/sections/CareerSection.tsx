@@ -95,7 +95,7 @@ const careers = [
 
 export function CareerSection() {
   return (
-    <section className="min-h-svh flex items-center px-8 py-20">
+    <section className="min-h-0 md:min-h-svh flex items-center px-6 md:px-8 py-12 md:py-20">
       <motion.div
         initial="hidden"
         whileInView="visible"
