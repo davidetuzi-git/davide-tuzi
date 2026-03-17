@@ -196,6 +196,24 @@ const PrintCV = () => {
 
         {/* === PAGE 3: Dream Job + Why Me === */}
         <div className="page-break" />
+        {/* SWOT */}
+        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Self-Assessment (SWOT)</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '24px' }}>
+          {[
+            { title: "Strengths", color: '#10b981', items: ["Resolute", "Excellent Planner", "Open-minded Enthusiast", "Possibility-finder", "Out-of-the-box Thinker"] },
+            { title: "Weaknesses", color: '#f59e0b', items: ["Need to Know Details", "Impatient for Results", "Workaholic", "Balance the Passion"] },
+            { title: "Opportunities", color: '#3b82f6', items: ["Personal Growth", "Lead by Example", "Skill Diversification", "Mentorship", "Entrepreneurship"] },
+            { title: "Threats", color: '#ef4444', items: ["Personal Affection"] },
+          ].map(s => (
+            <div key={s.title} style={{ borderLeft: `3px solid ${s.color}`, paddingLeft: '10px' }}>
+              <p style={{ fontSize: '11px', fontWeight: 700, color: s.color, textTransform: 'uppercase' as const, letterSpacing: '0.05em', marginBottom: '4px' }}>{s.title}</p>
+              <ul style={{ fontSize: '11px', color: '#374151', listStyle: 'disc', marginLeft: '14px', lineHeight: 1.7 }}>
+                {s.items.map(item => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+
         <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>What I'm Looking For</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '6px', marginBottom: '24px' }}>
           {[
