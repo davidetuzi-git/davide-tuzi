@@ -53,11 +53,16 @@ const PrintCV = () => {
 
         {/* Profile Summary */}
         <div style={{ marginBottom: '24px' }}>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Profile Summary</h2>
-          <p style={{ fontSize: '13px', color: '#374151', lineHeight: 1.6 }}>
-            Sales & business professional with 9+ years of experience in B2B sales, business development, and team leadership across international markets. 
-            Engineering background combined with strategic acumen and an MBA. Proven track record in building teams from scratch, managing P&L, 
-            and developing multi-million euro pipelines. Passionate about technology, sustainability, and innovation.
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Who is Davide</h2>
+          <p style={{ fontSize: '13px', color: '#374151', lineHeight: 1.7 }}>
+            Born and raised in Rome 🇮🇹, I've lived 6 years in Turin and 6 years in the Netherlands before returning to my home base in Rome. 
+            Happily married with Katia, proud cat dad of three (Polpetta, Tiramisù & Sofficino), and a guitar player in my free time.
+          </p>
+          <p style={{ fontSize: '13px', color: '#374151', lineHeight: 1.7, marginTop: '8px' }}>
+            Professionally, I'm a sales & business leader with 9+ years of B2B experience across international markets. 
+            I combine an engineering foundation (Politecnico di Torino) with strategic thinking (MBA from Maastricht) and entrepreneurial grit (CEO & Co-Founder of NEXTON). 
+            I thrive in multicultural environments — including Chinese corporate culture — and I'm passionate about technology, sustainability, and building things from scratch. 
+            I've built teams, managed P&L across regions, and developed a €30M+ pipeline from zero.
           </p>
         </div>
 
