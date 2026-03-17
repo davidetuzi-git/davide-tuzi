@@ -70,31 +70,29 @@ export function AboutSection() {
           {/* Life Journey Map */}
           <motion.div variants={fadeUp} className="mt-6">
             <p className="label-mono mb-3 text-primary">📍 Life Journey</p>
-            <div className="flex items-center gap-0 overflow-x-auto pb-2">
+            <div className="grid grid-cols-4 gap-2 md:gap-4">
               {[
                 { city: "Roma", country: "it", label: "Born & raised", emoji: "🏠" },
                 { city: "Torino", country: "it", label: "6 years", emoji: "🎓" },
-                { city: "Netherlands", country: "nl", label: "6 years", emoji: "🌷" },
-                { city: "Roma", country: "it", label: "Current base", emoji: "🏡" },
+                { city: "NL", country: "nl", label: "6 years", emoji: "🌷" },
+                { city: "Roma", country: "it", label: "Current", emoji: "🏡" },
               ].map((stop, idx, arr) => (
-                <div key={idx} className="flex items-center shrink-0">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center text-lg">
-                      {stop.emoji}
-                    </div>
-                    <div className="mt-2">
-                      <p className="text-xs font-semibold text-foreground flex items-center gap-1 justify-center">
-                        <img src={`https://flagcdn.com/14x10/${stop.country}.png`} alt="" className="w-3.5 h-2.5" />
-                        {stop.city}
-                      </p>
-                      <p className="text-[10px] text-muted-foreground">{stop.label}</p>
-                    </div>
+                <div key={idx} className="flex flex-col items-center text-center relative">
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center text-base md:text-lg">
+                    {stop.emoji}
                   </div>
                   {idx < arr.length - 1 && (
-                    <div className="w-8 md:w-12 h-px bg-primary/30 mx-1 relative top-[-10px]">
-                      <div className="absolute -right-1 -top-[3px] text-primary/50 text-[8px]">✈</div>
+                    <div className="absolute top-4 md:top-5 left-[calc(50%+18px)] md:left-[calc(50%+22px)] w-[calc(100%-20px)] h-px bg-primary/30">
+                      <span className="absolute -right-1 -top-[3px] text-primary/50 text-[7px]">✈</span>
                     </div>
                   )}
+                  <div className="mt-1.5">
+                    <p className="text-[10px] md:text-xs font-semibold text-foreground flex items-center gap-1 justify-center">
+                      <img src={`https://flagcdn.com/14x10/${stop.country}.png`} alt="" className="w-3 h-2 md:w-3.5 md:h-2.5" />
+                      {stop.city}
+                    </p>
+                    <p className="text-[9px] md:text-[10px] text-muted-foreground">{stop.label}</p>
+                  </div>
                 </div>
               ))}
             </div>
