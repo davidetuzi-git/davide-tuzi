@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { Mail, Phone, Linkedin, Download, FileText } from "lucide-react";
-
+import { Mail, Phone, Linkedin, Download, FileText, Presentation } from "lucide-react";
+import { generatePptx } from "@/lib/generatePptx";
+import { useState } from "react";
 export function ContactSection() {
   return (
     <section className="min-h-[60vh] flex items-center justify-center px-8 py-20 bg-foreground relative overflow-hidden">
