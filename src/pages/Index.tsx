@@ -35,7 +35,7 @@ const Index = () => {
         >
           {/* Watermark */}
           <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden select-none" aria-hidden="true">
-            {[8, 28, 48, 68, 88].map((top) => (
+            {[5, 15, 25, 35, 45, 55, 65, 75, 85, 95].map((top) => (
               <div
                 key={top}
                 className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
