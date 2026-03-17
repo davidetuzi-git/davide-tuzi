@@ -56,11 +56,11 @@ export function ResultsSection() {
               <p className="label-mono text-primary mb-2">{d.year}</p>
               <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                 {d.customer}
-                <img
-                  src={`https://flagcdn.com/20x15/${d.flag === '🇿🇦' ? 'za' : 'it'}.png`}
-                  alt={d.flag === '🇿🇦' ? 'South Africa' : 'Italy'}
-                  className="w-5 h-auto inline-block"
-                />
+                <span className="flex items-center gap-1">
+                  {d.flags.map((code) => (
+                    <img key={code} src={`https://flagcdn.com/20x15/${code}.png`} alt={code} className="w-5 h-auto inline-block" />
+                  ))}
+                </span>
               </h3>
               <p className="text-muted-foreground text-sm mb-4">{d.industry}</p>
               {/* Value - pushed to bottom */}
