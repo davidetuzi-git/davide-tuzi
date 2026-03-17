@@ -35,13 +35,19 @@ const Index = () => {
         >
           {/* Watermark */}
           <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden select-none" aria-hidden="true">
-            {[5, 15, 25, 35, 45, 55, 65, 75, 85, 95].map((top) => (
+            {[0, 1, 2, 3, 4, 5].map((i) => (
               <div
-                key={top}
-                className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-                style={{ top: `${top}%`, left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
+                key={i}
+                className="absolute text-foreground/[0.04] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+                style={{
+                  top: `${-10 + i * 22}%`,
+                  left: '-20%',
+                  transform: 'rotate(-25deg)',
+                  width: '200%',
+                  textAlign: 'center',
+                }}
               >
-                CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
+                CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
               </div>
             ))}
           </div>
