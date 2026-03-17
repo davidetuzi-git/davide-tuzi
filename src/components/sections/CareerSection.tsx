@@ -116,7 +116,7 @@ export function CareerSection() {
                     <img
                       src={c.logo}
                       alt={`${c.company} logo`}
-                      className={`object-contain rounded-md bg-background border border-border shrink-0 ${c.company === 'Nexton' ? 'w-24 h-24 p-1' : c.company === 'HAI Robotics' ? 'w-20 h-20 p-1' : 'w-20 h-20 p-2'}`}
+                      className={`object-contain rounded-md bg-background border border-border shrink-0 ${c.company === 'NEXTON' ? 'w-24 h-24 p-1' : c.company === 'HAI Robotics' ? 'w-20 h-20 p-1' : 'w-20 h-20 p-2'}`}
                     />
                     <div>
                       <span className="label-mono text-primary">{c.period}</span>
