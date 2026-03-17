@@ -168,6 +168,7 @@ const PrintCV = () => {
           </div>
           <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
             <li>Entrepreneurial adventure in IoT / smart lighting industry</li>
+            <li>Raised €50,000 in investment</li>
             <li>Featured in La Repubblica, MarsicaLive, 100Torri</li>
           </ul>
         </div>
