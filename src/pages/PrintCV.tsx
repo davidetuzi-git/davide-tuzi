@@ -14,7 +14,7 @@ const PrintCV = () => {
   }, []);
 
   return (
-    <div className="print-cv bg-white text-gray-900 min-h-screen">
+    <div className="print-cv min-h-screen" style={{ background: '#ffffff', color: '#111827' }}>
       {/* Print styles */}
       <style>{`
         @media print {
