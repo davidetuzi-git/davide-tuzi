@@ -9,12 +9,12 @@ import logoArcese from "@/assets/logo-arcese.png";
 import logoCentrostyle from "@/assets/logo-centrostyle.png";
 
 const deals = [
-  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoLuxottica },
-  { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€2.5M", year: "2024", logo: logoTransmec },
-  { customer: "Douglas / Arvato", industry: "Fashion – Beauty", value: "€7M", year: "2024", logos: [logoDouglas, logoArvato] },
-  { customer: "Centro Style", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoCentrostyle },
-  { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€8M", year: "2025", logo: logoMrPrice },
-  { customer: "Arcese for Ferrari", industry: "Automotive", value: "€10M", year: "2025", logo: logoArcese },
+  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoLuxottica, flag: "🇮🇹" },
+  { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€2.5M", year: "2024", logo: logoTransmec, flag: "🇮🇹" },
+  { customer: "Douglas / Arvato", industry: "Fashion – Beauty", value: "€7M", year: "2024", logos: [logoDouglas, logoArvato], flag: "🇮🇹" },
+  { customer: "Centro Style", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoCentrostyle, flag: "🇮🇹" },
+  { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€8M", year: "2025", logo: logoMrPrice, flag: "🇿🇦" },
+  { customer: "Arcese for Ferrari", industry: "Automotive", value: "€10M", year: "2025", logo: logoArcese, flag: "🇮🇹" },
 ];
 
 export function ResultsSection() {
@@ -32,7 +32,7 @@ export function ResultsSection() {
           From 0 to +€25M in less than 2.5 years
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
-          Selected highlights from key deals developed at HAI Robotics.
+          Some of the most memorable and biggest projects I have sold at HAI Robotics.
         </motion.p>
         <motion.div variants={fadeUp} className="monolith-card p-5 mb-12 inline-flex items-center gap-3 border-primary/20 bg-primary/5">
           <span className="text-primary font-semibold text-sm">🏢 Negotiating with C-Level executives of Fortune 500 companies</span>
@@ -54,7 +54,7 @@ export function ResultsSection() {
               </div>
               {/* Info area */}
               <p className="label-mono text-primary mb-2">{d.year}</p>
-              <h3 className="text-lg font-semibold text-foreground">{d.customer}</h3>
+              <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">{d.customer} <span className="text-base">{d.flag}</span></h3>
               <p className="text-muted-foreground text-sm mb-4">{d.industry}</p>
               {/* Value - pushed to bottom */}
               <p className="text-3xl font-bold bg-gradient-to-r from-primary to-[hsl(200_90%_55%)] bg-clip-text text-transparent mt-auto">{d.value}</p>
