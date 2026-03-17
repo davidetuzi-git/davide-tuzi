@@ -173,7 +173,7 @@ const PrintCV = () => {
             <img src={logoHai} alt="HAI Robotics" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
             <div>
               <p style={{ fontSize: '14px', fontWeight: 600, color: '#111827', margin: 0 }}>HAI Robotics <span style={{ color: '#9ca3af', fontWeight: 400 }}>· 2021 – Present</span></p>
-              <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Country Manager Italy & Middle East</p>
+              <p style={{ fontSize: '12px', color: '#2563eb', margin: 0 }}>Country Manager Italy & Middle East</p>
             </div>
           </div>
           <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
