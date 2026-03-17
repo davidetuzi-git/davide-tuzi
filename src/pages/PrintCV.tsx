@@ -14,44 +14,36 @@ const PrintCV = () => {
   }, []);
 
   return (
-    <div className="print-cv bg-white text-gray-900 min-h-screen">
+    <div style={{ background: '#ffffff', color: '#111827', fontFamily: "'Inter', system-ui, sans-serif", minHeight: '100vh' }}>
       {/* Print styles */}
       <style>{`
         @media print {
           @page { margin: 1.5cm; size: A4; }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .print-cv { font-size: 11px; }
           .no-print { display: none !important; }
           .page-break { page-break-before: always; }
         }
-        .print-cv { font-family: 'Inter', system-ui, sans-serif; }
-        .print-cv h1, .print-cv h2, .print-cv h3 { color: #1a1a2e; }
-        .print-cv .accent { color: #3b82f6; }
-        .print-cv .section-title { font-size: 1.1rem; font-weight: 700; border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; }
-        .print-cv .tag { display: inline-block; background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; border-radius: 9999px; padding: 2px 10px; font-size: 0.7rem; font-weight: 500; margin: 2px; }
-        .print-cv .career-block { border-left: 3px solid #3b82f6; padding-left: 12px; margin-bottom: 16px; }
       `}</style>
 
       {/* Top bar - print button */}
-      <div className="no-print bg-gray-900 text-white py-4 px-6 flex items-center justify-between sticky top-0 z-50">
-        <p className="text-sm text-gray-400">Preview — Print or save as PDF</p>
+      <div className="no-print" style={{ background: '#111827', color: '#fff', padding: '16px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 50 }}>
+        <p style={{ fontSize: '14px', color: '#9ca3af' }}>Preview — Print or save as PDF</p>
         <button
           onClick={() => window.print()}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium text-sm transition-colors"
+          style={{ background: '#2563eb', color: '#fff', padding: '8px 24px', borderRadius: '8px', fontWeight: 500, fontSize: '14px', border: 'none', cursor: 'pointer' }}
         >
           🖨️ Print / Save as PDF
         </button>
       </div>
 
-      <div className="max-w-[210mm] mx-auto px-8 py-8">
-        {/* === PAGE 1: Header + About + Education === */}
+      <div style={{ maxWidth: '210mm', margin: '0 auto', padding: '32px' }}>
         {/* Header */}
-        <div className="flex items-center gap-6 mb-8">
-          <img src={profileImg} alt="Davide Tuzi" className="w-24 h-24 rounded-full object-cover border-2 border-blue-200" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '32px' }}>
+          <img src={profileImg} alt="Davide Tuzi" style={{ width: '96px', height: '96px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #bfdbfe' }} />
           <div>
-            <h1 className="text-3xl font-bold">Davide Tuzi</h1>
-            <p className="text-gray-500 mt-1">Sales & Business Professional | Tech & Sustainability</p>
-            <div className="flex gap-4 mt-2 text-xs text-gray-500">
+            <h1 style={{ fontSize: '1.875rem', fontWeight: 700, color: '#1a1a2e', margin: 0 }}>Davide Tuzi</h1>
+            <p style={{ color: '#6b7280', marginTop: '4px', fontSize: '14px' }}>Sales & Business Professional | Tech & Sustainability</p>
+            <div style={{ display: 'flex', gap: '16px', marginTop: '8px', fontSize: '12px', color: '#6b7280' }}>
               <span>📧 davide.tuzi@gmail.com</span>
               <span>📱 +39 333 201 6113</span>
               <span>🔗 linkedin.com/in/davide-tuzi</span>
@@ -60,9 +52,9 @@ const PrintCV = () => {
         </div>
 
         {/* Profile Summary */}
-        <div className="mb-6">
-          <h2 className="section-title">Profile Summary</h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Profile Summary</h2>
+          <p style={{ fontSize: '13px', color: '#374151', lineHeight: 1.6 }}>
             Sales & business professional with 9+ years of experience in B2B sales, business development, and team leadership across international markets. 
             Engineering background combined with strategic acumen and an MBA. Proven track record in building teams from scratch, managing P&L, 
             and developing multi-million euro pipelines. Passionate about technology, sustainability, and innovation.
@@ -70,19 +62,19 @@ const PrintCV = () => {
         </div>
 
         {/* Key Strengths */}
-        <div className="mb-6">
-          <h2 className="section-title">Key Strengths</h2>
-          <div className="flex flex-wrap gap-1">
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Key Strengths</h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '4px' }}>
             {["Business Development", "Strategic Vision", "Leadership", "Market Knowledge", "Financial Acumen", "Problem-Solver", "Negotiation", "Multicultural Experience", "Team Management", "P&L Management"].map(s => (
-              <span key={s} className="tag">{s}</span>
+              <span key={s} style={{ display: 'inline-block', background: '#eff6ff', color: '#2563eb', border: '1px solid #bfdbfe', borderRadius: '9999px', padding: '2px 10px', fontSize: '0.7rem', fontWeight: 500 }}>{s}</span>
             ))}
           </div>
         </div>
 
         {/* Languages */}
-        <div className="mb-6">
-          <h2 className="section-title">Languages</h2>
-          <div className="flex gap-4 text-sm">
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Languages</h2>
+          <div style={{ display: 'flex', gap: '16px', fontSize: '13px' }}>
             {[
               { lang: "Italian", level: "Native" },
               { lang: "English", level: "Fluent" },
@@ -90,45 +82,45 @@ const PrintCV = () => {
               { lang: "Dutch", level: "Limited" },
               { lang: "French", level: "Limited" },
             ].map(l => (
-              <span key={l.lang} className="text-gray-700"><strong>{l.lang}</strong> · {l.level}</span>
+              <span key={l.lang} style={{ color: '#374151' }}><strong>{l.lang}</strong> · {l.level}</span>
             ))}
           </div>
         </div>
 
         {/* Education */}
-        <div className="mb-6">
-          <h2 className="section-title">Education & Certifications</h2>
-          <div className="grid grid-cols-3 gap-4">
+        <div style={{ marginBottom: '24px' }}>
+          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Education & Certifications</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
             {[
               { logo: logoPolito, name: "Politecnico di Torino", degree: "B.Sc. & M.Sc. Civil Engineering" },
               { logo: logoErasmus, name: "Erasmus for Young Entrepreneurs", degree: "Entrepreneurship Program" },
               { logo: logoMaastricht, name: "Maastricht School of Management", degree: "Executive MBA" },
             ].map(q => (
-              <div key={q.name} className="flex items-start gap-3">
-                <img src={q.logo} alt={q.name} className="w-10 h-10 object-contain shrink-0" />
+              <div key={q.name} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                <img src={q.logo} alt={q.name} style={{ width: '40px', height: '40px', objectFit: 'contain', flexShrink: 0 }} />
                 <div>
-                  <p className="text-xs font-semibold text-gray-900">{q.name}</p>
-                  <p className="text-xs text-gray-500">{q.degree}</p>
+                  <p style={{ fontSize: '12px', fontWeight: 600, color: '#111827', margin: 0 }}>{q.name}</p>
+                  <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>{q.degree}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* === PAGE 2-3: Career === */}
+        {/* === PAGE 2: Career === */}
         <div className="page-break" />
-        <h2 className="section-title">Career Path</h2>
+        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Career Path</h2>
 
         {/* Lenntech */}
-        <div className="career-block">
-          <div className="flex items-center gap-3 mb-1">
-            <img src={logoLenntech} alt="Lenntech" className="w-8 h-8 object-contain" />
+        <div style={{ borderLeft: '3px solid #3b82f6', paddingLeft: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
+            <img src={logoLenntech} alt="Lenntech" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
             <div>
-              <p className="text-sm font-semibold">Lenntech <span className="text-gray-400 font-normal">· 2016 – 2018</span></p>
-              <p className="text-xs text-gray-500">Technical Sales Engineer</p>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#111827', margin: 0 }}>Lenntech <span style={{ color: '#9ca3af', fontWeight: 400 }}>· 2016 – 2018</span></p>
+              <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Technical Sales Engineer</p>
             </div>
           </div>
-          <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+          <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
             <li>Exceeded sales quota by 20%</li>
             <li>New accounts acquired: portfolio increased by 50%</li>
             <li>Improved sales ops by developing an internal tool</li>
@@ -137,23 +129,23 @@ const PrintCV = () => {
         </div>
 
         {/* Vanderlande */}
-        <div className="career-block">
-          <div className="flex items-center gap-3 mb-1">
-            <img src={logoVanderlande} alt="Vanderlande" className="w-8 h-8 object-contain" />
+        <div style={{ borderLeft: '3px solid #3b82f6', paddingLeft: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
+            <img src={logoVanderlande} alt="Vanderlande" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
             <div>
-              <p className="text-sm font-semibold">Vanderlande <span className="text-gray-400 font-normal">· 2018 – 2021</span></p>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#111827', margin: 0 }}>Vanderlande <span style={{ color: '#9ca3af', fontWeight: 400 }}>· 2018 – 2021</span></p>
             </div>
           </div>
-          <div className="ml-11 mb-2">
-            <p className="text-xs font-semibold text-blue-600">Spare Parts Sales Engineer Specialist – Global Services (2018–2019)</p>
-            <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+          <div style={{ marginLeft: '44px', marginBottom: '8px' }}>
+            <p style={{ fontSize: '12px', fontWeight: 600, color: '#2563eb', margin: '0 0 4px 0' }}>Spare Parts Sales Engineer Specialist – Global Services (2018–2019)</p>
+            <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
               <li>100% complex project success rate</li>
               <li>Acted as Project Manager for project leads</li>
             </ul>
           </div>
-          <div className="ml-11">
-            <p className="text-xs font-semibold text-blue-600">Sales Engineer Key Account – Amazon (2019–2021)</p>
-            <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+          <div style={{ marginLeft: '44px' }}>
+            <p style={{ fontSize: '12px', fontWeight: 600, color: '#2563eb', margin: '0 0 4px 0' }}>Sales Engineer Key Account – Amazon (2019–2021)</p>
+            <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
               <li>Price negotiation with major customers</li>
               <li>Successful cross-functional department collaboration</li>
             </ul>
@@ -161,30 +153,30 @@ const PrintCV = () => {
         </div>
 
         {/* NEXTON */}
-        <div className="career-block">
-          <div className="flex items-center gap-3 mb-1">
-            <img src={logoNexton} alt="NEXTON" className="w-8 h-8 object-contain" />
+        <div style={{ borderLeft: '3px solid #3b82f6', paddingLeft: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
+            <img src={logoNexton} alt="NEXTON" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
             <div>
-              <p className="text-sm font-semibold">NEXTON <span className="text-gray-400 font-normal">· 2019 – 2023</span></p>
-              <p className="text-xs text-gray-500">CEO & Co-Founder · IoT Startup</p>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#111827', margin: 0 }}>NEXTON <span style={{ color: '#9ca3af', fontWeight: 400 }}>· 2019 – 2023</span></p>
+              <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>CEO & Co-Founder · IoT Startup</p>
             </div>
           </div>
-          <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+          <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
             <li>Entrepreneurial adventure in IoT / smart lighting industry</li>
             <li>Featured in La Repubblica, MarsicaLive, 100Torri</li>
           </ul>
         </div>
 
         {/* HAI Robotics */}
-        <div className="career-block">
-          <div className="flex items-center gap-3 mb-1">
-            <img src={logoHai} alt="HAI Robotics" className="w-8 h-8 object-contain" />
+        <div style={{ borderLeft: '3px solid #3b82f6', paddingLeft: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
+            <img src={logoHai} alt="HAI Robotics" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
             <div>
-              <p className="text-sm font-semibold">HAI Robotics <span className="text-gray-400 font-normal">· 2021 – Present</span></p>
-              <p className="text-xs text-gray-500">Country Manager Italy & Middle East</p>
+              <p style={{ fontSize: '14px', fontWeight: 600, color: '#111827', margin: 0 }}>HAI Robotics <span style={{ color: '#9ca3af', fontWeight: 400 }}>· 2021 – Present</span></p>
+              <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>Country Manager Italy & Middle East</p>
             </div>
           </div>
-          <ul className="text-xs text-gray-700 list-disc ml-4 space-y-0.5">
+          <ul style={{ fontSize: '12px', color: '#374151', listStyle: 'disc', marginLeft: '16px', lineHeight: 1.8 }}>
             <li>Built Italian team from scratch (7 professionals)</li>
             <li>Led a team of 6–10 people across Italy & Middle East</li>
             <li>Managed regional P&L and budget</li>
@@ -194,10 +186,10 @@ const PrintCV = () => {
           </ul>
         </div>
 
-        {/* === PAGE 3: SWOT + Why Me === */}
+        {/* === PAGE 3: Dream Job + Why Me === */}
         <div className="page-break" />
-        <h2 className="section-title">What I'm Looking For</h2>
-        <div className="grid grid-cols-3 gap-3 mb-6 text-xs">
+        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>What I'm Looking For</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '6px', marginBottom: '24px' }}>
           {[
             "Good balance travel / home",
             "Remote when not travelling",
@@ -207,12 +199,12 @@ const PrintCV = () => {
             "Managing a team",
             "I love challenges",
           ].map(t => (
-            <span key={t} className="tag">{t}</span>
+            <span key={t} style={{ display: 'inline-block', background: '#eff6ff', color: '#2563eb', border: '1px solid #bfdbfe', borderRadius: '9999px', padding: '2px 10px', fontSize: '0.7rem', fontWeight: 500 }}>{t}</span>
           ))}
         </div>
 
-        <h2 className="section-title">Why Me?</h2>
-        <div className="grid grid-cols-2 gap-2 text-xs text-gray-700">
+        <h2 style={{ fontSize: '1.1rem', fontWeight: 700, borderBottom: '2px solid #3b82f6', paddingBottom: '4px', marginBottom: '12px', color: '#1a1a2e' }}>Why Me?</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', fontSize: '12px', color: '#374151' }}>
           {[
             "Experience with technology, hardware & software solutions",
             "International experience across cultures",
@@ -222,15 +214,15 @@ const PrintCV = () => {
             "Resilient under extreme pressure",
             "Team builder & leader",
           ].map(r => (
-            <div key={r} className="flex items-start gap-2">
-              <span className="text-blue-500 mt-0.5">●</span>
+            <div key={r} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+              <span style={{ color: '#3b82f6', marginTop: '2px' }}>●</span>
               <span>{r}</span>
             </div>
           ))}
         </div>
 
         {/* Footer */}
-        <div className="mt-12 pt-4 border-t border-gray-200 text-center text-xs text-gray-400">
+        <div style={{ marginTop: '48px', paddingTop: '16px', borderTop: '1px solid #e5e7eb', textAlign: 'center' as const, fontSize: '12px', color: '#9ca3af' }}>
           <p>© {new Date().getFullYear()} Davide Tuzi · davide.tuzi@gmail.com · linkedin.com/in/davide-tuzi</p>
         </div>
       </div>
