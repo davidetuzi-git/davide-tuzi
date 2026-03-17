@@ -20,7 +20,7 @@ import articleMarsicalive from "@/assets/article-marsicalive.png";
 const careers = [
   {
     period: "2016 – 2018",
-    company: "LenntecH",
+    company: "Lenntech",
     role: "Technical Sales Engineer",
     logo: logoLenntech,
     achievements: [
