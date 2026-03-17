@@ -9,12 +9,12 @@ import logoArcese from "@/assets/logo-arcese.png";
 import logoCentrostyle from "@/assets/logo-centrostyle.png";
 
 const deals = [
-  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€700k", year: "2024", logo: logoLuxottica },
+  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoLuxottica },
   { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€700k", year: "2024", logo: logoTransmec },
   { customer: "Douglas / Arvato", industry: "Fashion – Beauty", value: "€7M", year: "2024", logos: [logoDouglas, logoArvato] },
-  { customer: "Centro Style", industry: "Fashion – Accessories", value: "€500k", year: "2024", logo: logoCentrostyle },
-  { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€7.2M", year: "2025", logo: logoMrPrice },
-  { customer: "Arcese for Ferrari", industry: "Automotive", value: "€9M", year: "2025", logo: logoArcese },
+  { customer: "Centro Style", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoCentrostyle },
+  { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€8M", year: "2025", logo: logoMrPrice },
+  { customer: "Arcese for Ferrari", industry: "Automotive", value: "€10M", year: "2025", logo: logoArcese },
 ];
 
 export function ResultsSection() {
