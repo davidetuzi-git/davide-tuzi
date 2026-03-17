@@ -77,6 +77,9 @@ const Index = () => {
             <WhyMeSection />
           </div>
           <PodcastSection />
+          <div className="section-alt">
+            <DreamJobSection />
+          </div>
           <ContactSection />
         </motion.div>
       )}
