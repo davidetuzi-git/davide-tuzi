@@ -48,6 +48,10 @@ export function ContactSection() {
             <FileText className="w-5 h-5" strokeWidth={1.5} />
             <span className="text-sm">Printable Profile</span>
           </a>
+          <button onClick={handlePptx} disabled={generating} className="inline-flex items-center gap-3 bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground/80 rounded-lg px-8 py-3 font-medium hover:bg-primary-foreground/15 hover:text-primary-foreground transition-colors disabled:opacity-50">
+            <Presentation className="w-5 h-5" strokeWidth={1.5} />
+            <span className="text-sm">{generating ? "Generating…" : "Download PPTX"}</span>
+          </button>
         </motion.div>
         <motion.p variants={fadeUp} className="text-primary-foreground/40 text-sm mt-12">
           © {new Date().getFullYear()} Davide Tuzi. All rights reserved.
