@@ -58,7 +58,7 @@ export function AboutSection() {
           <motion.div variants={fadeUp}>
             <p className="label-mono mb-3 text-primary">🔥 Passions</p>
             <div className="flex flex-wrap gap-2">
-              {["Technology", "Sustainability", "Travel", "Cooking", "Cats", "Entrepreneurship"].map((p) => (
+              {["Technology", "Sustainability", "Travel", "Cooking", "Cats", "Guitar", "Entrepreneurship"].map((p) => (
                 <span key={p} className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
                   {p}
                 </span>
