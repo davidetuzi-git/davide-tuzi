@@ -40,13 +40,14 @@ export function AboutSection() {
             <p className="label-mono mb-3 text-primary">🌍 Languages</p>
             <div className="flex flex-wrap gap-2">
               {[
-                { lang: "Italian", level: "Native" },
-                { lang: "English", level: "Fluent" },
-                { lang: "Spanish", level: "Fluent" },
-                { lang: "Dutch", level: "Limited" },
-                { lang: "French", level: "Limited" },
+                { lang: "Italian", level: "Native", flag: "it" },
+                { lang: "English", level: "Fluent", flag: "gb" },
+                { lang: "Spanish", level: "Fluent", flag: "es" },
+                { lang: "Dutch", level: "Limited", flag: "nl" },
+                { lang: "French", level: "Limited", flag: "fr" },
               ].map((l) => (
                 <span key={l.lang} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-muted/50 text-foreground">
+                  <img src={`https://flagcdn.com/16x12/${l.flag}.png`} alt={l.lang} className="w-4 h-3" />
                   {l.lang}
                   <span className="text-muted-foreground">· {l.level}</span>
                 </span>
