@@ -3,13 +3,13 @@ import { fadeUp } from "@/lib/animations";
 import { Plane, Home, Shield, Target, Scale, Users, Flame } from "lucide-react";
 
 const traits = [
-  { icon: Plane, label: "Good balance travel / home" },
-  { icon: Home, label: "Remote when not travelling" },
-  { icon: Shield, label: "High responsibility" },
-  { icon: Target, label: "Sales & Strategy focused" },
-  { icon: Scale, label: "Good work-life balance" },
-  { icon: Users, label: "Managing a team" },
-  { icon: Flame, label: "I love challenges" },
+  { icon: Plane, label: "Good balance travel / home", desc: "I love travelling nationally and internationally — business is a person-to-person thing. Based near FCO airport and Rome's main high-speed rail hub." },
+  { icon: Home, label: "Remote when not travelling", desc: "Recharging energy is vital. My family is my daily dopamine and motivation — time with them is priceless and fuels my performance." },
+  { icon: Shield, label: "High responsibility", desc: "I'm not afraid of taking responsibility and running calculated risks. Autonomy and independence in decision-making make me feel trusted and empowered." },
+  { icon: Target, label: "Sales & Strategy focused", desc: "I thrive when combining hands-on selling with strategic thinking — shaping go-to-market plans and turning vision into revenue." },
+  { icon: Scale, label: "Good work-life balance", desc: "Sustained high performance requires balance. I give my best when I can recharge and be fully present both at work and at home." },
+  { icon: Users, label: "Managing a team", desc: "Building, mentoring and leading teams is where I find purpose. Watching people grow is one of the most rewarding parts of my career." },
+  { icon: Flame, label: "I love challenges", desc: "Comfort zones don't excite me. I'm energised by ambitious targets, uncharted markets and problems others shy away from." },
 ];
 
 export function DreamJobSection() {
@@ -34,12 +34,15 @@ export function DreamJobSection() {
             <motion.div
               key={t.label}
               variants={fadeUp}
-              className="monolith-card p-5 flex items-center gap-4"
+              className="monolith-card p-5 flex items-start gap-4"
             >
-              <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
                 <t.icon className="w-5 h-5 text-primary" />
               </div>
-              <span className="text-sm font-medium text-foreground">{t.label}</span>
+              <div>
+                <span className="text-sm font-semibold text-foreground">{t.label}</span>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{t.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>
