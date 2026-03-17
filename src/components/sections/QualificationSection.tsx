@@ -37,7 +37,7 @@ const certifications = [
 
 export function QualificationSection() {
   return (
-    <section className="min-h-svh flex items-center px-8 py-20">
+    <section className="min-h-svh md:min-h-svh min-h-0 flex items-center px-6 md:px-8 py-12 md:py-20">
       <motion.div
         initial="hidden"
         whileInView="visible"
