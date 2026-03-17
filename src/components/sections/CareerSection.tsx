@@ -134,35 +134,66 @@ export function CareerSection() {
                       <span className="label-mono text-primary">{c.period}</span>
                       <h3 className="text-xl font-semibold text-foreground mt-1 flex items-center gap-2">
                         {c.company}
-                        {c.url && (
+                        {'url' in c && c.url && (
                           <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:opacity-80 transition-opacity" title="View on LinkedIn">
                             <Linkedin className="w-5 h-5" />
                           </a>
                         )}
                       </h3>
-                      <p className="text-muted-foreground text-sm">{c.role}</p>
+                      {'role' in c && c.role && <p className="text-muted-foreground text-sm">{c.role}</p>}
                     </div>
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-2 ml-0 md:ml-[4.75rem]">
-                  {c.achievements.map((a) => (
-                    <div key={a} className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                      <span className="text-secondary-foreground text-sm">{a}</span>
-                    </div>
-                  ))}
-                </div>
-                {c.keyLearnings && (
-                  <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
-                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🎯 Key Learnings</p>
-                    <div className="flex flex-wrap gap-2">
-                      {c.keyLearnings.map((l) => (
-                        <span key={l} className="text-xs bg-primary/8 text-primary border border-primary/15 rounded-full px-3 py-1 font-medium">
-                          {l}
-                        </span>
-                      ))}
-                    </div>
+                {'subRoles' in c && c.subRoles ? (
+                  <div className="ml-0 md:ml-[4.75rem] space-y-6">
+                    {c.subRoles.map((sub: any, si: number) => (
+                      <div key={si} className={si > 0 ? "pt-5 border-t border-dashed border-primary/20" : ""}>
+                        <span className="label-mono text-primary text-[11px]">{sub.period}</span>
+                        <p className="text-base font-semibold text-foreground mt-1 mb-3">{sub.role}</p>
+                        <div className="grid sm:grid-cols-2 gap-2">
+                          {sub.achievements.map((a: string) => (
+                            <div key={a} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                              <span className="text-secondary-foreground text-sm">{a}</span>
+                            </div>
+                          ))}
+                        </div>
+                        {sub.keyLearnings && (
+                          <div className="mt-3 pt-3 border-t border-border">
+                            <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🎯 Key Learnings</p>
+                            <div className="flex flex-wrap gap-2">
+                              {sub.keyLearnings.map((l: string) => (
+                                <span key={l} className="text-xs bg-primary/8 text-primary border border-primary/15 rounded-full px-3 py-1 font-medium">{l}</span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
+                ) : (
+                  <>
+                    {'achievements' in c && c.achievements && (
+                      <div className="grid sm:grid-cols-2 gap-2 ml-0 md:ml-[4.75rem]">
+                        {c.achievements.map((a: string) => (
+                          <div key={a} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                            <span className="text-secondary-foreground text-sm">{a}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {'keyLearnings' in c && c.keyLearnings && (
+                      <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
+                        <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">🎯 Key Learnings</p>
+                        <div className="flex flex-wrap gap-2">
+                          {c.keyLearnings.map((l: string) => (
+                            <span key={l} className="text-xs bg-primary/8 text-primary border border-primary/15 rounded-full px-3 py-1 font-medium">{l}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
                 {'photos' in c && c.photos && c.photos.length > 0 && (
                   <div className="ml-0 md:ml-[4.75rem] mt-4 pt-4 border-t border-border">
