@@ -38,15 +38,15 @@ const PrintCV = () => {
 
       <div style={{ maxWidth: '210mm', margin: '0 auto', padding: '32px' }}>
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '32px' }}>
-          <img src={profileImg} alt="Davide Tuzi" style={{ width: '96px', height: '96px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #bfdbfe' }} />
-          <div>
-            <h1 style={{ fontSize: '1.875rem', fontWeight: 700, color: '#1a1a2e', margin: 0 }}>Davide Tuzi</h1>
-            <p style={{ color: '#6b7280', marginTop: '4px', fontSize: '14px' }}>Sales & Business Professional | Tech & Sustainability</p>
-            <div style={{ display: 'flex', gap: '16px', marginTop: '8px', fontSize: '12px', color: '#6b7280' }}>
-              <span>📧 davide.tuzi@gmail.com</span>
-              <span>📱 +39 333 201 6113</span>
-              <span>🔗 linkedin.com/in/davide-tuzi</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '32px', flexWrap: 'wrap' as const }}>
+          <img src={profileImg} alt="Davide Tuzi" style={{ width: '72px', height: '72px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #bfdbfe', flexShrink: 0 }} />
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1a1a2e', margin: 0 }}>Davide Tuzi</h1>
+            <p style={{ color: '#6b7280', marginTop: '4px', fontSize: '13px' }}>Sales & Business Professional | Tech & Sustainability</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '8px 16px', marginTop: '8px', fontSize: '11px', color: '#6b7280' }}>
+              <span style={{ whiteSpace: 'nowrap' }}>📧 davide.tuzi@gmail.com</span>
+              <span style={{ whiteSpace: 'nowrap' }}>📱 +39 333 201 6113</span>
+              <span style={{ whiteSpace: 'nowrap' }}>🔗 linkedin.com/in/davide-tuzi</span>
             </div>
           </div>
         </div>
