@@ -24,7 +24,7 @@ export function DreamJobSection() {
       >
         <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">What I'm Looking For</motion.p>
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          My Dream Job
+          What I Care in a Job
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground mb-8">
           The ingredients of a role where I can truly thrive.
