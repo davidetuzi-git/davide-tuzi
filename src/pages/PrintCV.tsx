@@ -25,11 +25,16 @@ const PrintCV = () => {
           .page-break { page-break-before: always; }
         }
         .print-cv { font-family: 'Inter', system-ui, sans-serif; }
+        .print-cv * { color: inherit; }
         .print-cv h1, .print-cv h2, .print-cv h3 { color: #1a1a2e; }
         .print-cv .accent { color: #3b82f6; }
-        .print-cv .section-title { font-size: 1.1rem; font-weight: 700; border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; }
-        .print-cv .tag { display: inline-block; background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; border-radius: 9999px; padding: 2px 10px; font-size: 0.7rem; font-weight: 500; margin: 2px; }
+        .print-cv .section-title { font-size: 1.1rem; font-weight: 700; border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; color: #1a1a2e; }
+        .print-cv .tag { display: inline-block; background: #eff6ff; color: #2563eb !important; border: 1px solid #bfdbfe; border-radius: 9999px; padding: 2px 10px; font-size: 0.7rem; font-weight: 500; margin: 2px; }
         .print-cv .career-block { border-left: 3px solid #3b82f6; padding-left: 12px; margin-bottom: 16px; }
+        .print-cv .text-blue { color: #2563eb !important; }
+        .print-cv .text-gray-light { color: #6b7280 !important; }
+        .print-cv .text-gray-dark { color: #374151 !important; }
+        .print-cv .text-gray-faint { color: #9ca3af !important; }
       `}</style>
 
       {/* Top bar - print button */}
