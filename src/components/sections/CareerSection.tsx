@@ -66,6 +66,7 @@ const careers = [
     url: "https://www.linkedin.com/company/nextonideas/",
     achievements: [
       "Side entrepreneurial adventure in IoT industry",
+      "Raised €50,000 in investment",
     ],
     keyLearnings: ["Entrepreneurial grit", "Product-market fit thinking"],
     transition: "Project ended due to cash runway depletion and diverging visions among co-founders.",
