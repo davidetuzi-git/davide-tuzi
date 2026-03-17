@@ -9,7 +9,7 @@ import logoArcese from "@/assets/logo-arcese.png";
 import logoCentrostyle from "@/assets/logo-centrostyle.png";
 
 const deals = [
-  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoLuxottica, flag: "🇮🇹" },
+  { customer: "Luxottica", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoLuxottica, flags: ["it", "us"] },
   { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€2.5M", year: "2024", logo: logoTransmec, flag: "🇮🇹" },
   { customer: "Douglas / Arvato", industry: "Fashion – Beauty", value: "€7M", year: "2024", logos: [logoDouglas, logoArvato], flag: "🇮🇹" },
   { customer: "Centro Style", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoCentrostyle, flag: "🇮🇹" },
