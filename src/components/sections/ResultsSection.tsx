@@ -68,6 +68,9 @@ export function ResultsSection() {
             </motion.div>
           ))}
         </div>
+        <motion.p variants={fadeUp} className="mt-8 text-[11px] text-muted-foreground/70 leading-relaxed max-w-4xl italic">
+          ⚠️ Disclaimer — The information presented above is strictly confidential and is shared solely for the purpose of illustrating the type of clients served and the scale of results achieved. It is not intended to disclose proprietary business details, nor to cause any harm or prejudice to the companies mentioned. All data is approximate and shared under the confidentiality terms accepted upon accessing this document.
+        </motion.p>
       </motion.div>
     </section>
   );
