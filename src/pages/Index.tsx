@@ -35,34 +35,15 @@ const Index = () => {
         >
           {/* Watermark */}
           <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden select-none" aria-hidden="true">
-            {/* Top line */}
-            <div
-              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ top: '15%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
-            >
-              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
-            </div>
-            {/* Upper-center line */}
-            <div
-              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ top: '40%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
-            >
-              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
-            </div>
-            {/* Lower-center line */}
-            <div
-              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ top: '65%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
-            >
-              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
-            </div>
-            {/* Bottom line */}
-            <div
-              className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
-              style={{ top: '90%', left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
-            >
-              CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
-            </div>
+            {[10, 30, 50, 70, 90].map((top) => (
+              <div
+                key={top}
+                className="absolute text-foreground/[0.045] text-xl font-bold uppercase tracking-[0.3em] whitespace-nowrap"
+                style={{ top: `${top}%`, left: '-10%', transform: 'rotate(-35deg)', width: '250%' }}
+              >
+                CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL &nbsp;&nbsp;&nbsp;&nbsp; CONFIDENTIAL
+              </div>
+            ))}
           </div>
 
           {/* Disclaimer banner */}
