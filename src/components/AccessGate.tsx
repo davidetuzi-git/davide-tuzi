@@ -113,8 +113,11 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
         <h1 className="text-2xl font-semibold text-foreground mb-2">
           Davide Tuzi — Private Briefing
         </h1>
-        <p className="text-muted-foreground text-sm mb-8">
+        <p className="text-muted-foreground text-sm mb-2">
           This document contains proprietary information. Please request credentials to proceed.
+        </p>
+        <p className="text-primary font-medium text-sm mb-8 italic">
+          Who wants to know more about me? 😏
         </p>
 
         <AnimatePresence mode="wait">
