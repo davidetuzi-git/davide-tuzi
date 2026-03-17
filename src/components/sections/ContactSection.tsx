@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { Mail, Phone, Linkedin, Download } from "lucide-react";
+import { Mail, Phone, Linkedin, Download, FileText } from "lucide-react";
 
 export function ContactSection() {
   return (
@@ -31,10 +31,14 @@ export function ContactSection() {
             <span className="text-sm whitespace-nowrap">LinkedIn Profile</span>
           </a>
         </motion.div>
-        <motion.div variants={fadeUp} className="mt-6">
+        <motion.div variants={fadeUp} className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
           <a href="/CV_DavideTuzi.pdf" download className="inline-flex items-center gap-3 bg-primary text-primary-foreground rounded-lg px-8 py-3 font-medium hover:bg-primary/90 transition-colors">
             <Download className="w-5 h-5" strokeWidth={1.5} />
             <span className="text-sm">Download CV</span>
+          </a>
+          <a href="/print" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground/80 rounded-lg px-8 py-3 font-medium hover:bg-primary-foreground/15 hover:text-primary-foreground transition-colors">
+            <FileText className="w-5 h-5" strokeWidth={1.5} />
+            <span className="text-sm">Printable Profile</span>
           </a>
         </motion.div>
         <motion.p variants={fadeUp} className="text-primary-foreground/40 text-sm mt-12">
