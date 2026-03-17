@@ -10,11 +10,11 @@ import logoCentrostyle from "@/assets/logo-centrostyle.png";
 
 const deals = [
   { customer: "Luxottica", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoLuxottica, flags: ["it", "us"] },
-  { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€2.5M", year: "2024", logo: logoTransmec, flag: "🇮🇹" },
-  { customer: "Douglas / Arvato", industry: "Fashion – Beauty", value: "€7M", year: "2024", logos: [logoDouglas, logoArvato], flag: "🇮🇹" },
-  { customer: "Centro Style", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoCentrostyle, flag: "🇮🇹" },
-  { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€8M", year: "2025", logo: logoMrPrice, flag: "🇿🇦" },
-  { customer: "Arcese for Ferrari", industry: "Automotive", value: "€10M", year: "2025", logo: logoArcese, flag: "🇮🇹" },
+  { customer: "TransmecLog", industry: "Fashion – Shoes", value: "€2.5M", year: "2024", logo: logoTransmec, flags: ["it"] },
+  { customer: "Douglas / Arvato", industry: "Fashion – Beauty", value: "€7M", year: "2024", logos: [logoDouglas, logoArvato], flags: ["it"] },
+  { customer: "Centro Style", industry: "Fashion – Accessories", value: "€2M", year: "2024", logo: logoCentrostyle, flags: ["it"] },
+  { customer: "FORTNA / MrPrice", industry: "Retail – Fashion", value: "€8M", year: "2025", logo: logoMrPrice, flags: ["za"] },
+  { customer: "Arcese for Ferrari", industry: "Automotive", value: "€10M", year: "2025", logo: logoArcese, flags: ["it"] },
 ];
 
 export function ResultsSection() {
