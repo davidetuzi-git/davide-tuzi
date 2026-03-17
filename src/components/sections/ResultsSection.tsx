@@ -32,7 +32,7 @@ export function ResultsSection() {
           From 0 to +€25M in less than 2.5 years
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
-          Selected highlights from key deals developed at HAI Robotics.
+          Some of the most memorable and biggest projects I have sold at HAI Robotics.
         </motion.p>
         <motion.div variants={fadeUp} className="monolith-card p-5 mb-12 inline-flex items-center gap-3 border-primary/20 bg-primary/5">
           <span className="text-primary font-semibold text-sm">🏢 Negotiating with C-Level executives of Fortune 500 companies</span>
