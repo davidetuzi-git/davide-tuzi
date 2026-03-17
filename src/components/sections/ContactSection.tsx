@@ -4,6 +4,13 @@ import { Mail, Phone, Linkedin, Download, FileText, Presentation } from "lucide-
 import { generatePptx } from "@/lib/generatePptx";
 import { useState } from "react";
 export function ContactSection() {
+  const [generating, setGenerating] = useState(false);
+
+  const handlePptx = async () => {
+    setGenerating(true);
+    try { await generatePptx(); } finally { setGenerating(false); }
+  };
+
   return (
     <section className="min-h-[60vh] flex items-center justify-center px-8 py-20 bg-foreground relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-primary/20" />
