@@ -48,7 +48,7 @@ const careers = [
   },
   {
     period: "2019 – 2023",
-    company: "Nexton",
+    company: "NEXTON",
     role: "Co-Founder",
     logo: logoNexton,
     url: "https://www.linkedin.com/company/nextonideas/",
