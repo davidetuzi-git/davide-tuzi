@@ -54,7 +54,14 @@ export function ResultsSection() {
               </div>
               {/* Info area */}
               <p className="label-mono text-primary mb-2">{d.year}</p>
-              <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">{d.customer} <span className="text-base">{d.flag}</span></h3>
+              <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                {d.customer}
+                <img
+                  src={`https://flagcdn.com/20x15/${d.flag === '🇿🇦' ? 'za' : 'it'}.png`}
+                  alt={d.flag === '🇿🇦' ? 'South Africa' : 'Italy'}
+                  className="w-5 h-auto inline-block"
+                />
+              </h3>
               <p className="text-muted-foreground text-sm mb-4">{d.industry}</p>
               {/* Value - pushed to bottom */}
               <p className="text-3xl font-bold bg-gradient-to-r from-primary to-[hsl(200_90%_55%)] bg-clip-text text-transparent mt-auto">{d.value}</p>
