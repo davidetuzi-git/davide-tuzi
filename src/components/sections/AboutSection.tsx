@@ -18,7 +18,7 @@ export function AboutSection() {
         <div>
           <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">About Me</motion.p>
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            The Intimate Version
+            Who is Davide
           </motion.h2>
           <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
             Happily married with Katia. Proud cat dad of three: Polpetta, Tiramisù & Sofficino. Entrepreneurial mindset with an engineering background.
