@@ -29,7 +29,7 @@ export function ResultsSection() {
       >
         <motion.p variants={fadeUp} className="label-mono mb-4 text-primary">Track Record</motion.p>
         <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          From 0 to +€25M in less than 2.5 years
+          From 0 to 1, and from 1 to +€30M
         </motion.h2>
         <motion.p variants={fadeUp} className="text-muted-foreground mb-4">
           Some of the most memorable and biggest projects I have sold at HAI Robotics.
@@ -54,7 +54,14 @@ export function ResultsSection() {
               </div>
               {/* Info area */}
               <p className="label-mono text-primary mb-2">{d.year}</p>
-              <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">{d.customer} <span className="text-base">{d.flag}</span></h3>
+              <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                {d.customer}
+                <img
+                  src={`https://flagcdn.com/20x15/${d.flag === '🇿🇦' ? 'za' : 'it'}.png`}
+                  alt={d.flag === '🇿🇦' ? 'South Africa' : 'Italy'}
+                  className="w-5 h-auto inline-block"
+                />
+              </h3>
               <p className="text-muted-foreground text-sm mb-4">{d.industry}</p>
               {/* Value - pushed to bottom */}
               <p className="text-3xl font-bold bg-gradient-to-r from-primary to-[hsl(200_90%_55%)] bg-clip-text text-transparent mt-auto">{d.value}</p>
