@@ -27,8 +27,8 @@ export function ContactSection() {
             <span className="text-sm whitespace-nowrap">+39 333 201 6113</span>
           </a>
           <a href="https://www.linkedin.com/in/davide-tuzi/" target="_blank" rel="noopener noreferrer" className="bg-primary-foreground/10 border border-primary-foreground/20 rounded-lg px-6 py-3 flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/15 transition-colors relative z-10">
-            <Linkedin className="w-5 h-5" strokeWidth={1.5} />
-            <span className="text-sm">linkedin.com/in/davide-tuzi</span>
+            <Linkedin className="w-5 h-5 shrink-0" strokeWidth={1.5} />
+            <span className="text-sm whitespace-nowrap">LinkedIn Profile</span>
           </a>
         </motion.div>
         <motion.div variants={fadeUp} className="mt-6">
