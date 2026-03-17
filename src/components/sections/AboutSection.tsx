@@ -66,6 +66,39 @@ export function AboutSection() {
               ))}
             </div>
           </motion.div>
+
+          {/* Life Journey Map */}
+          <motion.div variants={fadeUp} className="mt-6">
+            <p className="label-mono mb-3 text-primary">📍 Life Journey</p>
+            <div className="flex items-center gap-0 overflow-x-auto pb-2">
+              {[
+                { city: "Roma", country: "it", label: "Born & raised", emoji: "🏠" },
+                { city: "Torino", country: "it", label: "6 years", emoji: "🎓" },
+                { city: "Netherlands", country: "nl", label: "6 years", emoji: "🌷" },
+                { city: "Roma", country: "it", label: "Current base", emoji: "🏡" },
+              ].map((stop, idx, arr) => (
+                <div key={idx} className="flex items-center shrink-0">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center text-lg">
+                      {stop.emoji}
+                    </div>
+                    <div className="mt-2">
+                      <p className="text-xs font-semibold text-foreground flex items-center gap-1 justify-center">
+                        <img src={`https://flagcdn.com/14x10/${stop.country}.png`} alt="" className="w-3.5 h-2.5" />
+                        {stop.city}
+                      </p>
+                      <p className="text-[10px] text-muted-foreground">{stop.label}</p>
+                    </div>
+                  </div>
+                  {idx < arr.length - 1 && (
+                    <div className="w-8 md:w-12 h-px bg-primary/30 mx-1 relative top-[-10px]">
+                      <div className="absolute -right-1 -top-[3px] text-primary/50 text-[8px]">✈</div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
         <motion.div variants={fadeUp} className="space-y-6">
           {/* Photo grid */}
