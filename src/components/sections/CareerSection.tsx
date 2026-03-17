@@ -33,17 +33,26 @@ const careers = [
     transition: "Seeking a larger, more structured international environment to grow my career in industrial automation.",
   },
   {
-    period: "2018 – 2021",
+    period: "2018 – 2019",
     company: "Vanderlande",
     role: "Spare Parts Sales Engineer Specialist – Global Services",
     logo: logoVanderlande,
     achievements: [
       "100% complex project success rate",
       "Acted as Project Manager for project leads",
+    ],
+    keyLearnings: ["Complex project management", "Corporate processes & governance"],
+  },
+  {
+    period: "2019 – 2021",
+    company: "Vanderlande",
+    role: "Sales Engineer Key Account (Amazon)",
+    logo: logoVanderlande,
+    achievements: [
       "Price negotiation with major customers",
       "Successful cross-functional department collaboration",
     ],
-    keyLearnings: ["Complex project management", "Corporate processes & governance", "Global stakeholder alignment"],
+    keyLearnings: ["Global stakeholder alignment", "Key account management"],
     transition: "Ready for a leadership challenge — wanted to build something from scratch and take full ownership of a market.",
   },
   {
