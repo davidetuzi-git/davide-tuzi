@@ -16,7 +16,7 @@ const skills = [
 
 export function SkillsSection() {
   return (
-    <section className="min-h-svh flex items-center px-8 py-20">
+    <section className="flex items-center px-8 py-12 md:py-20">
       <motion.div
         initial="hidden"
         whileInView="visible"
