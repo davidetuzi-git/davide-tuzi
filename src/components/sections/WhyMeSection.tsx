@@ -5,7 +5,7 @@ import { Cpu, Globe, Users, TrendingUp, Heart, Briefcase, Award } from "lucide-r
 const reasons = [
   { icon: Cpu, text: "Experience with technology, hardware & software solutions" },
   { icon: Globe, text: "International experience across cultures" },
-  { icon: Briefcase, text: "Sales DNA — selling since 2016" },
+  { icon: Briefcase, text: "Selling since 2016" },
   { icon: TrendingUp, text: "Entrepreneur by DNA" },
   { icon: Users, text: "Negotiating with C-level big players" },
   { icon: Award, text: "Miller-Heiman training certified" },
