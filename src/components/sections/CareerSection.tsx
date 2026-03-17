@@ -99,7 +99,7 @@ export function CareerSection() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.05 }}
         transition={{ staggerChildren: 0.12 }}
         className="max-w-6xl mx-auto w-full"
       >
