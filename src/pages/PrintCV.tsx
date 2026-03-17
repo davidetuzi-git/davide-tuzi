@@ -189,6 +189,9 @@ const PrintCV = () => {
             <li>Pioneered the Middle East market from zero</li>
             <li>6 official partnerships signed, including 4 Tier-1 system integrators</li>
           </ul>
+          <div style={{ marginTop: '8px', marginLeft: '16px', padding: '8px 12px', background: '#eff6ff', borderRadius: '6px', display: 'inline-block' }}>
+            <span style={{ fontSize: '12px', color: '#2563eb', fontWeight: 600 }}>📊 Total pipeline developed: €30M+ in less than 3 years</span>
+          </div>
         </div>
 
         {/* === PAGE 3: Dream Job + Why Me === */}
