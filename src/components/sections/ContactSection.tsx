@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations";
-import { Mail, Phone, Linkedin, Download, FileText, Presentation } from "lucide-react";
-import { generatePptx } from "@/lib/generatePptx";
-import { useState } from "react";
+import { Mail, Phone, Linkedin, Download, FileText } from "lucide-react";
 export function ContactSection() {
   const [generating, setGenerating] = useState(false);
 
