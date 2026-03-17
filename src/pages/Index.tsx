@@ -10,6 +10,7 @@ import { SwotSection } from "@/components/sections/SwotSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
 import { WhyMeSection } from "@/components/sections/WhyMeSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { DreamJobSection } from "@/components/sections/DreamJobSection";
 import { PodcastSection } from "@/components/sections/PodcastSection";
 
 const Index = () => {
