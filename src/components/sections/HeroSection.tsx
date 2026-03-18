@@ -37,8 +37,13 @@ export function HeroSection() {
             Davide Tuzi
           </motion.h1>
           <motion.p variants={fadeUp} className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            Sales & business professional. Passionate about tech & sustainability.
-            Engineering background mixed with strategic acumen, fighting for innovation.
+            Sales & business professional.
+            <br />
+            Passionate about tech & sustainability.
+            <br />
+            Engineering background mixed with strategic acumen.
+            <br />
+            Fighting for innovation.
           </motion.p>
         </div>
 
