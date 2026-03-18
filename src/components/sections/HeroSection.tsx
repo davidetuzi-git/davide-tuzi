@@ -43,7 +43,7 @@ export function HeroSection() {
             <br />
             Engineering background mixed with strategic acumen.
             <br />
-            Fighting for innovation.
+            Relentless entrepreneur, fighting for innovation.
           </motion.p>
         </div>
 
