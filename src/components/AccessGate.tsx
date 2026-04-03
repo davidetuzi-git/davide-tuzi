@@ -1,24 +1,55 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Lock } from "lucide-react";
+import { Lock, AlertTriangle } from "lucide-react";
 
+// ─── CONFIGURAZIONE PASSWORD ─────────────────────────────────
+// Cambia qui la password e aggiorna la data ogni 30 giorni.
 const ACCESS_PASSWORD = "ShowM€";
+const PASSWORD_SET_DATE = "2025-07-14"; // Data in cui hai impostato la password (YYYY-MM-DD)
+const EXPIRY_DAYS = 30;
+// ─────────────────────────────────────────────────────────────
+
+function isPasswordExpired(): boolean {
+  const setDate = new Date(PASSWORD_SET_DATE);
+  const now = new Date();
+  const diffMs = now.getTime() - setDate.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays > EXPIRY_DAYS;
+}
+
+function daysUntilExpiry(): number {
+  const setDate = new Date(PASSWORD_SET_DATE);
+  const expiryDate = new Date(setDate.getTime() + EXPIRY_DAYS * 24 * 60 * 60 * 1000);
+  const now = new Date();
+  const diffDays = Math.ceil((expiryDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+  return Math.max(0, diffDays);
+}
 
 export function AccessGate({ onGranted }: { onGranted: () => void }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const expired = isPasswordExpired();
 
   useEffect(() => {
+    if (expired) {
+      localStorage.removeItem("dt_access_granted");
+      return;
+    }
     const saved = localStorage.getItem("dt_access_granted");
     if (saved === "true") {
       onGranted();
     }
-  }, [onGranted]);
+  }, [onGranted, expired]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+
+    if (expired) {
+      setError("La password è scaduta. L'amministratore deve aggiornarla.");
+      return;
+    }
 
     if (password === ACCESS_PASSWORD) {
       localStorage.setItem("dt_access_granted", "true");
@@ -55,6 +86,18 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
           Who wants to know more about me? 😏
         </p>
 
+        {expired && (
+          <div className="flex items-start gap-3 bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-6">
+            <AlertTriangle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-medium text-destructive">Password Scaduta</p>
+              <p className="text-xs text-destructive/70 mt-1">
+                La password è scaduta. L'accesso è temporaneamente sospeso. Se sei Davide, aggiorna la password nel codice sorgente.
+              </p>
+            </div>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="label-mono block mb-2">Password</label>
@@ -65,12 +108,13 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
               className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
               placeholder="Enter password"
               required
+              disabled={expired}
             />
           </div>
 
           {error && <p className="text-destructive text-sm">{error}</p>}
 
-          <Button type="submit" variant="gate">
+          <Button type="submit" variant="gate" disabled={expired}>
             Request Access
           </Button>
         </form>
