@@ -20,31 +20,18 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    if (isSignUp) {
-      const { error } = await supabase.auth.signUp({ email, password });
-      if (error) {
-        setError(error.message);
-        setLoading(false);
-        return;
-      }
-      toast.success("Account creato! Ora puoi accedere.");
-      setIsSignUp(false);
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        setError("Credenziali non valide.");
-        setLoading(false);
-        return;
-      }
-      onLogin();
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      setError("Credenziali non valide.");
+      setLoading(false);
+      return;
     }
+    onLogin();
     setLoading(false);
   }
 
@@ -61,7 +48,7 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
         </div>
 
         <h1 className="text-xl font-semibold text-foreground mb-6">
-          {isSignUp ? "Crea Account Admin" : "Login Admin"}
+          Login Admin
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -89,16 +76,8 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
           {error && <p className="text-destructive text-sm">{error}</p>}
 
           <Button type="submit" variant="gate" disabled={loading} className="w-full">
-            {loading ? "..." : isSignUp ? "Registrati" : "Accedi"}
+            {loading ? "..." : "Accedi"}
           </Button>
-
-          <button
-            type="button"
-            onClick={() => setIsSignUp(!isSignUp)}
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors w-full text-center"
-          >
-            {isSignUp ? "Hai già un account? Accedi" : "Prima volta? Crea account"}
-          </button>
         </form>
       </motion.div>
     </div>
