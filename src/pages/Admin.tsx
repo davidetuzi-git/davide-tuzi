@@ -34,10 +34,10 @@ export default function Admin() {
 
   function handlePinSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (pin === ADMIN_PIN) {
+    if (pin.trim().toLowerCase() === ADMIN_ANSWER.toLowerCase()) {
       setAuthenticated(true);
     } else {
-      setPinError("PIN errato.");
+      setPinError("Risposta errata.");
     }
   }
 
