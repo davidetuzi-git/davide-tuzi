@@ -76,16 +76,8 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
           {error && <p className="text-destructive text-sm">{error}</p>}
 
           <Button type="submit" variant="gate" disabled={loading} className="w-full">
-            {loading ? "..." : isSignUp ? "Registrati" : "Accedi"}
+            {loading ? "..." : "Accedi"}
           </Button>
-
-          <button
-            type="button"
-            onClick={() => setIsSignUp(!isSignUp)}
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors w-full text-center"
-          >
-            {isSignUp ? "Hai già un account? Accedi" : "Prima volta? Crea account"}
-          </button>
         </form>
       </motion.div>
     </div>
