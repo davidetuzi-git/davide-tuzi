@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 // Stessa configurazione di AccessGate
 const PASSWORD_SET_DATE = "2025-07-14";
 const EXPIRY_DAYS = 30;
-const ADMIN_PIN = "7914"; // PIN admin per accedere a questa pagina
+const ADMIN_QUESTION = "Qual è il nome del tuo terzo gatto?";
+const ADMIN_ANSWER = "Sofficino";
 
 function daysUntilExpiry(): number {
   const setDate = new Date(PASSWORD_SET_DATE);
@@ -33,10 +34,10 @@ export default function Admin() {
 
   function handlePinSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (pin === ADMIN_PIN) {
+    if (pin.trim().toLowerCase() === ADMIN_ANSWER.toLowerCase()) {
       setAuthenticated(true);
     } else {
-      setPinError("PIN errato.");
+      setPinError("Risposta errata.");
     }
   }
 
@@ -55,13 +56,13 @@ export default function Admin() {
           <h1 className="text-xl font-semibold text-foreground mb-6">Accesso Admin</h1>
           <form onSubmit={handlePinSubmit} className="space-y-4">
             <div>
-              <label className="label-mono block mb-2">PIN Admin</label>
+              <label className="label-mono block mb-2">{ADMIN_QUESTION}</label>
               <input
-                type="password"
+                type="text"
                 value={pin}
                 onChange={(e) => setPin(e.target.value)}
                 className="w-full bg-transparent border-b border-border pb-2 text-foreground focus:outline-none focus:border-primary transition-colors"
-                placeholder="Inserisci PIN"
+                placeholder="La tua risposta"
                 required
               />
             </div>
