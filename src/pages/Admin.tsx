@@ -48,7 +48,7 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
         </div>
 
         <h1 className="text-xl font-semibold text-foreground mb-6">
-          {isSignUp ? "Crea Account Admin" : "Login Admin"}
+          Login Admin
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
