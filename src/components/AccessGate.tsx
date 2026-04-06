@@ -2,8 +2,12 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Lock, Loader2, CheckCircle, Clock } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
+
+// ─── CONFIGURAZIONE ──────────────────────────────────
+// Dopo aver deployato il Google Apps Script, incolla qui l'URL
+const GAS_URL = "INCOLLA_QUI_URL_GOOGLE_APPS_SCRIPT";
+// ─────────────────────────────────────────────────────
 
 const formSchema = z.object({
   first_name: z.string().trim().min(1, "Inserisci il nome").max(100),
@@ -20,30 +24,28 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const [requestId, setRequestId] = useState<string | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Check localStorage for existing approved session
   useEffect(() => {
-    const saved = localStorage.getItem("dt_access_request_id");
-    if (saved) {
-      // Verify it's still approved
-      supabase
-        .from("access_requests")
-        .select("status, expires_at")
-        .eq("id", saved)
-        .single()
-        .then(({ data }) => {
-          if (data?.status === "approved") {
-            const expiresAt = data.expires_at ? new Date(data.expires_at) : null;
-            if (!expiresAt || expiresAt > new Date()) {
-              onGranted();
-              return;
-            }
-          }
+    const savedId = localStorage.getItem("dt_access_request_id");
+    if (!savedId) return;
+
+    fetch(GAS_URL, {
+      method: "POST",
+      body: JSON.stringify({ action: "check", request_id: savedId }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.status === "approved") {
+          onGranted();
+        } else {
           localStorage.removeItem("dt_access_request_id");
-        });
-    }
+        }
+      })
+      .catch(() => {
+        // If GAS is unreachable, keep saved access
+      });
   }, [onGranted]);
 
   // Poll for approval
@@ -51,19 +53,23 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
     (id: string) => {
       if (pollRef.current) clearInterval(pollRef.current);
       pollRef.current = setInterval(async () => {
-        const { data } = await supabase
-          .from("access_requests")
-          .select("status")
-          .eq("id", id)
-          .single();
+        try {
+          const res = await fetch(GAS_URL, {
+            method: "POST",
+            body: JSON.stringify({ action: "check", request_id: id }),
+          });
+          const data = await res.json();
 
-        if (data?.status === "approved") {
-          if (pollRef.current) clearInterval(pollRef.current);
-          setStep("approved");
-          localStorage.setItem("dt_access_request_id", id);
-          setTimeout(() => onGranted(), 1500);
+          if (data.status === "approved") {
+            if (pollRef.current) clearInterval(pollRef.current);
+            setStep("approved");
+            localStorage.setItem("dt_access_request_id", id);
+            setTimeout(() => onGranted(), 1500);
+          }
+        } catch {
+          // Retry on next interval
         }
-      }, 3000);
+      }, 4000);
     },
     [onGranted]
   );
@@ -92,47 +98,35 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
     setSubmitting(true);
 
     try {
-      // Get IP for tracking
-      let ip: string | null = null;
+      // Get IP
+      let ip = "";
       try {
         const ipRes = await fetch("https://api.ipify.org?format=json");
         const ipData = await ipRes.json();
         ip = ipData.ip;
       } catch {
-        // IP detection failed, proceed without it
+        // IP detection failed
       }
 
-      // Insert access request
-      const { data, error: insertError } = await supabase
-        .from("access_requests")
-        .insert({
+      const res = await fetch(GAS_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          action: "request",
           first_name: parsed.data.first_name,
           last_name: parsed.data.last_name,
           email: parsed.data.email,
-          ip_address: ip,
-          status: "pending",
-        })
-        .select("id")
-        .single();
-
-      if (insertError) throw insertError;
-
-      const reqId = data.id;
-      setRequestId(reqId);
-
-      // Send Telegram notification
-      await supabase.functions.invoke("notify-telegram", {
-        body: {
-          first_name: parsed.data.first_name,
-          last_name: parsed.data.last_name,
-          email: parsed.data.email,
-          request_id: reqId,
-          type: "access",
-        },
+          ip,
+        }),
       });
 
+      const data = await res.json();
+
+      if (!data.success || !data.request_id) {
+        throw new Error(data.error || "Errore durante l'invio");
+      }
+
       setStep("waiting");
-      startPolling(reqId);
+      startPolling(data.request_id);
     } catch (err: any) {
       setError(err.message || "Errore durante l'invio. Riprova.");
     } finally {
@@ -258,7 +252,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="monolith-card max-w-md w-full mx-4 p-8 relative z-10 text-center"
           >
-            <CheckCircle className="w-10 h-10 text-green-500 mx-auto mb-4" strokeWidth={1.5} />
+            <CheckCircle className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
             <h2 className="text-xl font-semibold text-foreground mb-2">
               Accesso Approvato
             </h2>
