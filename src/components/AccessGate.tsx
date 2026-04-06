@@ -160,6 +160,9 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
         setError("Access denied. This password can only be used from the original device.");
       } else if (data.error === "Wrong password") {
         setError("Wrong password. Please try again.");
+      } else if (data.error === "Expired") {
+        setError("Your access has expired. Please submit a new request.");
+        localStorage.removeItem("dt_access_request_id");
       } else {
         setError("Verification failed. Please try again.");
       }
