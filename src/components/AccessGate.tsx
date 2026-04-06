@@ -40,22 +40,24 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
   // Check localStorage for existing approved session
   useEffect(() => {
     const savedId = localStorage.getItem("dt_access_request_id");
-    if (!savedId) return;
+    if (!savedId || !userIp) return;
 
     fetch(GAS_URL, {
       method: "POST",
-      body: JSON.stringify({ action: "check", request_id: savedId }),
+      body: JSON.stringify({ action: "validate_access", request_id: savedId, ip: userIp }),
     })
       .then((r) => r.json())
       .then((data) => {
-        if (data.status === "approved") {
+        if (data.success) {
           onGranted();
         } else {
           localStorage.removeItem("dt_access_request_id");
         }
       })
-      .catch(() => {});
-  }, [onGranted]);
+      .catch(() => {
+        localStorage.removeItem("dt_access_request_id");
+      });
+  }, [onGranted, userIp]);
 
   // Poll for approval → then show password step
   const startPolling = useCallback(
