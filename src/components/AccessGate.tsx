@@ -6,7 +6,7 @@ import { Lock, AlertTriangle } from "lucide-react";
 // ─── CONFIGURAZIONE PASSWORD ─────────────────────────────────
 // Cambia qui la password e aggiorna la data ogni 30 giorni.
 const ACCESS_PASSWORD = "ShowM€";
-const PASSWORD_SET_DATE = "2025-07-14"; // Data in cui hai impostato la password (YYYY-MM-DD)
+const PASSWORD_SET_DATE = "2026-04-06"; // Data in cui hai impostato la password (YYYY-MM-DD)
 const EXPIRY_DAYS = 30;
 // ─────────────────────────────────────────────────────────────
 

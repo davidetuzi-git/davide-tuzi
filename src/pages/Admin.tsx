@@ -4,7 +4,7 @@ import { Lock, AlertTriangle, CheckCircle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // Stessa configurazione di AccessGate
-const PASSWORD_SET_DATE = "2025-07-14";
+const PASSWORD_SET_DATE = "2026-04-06";
 const EXPIRY_DAYS = 30;
 const ADMIN_QUESTION = "Qual è il nome del tuo terzo gatto?";
 const ADMIN_ANSWER = "Sofficino";
