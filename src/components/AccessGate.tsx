@@ -6,7 +6,7 @@ import { z } from "zod";
 
 // ─── CONFIGURATION ──────────────────────────────────
 // After deploying the Google Apps Script, paste the URL here
-const GAS_URL = "https://script.google.com/macros/s/AKfycbwNTw_t9YP3nJYxacCCKWjgJnD7jCh3EyxBEmWavJHVJ3hmepIfNJ1A9iDZ5djmlBZA0w/exec";
+const GAS_URL = "https://script.google.com/macros/s/AKfycbx7swnb-iFH4TtvI69hrU3XO2tLkZbXHjMzkDNlhuD8oW7s_GSOqxsTrjOEWnkOd3iEng/exec";
 // ─────────────────────────────────────────────────────
 
 const formSchema = z.object({
