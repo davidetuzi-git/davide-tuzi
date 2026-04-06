@@ -1,61 +1,142 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Lock, AlertTriangle } from "lucide-react";
+import { Lock, Loader2, CheckCircle, Clock } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
 
-// ─── CONFIGURAZIONE PASSWORD ─────────────────────────────────
-// Cambia qui la password e aggiorna la data ogni 30 giorni.
-const ACCESS_PASSWORD = "ShowM€";
-const PASSWORD_SET_DATE = "2026-04-06"; // Data in cui hai impostato la password (YYYY-MM-DD)
-const EXPIRY_DAYS = 30;
-// ─────────────────────────────────────────────────────────────
+const formSchema = z.object({
+  first_name: z.string().trim().min(1, "Inserisci il nome").max(100),
+  last_name: z.string().trim().min(1, "Inserisci il cognome").max(100),
+  email: z.string().trim().email("Email non valida").max(255),
+});
 
-function isPasswordExpired(): boolean {
-  const setDate = new Date(PASSWORD_SET_DATE);
-  const now = new Date();
-  const diffMs = now.getTime() - setDate.getTime();
-  const diffDays = diffMs / (1000 * 60 * 60 * 24);
-  return diffDays > EXPIRY_DAYS;
-}
-
-function daysUntilExpiry(): number {
-  const setDate = new Date(PASSWORD_SET_DATE);
-  const expiryDate = new Date(setDate.getTime() + EXPIRY_DAYS * 24 * 60 * 60 * 1000);
-  const now = new Date();
-  const diffDays = Math.ceil((expiryDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-  return Math.max(0, diffDays);
-}
+type Step = "form" | "waiting" | "approved";
 
 export function AccessGate({ onGranted }: { onGranted: () => void }) {
-  const [password, setPassword] = useState("");
+  const [step, setStep] = useState<Step>("form");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const expired = isPasswordExpired();
+  const [submitting, setSubmitting] = useState(false);
+  const [requestId, setRequestId] = useState<string | null>(null);
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Check localStorage for existing approved session
+  useEffect(() => {
+    const saved = localStorage.getItem("dt_access_request_id");
+    if (saved) {
+      // Verify it's still approved
+      supabase
+        .from("access_requests")
+        .select("status, expires_at")
+        .eq("id", saved)
+        .single()
+        .then(({ data }) => {
+          if (data?.status === "approved") {
+            const expiresAt = data.expires_at ? new Date(data.expires_at) : null;
+            if (!expiresAt || expiresAt > new Date()) {
+              onGranted();
+              return;
+            }
+          }
+          localStorage.removeItem("dt_access_request_id");
+        });
+    }
+  }, [onGranted]);
+
+  // Poll for approval
+  const startPolling = useCallback(
+    (id: string) => {
+      if (pollRef.current) clearInterval(pollRef.current);
+      pollRef.current = setInterval(async () => {
+        const { data } = await supabase
+          .from("access_requests")
+          .select("status")
+          .eq("id", id)
+          .single();
+
+        if (data?.status === "approved") {
+          if (pollRef.current) clearInterval(pollRef.current);
+          setStep("approved");
+          localStorage.setItem("dt_access_request_id", id);
+          setTimeout(() => onGranted(), 1500);
+        }
+      }, 3000);
+    },
+    [onGranted]
+  );
 
   useEffect(() => {
-    if (expired) {
-      localStorage.removeItem("dt_access_granted");
-      return;
-    }
-    const saved = localStorage.getItem("dt_access_granted");
-    if (saved === "true") {
-      onGranted();
-    }
-  }, [onGranted, expired]);
+    return () => {
+      if (pollRef.current) clearInterval(pollRef.current);
+    };
+  }, []);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
 
-    if (expired) {
-      setError("La password è scaduta. L'amministratore deve aggiornarla.");
+    const parsed = formSchema.safeParse({
+      first_name: firstName,
+      last_name: lastName,
+      email,
+    });
+
+    if (!parsed.success) {
+      setError(parsed.error.errors[0].message);
       return;
     }
 
-    if (password === ACCESS_PASSWORD) {
-      localStorage.setItem("dt_access_granted", "true");
-      onGranted();
-    } else {
-      setError("Password errata. Riprova.");
+    setSubmitting(true);
+
+    try {
+      // Get IP for tracking
+      let ip: string | null = null;
+      try {
+        const ipRes = await fetch("https://api.ipify.org?format=json");
+        const ipData = await ipRes.json();
+        ip = ipData.ip;
+      } catch {
+        // IP detection failed, proceed without it
+      }
+
+      // Insert access request
+      const { data, error: insertError } = await supabase
+        .from("access_requests")
+        .insert({
+          first_name: parsed.data.first_name,
+          last_name: parsed.data.last_name,
+          email: parsed.data.email,
+          ip_address: ip,
+          status: "pending",
+        })
+        .select("id")
+        .single();
+
+      if (insertError) throw insertError;
+
+      const reqId = data.id;
+      setRequestId(reqId);
+
+      // Send Telegram notification
+      await supabase.functions.invoke("notify-telegram", {
+        body: {
+          first_name: parsed.data.first_name,
+          last_name: parsed.data.last_name,
+          email: parsed.data.email,
+          request_id: reqId,
+          type: "access",
+        },
+      });
+
+      setStep("waiting");
+      startPolling(reqId);
+    } catch (err: any) {
+      setError(err.message || "Errore durante l'invio. Riprova.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -65,60 +146,128 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/3 rounded-full blur-3xl" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="monolith-card max-w-md w-full mx-4 p-8 relative z-10"
-      >
-        <div className="flex items-center gap-3 mb-6">
-          <Lock className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
-          <span className="label-mono">Access Restricted</span>
-        </div>
-
-        <h1 className="text-2xl font-semibold text-foreground mb-2">
-          Davide Tuzi — Private Briefing
-        </h1>
-        <p className="text-muted-foreground text-sm mb-2">
-          This document contains proprietary information. Please enter the password to proceed.
-        </p>
-        <p className="text-primary font-medium text-sm mb-8 italic">
-          Who wants to know more about me? 😏
-        </p>
-
-        {expired && (
-          <div className="flex items-start gap-3 bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-6">
-            <AlertTriangle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
-            <div>
-              <p className="text-sm font-medium text-destructive">Password Scaduta</p>
-              <p className="text-xs text-destructive/70 mt-1">
-                La password è scaduta. L'accesso è temporaneamente sospeso. Se sei Davide, aggiorna la password nel codice sorgente.
-              </p>
+      <AnimatePresence mode="wait">
+        {step === "form" && (
+          <motion.div
+            key="form"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="monolith-card max-w-md w-full mx-4 p-8 relative z-10"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Lock className="w-5 h-5 text-muted-foreground" strokeWidth={1.5} />
+              <span className="label-mono">Access Restricted</span>
             </div>
-          </div>
+
+            <h1 className="text-2xl font-semibold text-foreground mb-2">
+              Davide Tuzi — Private Briefing
+            </h1>
+            <p className="text-muted-foreground text-sm mb-2">
+              This document contains proprietary information. Please identify yourself to request access.
+            </p>
+            <p className="text-primary font-medium text-sm mb-8 italic">
+              Who wants to know more about me? 😏
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="label-mono block mb-2">Nome</label>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Il tuo nome"
+                  required
+                  disabled={submitting}
+                />
+              </div>
+
+              <div>
+                <label className="label-mono block mb-2">Cognome</label>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Il tuo cognome"
+                  required
+                  disabled={submitting}
+                />
+              </div>
+
+              <div>
+                <label className="label-mono block mb-2">Email</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                  placeholder="La tua email"
+                  required
+                  disabled={submitting}
+                />
+              </div>
+
+              {error && <p className="text-destructive text-sm">{error}</p>}
+
+              <Button type="submit" variant="gate" disabled={submitting}>
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Invio in corso...
+                  </>
+                ) : (
+                  "Richiedi Accesso"
+                )}
+              </Button>
+            </form>
+          </motion.div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="label-mono block mb-2">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-              placeholder="Enter password"
-              required
-              disabled={expired}
-            />
-          </div>
+        {step === "waiting" && (
+          <motion.div
+            key="waiting"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="monolith-card max-w-md w-full mx-4 p-8 relative z-10 text-center"
+          >
+            <Clock className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
+            <h2 className="text-xl font-semibold text-foreground mb-3">
+              Richiesta Inviata
+            </h2>
+            <p className="text-muted-foreground text-sm mb-6">
+              La tua richiesta è stata inviata a Davide. Riceverai l'accesso non appena verrà approvata.
+            </p>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs">
+              <Loader2 className="w-3 h-3 animate-spin" />
+              <span>In attesa di approvazione...</span>
+            </div>
+          </motion.div>
+        )}
 
-          {error && <p className="text-destructive text-sm">{error}</p>}
-
-          <Button type="submit" variant="gate" disabled={expired}>
-            Request Access
-          </Button>
-        </form>
-      </motion.div>
+        {step === "approved" && (
+          <motion.div
+            key="approved"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="monolith-card max-w-md w-full mx-4 p-8 relative z-10 text-center"
+          >
+            <CheckCircle className="w-10 h-10 text-green-500 mx-auto mb-4" strokeWidth={1.5} />
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              Accesso Approvato
+            </h2>
+            <p className="text-muted-foreground text-sm">
+              Benvenuto! Accesso in corso...
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
