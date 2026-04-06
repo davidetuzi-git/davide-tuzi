@@ -1,30 +1,41 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Lock, Loader2, CheckCircle, Clock } from "lucide-react";
+import { Lock, Loader2, CheckCircle, Clock, KeyRound } from "lucide-react";
 import { z } from "zod";
 
-// ─── CONFIGURAZIONE ──────────────────────────────────
-// Dopo aver deployato il Google Apps Script, incolla qui l'URL
+// ─── CONFIGURATION ──────────────────────────────────
+// After deploying the Google Apps Script, paste the URL here
 const GAS_URL = "INCOLLA_QUI_URL_GOOGLE_APPS_SCRIPT";
 // ─────────────────────────────────────────────────────
 
 const formSchema = z.object({
-  first_name: z.string().trim().min(1, "Inserisci il nome").max(100),
-  last_name: z.string().trim().min(1, "Inserisci il cognome").max(100),
-  email: z.string().trim().email("Email non valida").max(255),
+  first_name: z.string().trim().min(1, "Please enter your first name").max(100),
+  last_name: z.string().trim().min(1, "Please enter your last name").max(100),
+  email: z.string().trim().email("Invalid email address").max(255),
 });
 
-type Step = "form" | "waiting" | "approved";
+type Step = "form" | "waiting" | "password" | "approved";
 
 export function AccessGate({ onGranted }: { onGranted: () => void }) {
   const [step, setStep] = useState<Step>("form");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [requestId, setRequestId] = useState<string | null>(null);
+  const [userIp, setUserIp] = useState("");
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Detect IP once
+  useEffect(() => {
+    fetch("https://api.ipify.org?format=json")
+      .then((r) => r.json())
+      .then((d) => setUserIp(d.ip || ""))
+      .catch(() => {});
+  }, []);
 
   // Check localStorage for existing approved session
   useEffect(() => {
@@ -43,12 +54,10 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
           localStorage.removeItem("dt_access_request_id");
         }
       })
-      .catch(() => {
-        // If GAS is unreachable, keep saved access
-      });
+      .catch(() => {});
   }, [onGranted]);
 
-  // Poll for approval
+  // Poll for approval → then show password step
   const startPolling = useCallback(
     (id: string) => {
       if (pollRef.current) clearInterval(pollRef.current);
@@ -62,16 +71,14 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
           if (data.status === "approved") {
             if (pollRef.current) clearInterval(pollRef.current);
-            setStep("approved");
-            localStorage.setItem("dt_access_request_id", id);
-            setTimeout(() => onGranted(), 1500);
+            setStep("password");
           }
         } catch {
           // Retry on next interval
         }
       }, 4000);
     },
-    [onGranted]
+    []
   );
 
   useEffect(() => {
@@ -80,6 +87,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
     };
   }, []);
 
+  // Step 1: Submit form
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
@@ -98,16 +106,6 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
     setSubmitting(true);
 
     try {
-      // Get IP
-      let ip = "";
-      try {
-        const ipRes = await fetch("https://api.ipify.org?format=json");
-        const ipData = await ipRes.json();
-        ip = ipData.ip;
-      } catch {
-        // IP detection failed
-      }
-
       const res = await fetch(GAS_URL, {
         method: "POST",
         body: JSON.stringify({
@@ -115,20 +113,58 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
           first_name: parsed.data.first_name,
           last_name: parsed.data.last_name,
           email: parsed.data.email,
-          ip,
+          ip: userIp,
         }),
       });
 
       const data = await res.json();
 
       if (!data.success || !data.request_id) {
-        throw new Error(data.error || "Errore durante l'invio");
+        throw new Error(data.error || "Error submitting request");
       }
 
+      setRequestId(data.request_id);
       setStep("waiting");
       startPolling(data.request_id);
     } catch (err: any) {
-      setError(err.message || "Errore durante l'invio. Riprova.");
+      setError(err.message || "Error submitting request. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Step 3: Verify password + IP
+  async function handlePasswordSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    setSubmitting(true);
+
+    try {
+      const res = await fetch(GAS_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          action: "verify_password",
+          request_id: requestId,
+          password,
+          ip: userIp,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStep("approved");
+        localStorage.setItem("dt_access_request_id", requestId!);
+        setTimeout(() => onGranted(), 1500);
+      } else if (data.error === "IP mismatch") {
+        setError("Access denied. This password can only be used from the original device.");
+      } else if (data.error === "Wrong password") {
+        setError("Wrong password. Please try again.");
+      } else {
+        setError("Verification failed. Please try again.");
+      }
+    } catch (err: any) {
+      setError("Connection error. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -141,6 +177,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/3 rounded-full blur-3xl" />
 
       <AnimatePresence mode="wait">
+        {/* ─── STEP 1: IDENTIFICATION FORM ─── */}
         {step === "form" && (
           <motion.div
             key="form"
@@ -167,26 +204,26 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="label-mono block mb-2">Nome</label>
+                <label className="label-mono block mb-2">First Name</label>
                 <input
                   type="text"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                  placeholder="Il tuo nome"
+                  placeholder="Your first name"
                   required
                   disabled={submitting}
                 />
               </div>
 
               <div>
-                <label className="label-mono block mb-2">Cognome</label>
+                <label className="label-mono block mb-2">Last Name</label>
                 <input
                   type="text"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                  placeholder="Il tuo cognome"
+                  placeholder="Your last name"
                   required
                   disabled={submitting}
                 />
@@ -199,7 +236,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                  placeholder="La tua email"
+                  placeholder="Your email address"
                   required
                   disabled={submitting}
                 />
@@ -211,16 +248,17 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
                 {submitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Invio in corso...
+                    Submitting...
                   </>
                 ) : (
-                  "Richiedi Accesso"
+                  "Request Access"
                 )}
               </Button>
             </form>
           </motion.div>
         )}
 
+        {/* ─── STEP 2: WAITING FOR APPROVAL ─── */}
         {step === "waiting" && (
           <motion.div
             key="waiting"
@@ -232,18 +270,71 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
           >
             <Clock className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
             <h2 className="text-xl font-semibold text-foreground mb-3">
-              Richiesta Inviata
+              Request Submitted
             </h2>
             <p className="text-muted-foreground text-sm mb-6">
-              La tua richiesta è stata inviata a Davide. Riceverai l'accesso non appena verrà approvata.
+              Your request has been sent to Davide. You will gain access as soon as it is approved.
             </p>
             <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs">
               <Loader2 className="w-3 h-3 animate-spin" />
-              <span>In attesa di approvazione...</span>
+              <span>Waiting for approval...</span>
             </div>
           </motion.div>
         )}
 
+        {/* ─── STEP 3: PASSWORD ─── */}
+        {step === "password" && (
+          <motion.div
+            key="password"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="monolith-card max-w-md w-full mx-4 p-8 relative z-10"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <KeyRound className="w-5 h-5 text-primary" strokeWidth={1.5} />
+              <span className="label-mono">Access Approved</span>
+            </div>
+
+            <h2 className="text-xl font-semibold text-foreground mb-2">
+              Your request has been approved
+            </h2>
+            <p className="text-muted-foreground text-sm mb-8">
+              Please enter the password you've been provided to continue.
+            </p>
+
+            <form onSubmit={handlePasswordSubmit} className="space-y-5">
+              <div>
+                <label className="label-mono block mb-2">Password</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Enter password"
+                  required
+                  disabled={submitting}
+                />
+              </div>
+
+              {error && <p className="text-destructive text-sm">{error}</p>}
+
+              <Button type="submit" variant="gate" disabled={submitting}>
+                {submitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Verifying...
+                  </>
+                ) : (
+                  "Enter"
+                )}
+              </Button>
+            </form>
+          </motion.div>
+        )}
+
+        {/* ─── STEP 4: ACCESS GRANTED ─── */}
         {step === "approved" && (
           <motion.div
             key="approved"
@@ -254,10 +345,10 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
           >
             <CheckCircle className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
             <h2 className="text-xl font-semibold text-foreground mb-2">
-              Accesso Approvato
+              Access Granted
             </h2>
             <p className="text-muted-foreground text-sm">
-              Benvenuto! Accesso in corso...
+              Welcome! Loading content...
             </p>
           </motion.div>
         )}
