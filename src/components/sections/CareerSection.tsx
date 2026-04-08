@@ -98,6 +98,7 @@ const careers = [
     photos: [haiEvent1, haiEvent2, haiEvent4],
     links: [
       { label: "Intralogistica Italia 2022", url: "https://www.hairobotics.com/news/intralogistica-italia-2022", type: "article" },
+      { label: "Arvato CEO Italy – Premium Beauty Brand Case Study", url: "https://www.hairobotics.com/cases/premium-beauty-brand", type: "article" },
       { label: "HaiPulse Webinar – New Wave Textiles Case Study", url: "https://zoom.us/rec/play/2lFWeQr90xpzdMfdi-8oNq2aMHt8LdHSW5NOuUeN_NENTeMwmdZlszASIHijIecM97LwasLneghiMsdl.jBoEMlY7zO_Ey9Gu", type: "video" },
       { label: "Next-Gen Warehouse Automation Webinar", url: "https://www.youtube.com/watch?v=syYFwDBJiR4", type: "video" },
       { label: "Davide Tuzi on HAI Robotics Strategy in Italy", url: "https://www.facebook.com/HaiRobotics/videos/781783112975852/", type: "video" },
