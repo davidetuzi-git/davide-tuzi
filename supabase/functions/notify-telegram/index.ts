@@ -51,6 +51,7 @@ serve(async (req) => {
       message = `🔐 <b>Nuova richiesta di accesso</b>\n\n` +
         `👤 <b>Nome:</b> ${first_name} ${last_name}\n` +
         `📧 <b>Email:</b> ${email}\n\n` +
+        `🔑 <b>Password da comunicare:</b> <code>ShowM€</code>\n\n` +
         `<a href="${approveUrl}">✅ Approva accesso</a>`;
     }
 
