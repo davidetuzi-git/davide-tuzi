@@ -9,6 +9,9 @@ import { z } from "zod";
 const GAS_URL = "https://script.google.com/macros/s/AKfycbx7swnb-iFH4TtvI69hrU3XO2tLkZbXHjMzkDNlhuD8oW7s_GSOqxsTrjOEWnkOd3iEng/exec";
 // ─────────────────────────────────────────────────────
 
+// VIP emails that skip the password step
+const VIP_EMAILS = ["davide.tuzi@gmail.com"];
+
 const formSchema = z.object({
   first_name: z.string().trim().min(1, "Please enter your first name").max(100),
   last_name: z.string().trim().min(1, "Please enter your last name").max(100),
@@ -73,7 +76,14 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
           if (data.status === "approved") {
             if (pollRef.current) clearInterval(pollRef.current);
-            setStep("password");
+            // VIP emails skip password, go straight to approved
+            if (VIP_EMAILS.includes(email.trim().toLowerCase())) {
+              setStep("approved");
+              localStorage.setItem("dt_access_request_id", id);
+              setTimeout(() => onGranted(), 1500);
+            } else {
+              setStep("password");
+            }
           }
         } catch {
           // Retry on next interval
