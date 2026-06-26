@@ -147,7 +147,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
       setRequestId(data.request_id);
       setStep("waiting");
-      startPolling(data.request_id, parsed.data.email);
+      // No auto-polling: user must come back via Login after Telegram approval
     } catch (err: any) {
       setError(err.message || "Error submitting request. Please try again.");
     } finally {
