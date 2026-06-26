@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Lock, Loader2, CheckCircle, Clock, KeyRound } from "lucide-react";
+import { Lock, Loader2, CheckCircle, Clock, LogIn, UserPlus } from "lucide-react";
 import { z } from "zod";
 
 // ─── CONFIGURATION ──────────────────────────────────
@@ -9,7 +9,7 @@ import { z } from "zod";
 const GAS_URL = "https://script.google.com/macros/s/AKfycbx7swnb-iFH4TtvI69hrU3XO2tLkZbXHjMzkDNlhuD8oW7s_GSOqxsTrjOEWnkOd3iEng/exec";
 // ─────────────────────────────────────────────────────
 
-// VIP emails that skip the password step
+// VIP emails that skip approval entirely
 const VIP_EMAILS = ["davide.tuzi@gmail.com"];
 
 const formSchema = z.object({
@@ -18,16 +18,24 @@ const formSchema = z.object({
   email: z.string().trim().email("Invalid email address").max(255),
 });
 
-type Step = "form" | "waiting" | "password" | "approved";
+const loginSchema = z.object({
+  email: z.string().trim().email("Invalid email address").max(255),
+});
+
+type Mode = "request" | "login";
+type Step = "form" | "waiting" | "approved";
 
 export function AccessGate({ onGranted }: { onGranted: () => void }) {
+  const [mode, setMode] = useState<Mode>("request");
   const [step, setStep] = useState<Step>("form");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
   const [error, setError] = useState("");
+  const [loginError, setLoginError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
   const [requestId, setRequestId] = useState<string | null>(null);
   const [userIp, setUserIp] = useState("");
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -76,21 +84,17 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
           if (data.status === "approved") {
             if (pollRef.current) clearInterval(pollRef.current);
-            // VIP emails skip password, go straight to approved
-            if (VIP_EMAILS.includes(email.trim().toLowerCase())) {
-              setStep("approved");
-              localStorage.setItem("dt_access_request_id", id);
-              setTimeout(() => onGranted(), 1500);
-            } else {
-              setStep("password");
-            }
+            // Approval is enough: email + IP grants 30-day access
+            setStep("approved");
+            localStorage.setItem("dt_access_request_id", id);
+            setTimeout(() => onGranted(), 1500);
           }
         } catch {
           // Retry on next interval
         }
       }, 4000);
     },
-    []
+    [onGranted]
   );
 
   useEffect(() => {
@@ -145,43 +149,46 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
     }
   }
 
-  // Step 3: Verify password + IP
-  async function handlePasswordSubmit(e: React.FormEvent) {
+  // Login with email (returning users, same IP, within 30 days)
+  async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
-    setSubmitting(true);
+    setLoginError("");
 
+    const parsed = loginSchema.safeParse({ email: loginEmail });
+    if (!parsed.success) {
+      setLoginError(parsed.error.errors[0].message);
+      return;
+    }
+
+    setLoggingIn(true);
     try {
       const res = await fetch(GAS_URL, {
         method: "POST",
         body: JSON.stringify({
-          action: "verify_password",
-          request_id: requestId,
-          password,
+          action: "login_with_email",
+          email: parsed.data.email,
           ip: userIp,
         }),
       });
-
       const data = await res.json();
 
-      if (data.success) {
+      if (data.success && data.request_id) {
+        localStorage.setItem("dt_access_request_id", data.request_id);
         setStep("approved");
-        localStorage.setItem("dt_access_request_id", requestId!);
-        setTimeout(() => onGranted(), 1500);
+        setTimeout(() => onGranted(), 1200);
       } else if (data.error === "IP mismatch") {
-        setError("Access denied. This password can only be used from the original device.");
-      } else if (data.error === "Wrong password") {
-        setError("Wrong password. Please try again.");
+        setLoginError("This email was approved from a different network. Please request access again from this device.");
       } else if (data.error === "Expired") {
-        setError("Your access has expired. Please submit a new request.");
-        localStorage.removeItem("dt_access_request_id");
+        setLoginError("Your access has expired. Please submit a new request.");
+      } else if (data.error === "Not approved" || data.error === "Not found") {
+        setLoginError("No approved access found for this email. Please request access first.");
       } else {
-        setError("Verification failed. Please try again.");
+        setLoginError("Login failed. Please try again or request a new access.");
       }
-    } catch (err: any) {
-      setError("Connection error. Please try again.");
+    } catch {
+      setLoginError("Connection error. Please try again.");
     } finally {
-      setSubmitting(false);
+      setLoggingIn(false);
     }
   }
 
@@ -217,6 +224,31 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
               Who wants to know more about me? 😏
             </p>
 
+            {/* Mode toggle */}
+            <div className="flex gap-2 mb-6 p-1 bg-secondary/40 rounded-md">
+              <button
+                type="button"
+                onClick={() => { setMode("request"); setError(""); setLoginError(""); }}
+                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 text-xs font-medium tracking-wider uppercase rounded transition-colors ${
+                  mode === "request" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <UserPlus className="w-3.5 h-3.5" strokeWidth={1.5} />
+                Request Access
+              </button>
+              <button
+                type="button"
+                onClick={() => { setMode("login"); setError(""); setLoginError(""); }}
+                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 text-xs font-medium tracking-wider uppercase rounded transition-colors ${
+                  mode === "login" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <LogIn className="w-3.5 h-3.5" strokeWidth={1.5} />
+                Login
+              </button>
+            </div>
+
+            {mode === "request" ? (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="label-mono block mb-2">First Name</label>
@@ -270,6 +302,38 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
                 )}
               </Button>
             </form>
+            ) : (
+            <form onSubmit={handleLogin} className="space-y-5">
+              <p className="text-muted-foreground text-xs">
+                Already approved? Enter the same email to enter again. Access lasts 30 days and is bound to your current network.
+              </p>
+              <div>
+                <label className="label-mono block mb-2">Email</label>
+                <input
+                  type="email"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+                  placeholder="Your approved email"
+                  required
+                  disabled={loggingIn}
+                />
+              </div>
+
+              {loginError && <p className="text-destructive text-sm">{loginError}</p>}
+
+              <Button type="submit" variant="gate" disabled={loggingIn || !userIp}>
+                {loggingIn ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Verifying...
+                  </>
+                ) : (
+                  "Enter"
+                )}
+              </Button>
+            </form>
+            )}
           </motion.div>
         )}
 
@@ -285,67 +349,18 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
           >
             <Clock className="w-10 h-10 text-primary mx-auto mb-4" strokeWidth={1.5} />
             <h2 className="text-xl font-semibold text-foreground mb-3">
-              Request Submitted
+              Request Received
             </h2>
-            <p className="text-muted-foreground text-sm mb-6">
-              Your request has been sent to Davide. You will gain access as soon as it is approved.
+            <p className="text-muted-foreground text-sm mb-3">
+              Davide has received your request and will review it <span className="text-foreground font-medium">within 24 hours</span>.
+            </p>
+            <p className="text-muted-foreground text-xs mb-6">
+              You can close this page. Once approved, come back and use <span className="text-foreground font-medium">Login</span> with your email to enter — access lasts 30 days from this network.
             </p>
             <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs">
               <Loader2 className="w-3 h-3 animate-spin" />
-              <span>Waiting for approval...</span>
+              <span>Waiting for approval (auto-enter if you stay here)...</span>
             </div>
-          </motion.div>
-        )}
-
-        {/* ─── STEP 3: PASSWORD ─── */}
-        {step === "password" && (
-          <motion.div
-            key="password"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="monolith-card max-w-md w-full mx-4 p-8 relative z-10"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <KeyRound className="w-5 h-5 text-primary" strokeWidth={1.5} />
-              <span className="label-mono">Access Approved</span>
-            </div>
-
-            <h2 className="text-xl font-semibold text-foreground mb-2">
-              Your request has been approved
-            </h2>
-            <p className="text-muted-foreground text-sm mb-8">
-              Please enter the password you've been provided to continue.
-            </p>
-
-            <form onSubmit={handlePasswordSubmit} className="space-y-5">
-              <div>
-                <label className="label-mono block mb-2">Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-transparent border-b border-border pb-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                  placeholder="Enter password"
-                  required
-                  disabled={submitting}
-                />
-              </div>
-
-              {error && <p className="text-destructive text-sm">{error}</p>}
-
-              <Button type="submit" variant="gate" disabled={submitting}>
-                {submitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Verifying...
-                  </>
-                ) : (
-                  "Enter"
-                )}
-              </Button>
-            </form>
           </motion.div>
         )}
 
