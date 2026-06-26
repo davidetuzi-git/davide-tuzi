@@ -72,17 +72,23 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
   // Poll for approval → then show password step
   const startPolling = useCallback(
-    (id: string) => {
+    (id: string, emailToCheck: string) => {
       if (pollRef.current) clearInterval(pollRef.current);
       pollRef.current = setInterval(async () => {
         try {
           const res = await fetch(GAS_URL, {
             method: "POST",
-            body: JSON.stringify({ action: "check", request_id: id }),
+            body: JSON.stringify({
+              action: "check",
+              request_id: id,
+              email: emailToCheck,
+              ip: userIp,
+            }),
           });
           const data = await res.json();
 
-          if (data.status === "approved") {
+          // Strict: backend must confirm approved AND email+ip match this exact row
+          if (data.status === "approved" && data.verified === true) {
             if (pollRef.current) clearInterval(pollRef.current);
             // Approval is enough: email + IP grants 30-day access
             setStep("approved");
@@ -94,7 +100,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
         }
       }, 4000);
     },
-    [onGranted]
+    [onGranted, userIp]
   );
 
   useEffect(() => {
@@ -141,7 +147,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
       setRequestId(data.request_id);
       setStep("waiting");
-      startPolling(data.request_id);
+      startPolling(data.request_id, parsed.data.email);
     } catch (err: any) {
       setError(err.message || "Error submitting request. Please try again.");
     } finally {
