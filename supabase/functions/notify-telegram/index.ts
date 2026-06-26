@@ -51,8 +51,8 @@ serve(async (req) => {
       message = `🔐 <b>Nuova richiesta di accesso</b>\n\n` +
         `👤 <b>Nome:</b> ${first_name} ${last_name}\n` +
         `📧 <b>Email:</b> ${email}\n\n` +
-        `🔑 <b>Password da comunicare:</b> <code>ShowM€</code>\n\n` +
-        `<a href="${approveUrl}">✅ Approva accesso</a>`;
+        `<a href="${approveUrl}">✅ Approva accesso</a>\n\n` +
+        `<i>L'utente potrà rientrare per 30 giorni inserendo solo la sua email dallo stesso IP.</i>`;
     }
 
     const response = await fetch(`${GATEWAY_URL}/sendMessage`, {
