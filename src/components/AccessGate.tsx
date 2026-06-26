@@ -147,7 +147,7 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
 
       setRequestId(data.request_id);
       setStep("waiting");
-      startPolling(data.request_id, parsed.data.email);
+      // No auto-polling: user must come back via Login after Telegram approval
     } catch (err: any) {
       setError(err.message || "Error submitting request. Please try again.");
     } finally {
@@ -363,10 +363,13 @@ export function AccessGate({ onGranted }: { onGranted: () => void }) {
             <p className="text-muted-foreground text-xs mb-6">
               You can close this page. Once approved, come back and use <span className="text-foreground font-medium">Login</span> with your email to enter — access lasts 30 days from this network.
             </p>
-            <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs">
-              <Loader2 className="w-3 h-3 animate-spin" />
-              <span>Waiting for approval (auto-enter if you stay here)...</span>
-            </div>
+            <button
+              type="button"
+              onClick={() => { setStep("form"); setMode("login"); }}
+              className="text-xs text-primary hover:underline"
+            >
+              ← Back to Login
+            </button>
           </motion.div>
         )}
 
